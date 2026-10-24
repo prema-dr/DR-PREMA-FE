@@ -2,12 +2,7 @@
 
 import Link from "next/link";
 import { motion, useReducedMotion, type Variants } from "motion/react";
-import {
-  GraduationCapIcon as GraduationCap,
-  PhoneCallIcon as PhoneCall,
-  StarIcon as Star,
-} from "@phosphor-icons/react/dist/ssr";
-import { PHONE_TEL } from "@/components/layout/nav-links";
+import { GraduationCapIcon as GraduationCap, StarIcon as Star } from "@phosphor-icons/react/dist/ssr";
 
 const container: Variants = {
   hidden: {},
@@ -76,13 +71,6 @@ export function HeroContent() {
       </motion.p>
 
       <motion.div variants={item} className="mt-8 flex flex-wrap gap-4">
-        <a
-          href={PHONE_TEL}
-          className="inline-flex items-center gap-2 rounded-full bg-rose-600 px-7 py-3.5 text-base font-semibold text-white shadow-[0_14px_30px_-12px_rgba(232,64,122,0.7)] transition-all hover:-translate-y-0.5 hover:bg-rose-700 active:scale-[0.98]"
-        >
-          <PhoneCall size={18} weight="regular" />
-          Book Consultation
-        </a>
         <Link
           href="/about-us"
           className="inline-flex items-center gap-2 rounded-full border-2 border-rose-200 bg-white/70 px-7 py-3.5 text-base font-semibold text-rose-700 transition-all hover:-translate-y-0.5 hover:bg-rose-50 active:scale-[0.98]"

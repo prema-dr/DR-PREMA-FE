@@ -1,17 +1,11 @@
-import {
-  InstagramLogoIcon as InstagramLogo,
-  MapPinIcon as MapPin,
-  WhatsappLogoIcon as WhatsappLogo,
-  YoutubeLogoIcon as YoutubeLogo,
-} from "@phosphor-icons/react/dist/ssr";
 import { CLINIC_INFO } from "./clinic-info";
 import { INSTAGRAM_URL, WHATSAPP_URL, YOUTUBE_URL } from "./nav-links";
 
 const LINKS = [
-  { label: "YouTube", href: YOUTUBE_URL, Icon: YoutubeLogo, color: "bg-red-600" },
-  { label: "Instagram", href: INSTAGRAM_URL, Icon: InstagramLogo, color: "bg-pink-600" },
-  { label: "WhatsApp", href: WHATSAPP_URL, Icon: WhatsappLogo, color: "bg-emerald-500" },
-  { label: "Google Maps", href: CLINIC_INFO.mapUrl, Icon: MapPin, color: "bg-sky-600" },
+  { label: "YouTube", href: YOUTUBE_URL, icon: "/svg/youtube-color-svgrepo-com.svg" },
+  { label: "Instagram", href: INSTAGRAM_URL, icon: "/svg/instagram-2-1-logo-svgrepo-com.svg" },
+  { label: "WhatsApp", href: WHATSAPP_URL, icon: "/svg/whatsapp-color-svgrepo-com.svg" },
+  { label: "Google Maps", href: CLINIC_INFO.mapUrl, icon: "/svg/location-pin-svgrepo-com.svg", size: 34 },
 ];
 
 export function FloatingSocials() {
@@ -20,7 +14,7 @@ export function FloatingSocials() {
       aria-label="Social and contact links"
       className="fixed right-3 top-1/2 z-40 flex -translate-y-1/2 flex-col gap-2.5 sm:right-5"
     >
-      {LINKS.map(({ label, href, Icon, color }) => (
+      {LINKS.map(({ label, href, icon, size = 26 }) => (
         <a
           key={label}
           href={href}
@@ -28,9 +22,10 @@ export function FloatingSocials() {
           rel="noopener noreferrer"
           aria-label={label}
           title={label}
-          className={`flex size-11 items-center justify-center rounded-full text-white shadow-lg transition-transform hover:scale-110 active:scale-95 ${color}`}
+          className="flex size-11 items-center justify-center rounded-full bg-white shadow-lg ring-1 ring-black/5 transition-transform hover:scale-110 active:scale-95"
         >
-          <Icon size={22} weight="fill" />
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src={icon} alt="" aria-hidden width={size} height={size} style={{ width: size, height: size }} />
         </a>
       ))}
     </nav>
