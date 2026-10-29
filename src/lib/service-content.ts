@@ -1,4 +1,4 @@
-// Shape of a service's landing-page body, stored as JSON on the service in the database.
+// Shape of a service's landing-page body, stored in src/data/service-content.json.
 export type ServiceBlock =
   | { t: "p"; text: string }
   | { t: "ul"; items: string[] }

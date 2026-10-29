@@ -3,6 +3,7 @@
 import { useState, type FormEvent } from "react";
 import { ChatCircleTextIcon as ChatCircleText, PencilSimpleIcon as PencilSimple, PlusIcon as Plus, TrashIcon as Trash } from "@phosphor-icons/react/dist/ssr";
 import { api, type AdminTestimonial } from "@/lib/admin-api";
+import { serviceName } from "@/lib/services";
 import {
   Button, Card, ConfirmDialog, Drawer, EmptyState, ErrorState, Field, FilterBar, GridSkeleton, ImagePicker, PageBody, PageHeader, Pagination,
   ServiceSelect, StarInput, Stars, StatusPill, Tag, Toggle, ToggleRow, inputClass, useDrawerSave, useModule, useNewParam,
@@ -12,7 +13,7 @@ function TestimonialForm({ item, onClose, onSaved }: { item: AdminTestimonial | 
   const [name, setName] = useState(item?.name ?? "");
   const [review, setReview] = useState(item?.review ?? "");
   const [rating, setRating] = useState(item?.rating ?? 5);
-  const [serviceId, setServiceId] = useState(item ? String(item.serviceId) : "");
+  const [serviceId, setServiceId] = useState(item ? item.serviceSlug : "");
   const [isEnabled, setIsEnabled] = useState(item?.isEnabled ?? true);
   const [image, setImage] = useState<File | null>(null);
   const { saving, save } = useDrawerSave(onSaved);
@@ -24,7 +25,7 @@ function TestimonialForm({ item, onClose, onSaved }: { item: AdminTestimonial | 
     form.set("name", name);
     form.set("review", review);
     form.set("rating", String(rating));
-    form.set("serviceId", serviceId);
+    form.set("serviceSlug", serviceId);
     form.set("isEnabled", String(isEnabled));
     if (image) form.set("image", image);
     save(() => (item ? api.patch(`admin/testimonials/${item.id}`, form) : api.post("admin/testimonials", form)), item ? "Testimonial updated" : "Testimonial added");
@@ -111,7 +112,7 @@ export default function AdminTestimonialsPage() {
                 </div>
                 <p className="mt-4 line-clamp-5 flex-1 text-sm leading-relaxed text-rose-900/75">&ldquo;{t.review}&rdquo;</p>
                 <div className="mt-5 flex items-center justify-between gap-2 border-t border-rose-100/80 pt-4">
-                  <Tag>{t.service.name}</Tag>
+                  <Tag>{serviceName(t.serviceSlug)}</Tag>
                   <div className="flex items-center gap-2">
                     <Toggle checked={t.isEnabled} onChange={(v) => m.toggle(t, v)} label={`Enable testimonial from ${t.name}`} />
                     <Button variant="secondary" size="sm" aria-label="Edit" onClick={() => m.setEditing(t)}><PencilSimple size={14} weight="bold" /></Button>

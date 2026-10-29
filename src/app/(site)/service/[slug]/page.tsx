@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { getNavServices, getServicePage } from "@/lib/site-api";
+import { getServicePage } from "@/lib/site-api";
+import { getService, services } from "@/lib/services";
 import { ServiceHero } from "@/components/service/detail/ServiceHero";
 import { ServiceMetrics } from "@/components/service/detail/ServiceMetrics";
 import { ServiceTestimonials } from "@/components/service/detail/ServiceTestimonials";
@@ -13,9 +14,8 @@ import { ServiceBlogs } from "@/components/service/detail/ServiceBlogs";
 import { ServiceFaq } from "@/components/service/detail/ServiceFaq";
 import { ServiceCta, ServiceFinalCta } from "@/components/service/detail/ServiceCta";
 
-// Services added later in the admin panel are rendered on first visit.
-export async function generateStaticParams() {
-  return (await getNavServices()).map((service) => ({ slug: service.slug }));
+export function generateStaticParams() {
+  return services.map((service) => ({ slug: service.slug }));
 }
 
 export async function generateMetadata({
@@ -24,11 +24,11 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
-  const page = await getServicePage(slug);
-  if (!page) return {};
+  const service = getService(slug);
+  if (!service) return {};
   return {
-    title: `${page.service.name} | Dr Prema`,
-    description: page.service.heroSub,
+    title: service.metaTitle,
+    description: service.metaDescription,
   };
 }
 

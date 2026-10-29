@@ -1,15 +1,27 @@
 "use client";
 
-import { useState, type FormEvent } from "react";
+import { useEffect, useState, type FormEvent } from "react";
 import { useRouter } from "next/navigation";
 import { EyeIcon as Eye, EyeSlashIcon as EyeSlash, WarningCircleIcon as WarningCircle } from "@phosphor-icons/react/dist/ssr";
+import { onAuthStateChanged, signInWithEmailAndPassword } from "firebase/auth";
+import { firebaseAuth } from "@/lib/firebase";
 import { Button, inputClass } from "@/components/admin/ui";
+
+function signInError(code: string) {
+  if (code === "auth/too-many-requests") return "Too many attempts. Please wait a few minutes and try again.";
+  if (code === "auth/network-request-failed") return "Cannot reach the server. Try again shortly.";
+  if (code === "auth/user-disabled") return "This account has been disabled.";
+  return "Invalid email or password";
+}
 
 export function LoginForm() {
   const router = useRouter();
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const [show, setShow] = useState(false);
+
+  // Already signed in (session restored by Firebase): skip the form.
+  useEffect(() => onAuthStateChanged(firebaseAuth(), (user) => user && router.replace("/admin")), [router]);
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -18,20 +30,11 @@ export function LoginForm() {
 
     const form = new FormData(event.currentTarget);
     try {
-      const res = await fetch("/api/admin-login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email: form.get("email"), password: form.get("password") }),
-      });
-      if (res.ok) {
-        router.push("/admin");
-        router.refresh();
-        return;
-      }
-      const data = await res.json().catch(() => null);
-      setError(res.status === 429 ? "Too many attempts. Please wait a minute and try again." : (data?.message ?? "Sign-in failed"));
-    } catch {
-      setError("Cannot reach the server. Try again shortly.");
+      await signInWithEmailAndPassword(firebaseAuth(), String(form.get("email")), String(form.get("password")));
+      router.push("/admin");
+      return;
+    } catch (e) {
+      setError(signInError((e as { code?: string }).code ?? ""));
     }
     setLoading(false);
   }

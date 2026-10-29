@@ -5,7 +5,6 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import {
   ChatCircleTextIcon as ChatCircleText,
-  FirstAidKitIcon as FirstAidKit,
   ImagesIcon as Images,
   ListIcon as List,
   NotePencilIcon as NotePencil,
@@ -18,7 +17,6 @@ import { LogoutButton } from "@/components/admin/LogoutButton";
 
 const NAV_ITEMS = [
   { href: "/admin", label: "Dashboard", icon: SquaresFour, exact: true },
-  { href: "/admin/services", label: "Services", icon: FirstAidKit },
   { href: "/admin/blog", label: "Blogs", icon: NotePencil },
   { href: "/admin/testimonials", label: "Testimonials", icon: ChatCircleText },
   { href: "/admin/gallery", label: "Gallery", icon: Images },

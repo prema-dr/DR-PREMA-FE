@@ -1,4 +1,5 @@
-// Browser-side client for the admin backend, reached through /api/admin/* (see the route handler).
+// Admin data client. Data lives in Firestore + Cloudinary; see admin-store.ts for the implementation.
+import { handleAdminRequest, StoreError } from "@/lib/admin-store";
 
 export class ApiError extends Error {
   constructor(message: string, public status: number) {
@@ -11,27 +12,9 @@ export type Paginated<T> = {
   meta: { page: number; limit: number; total: number; totalPages: number };
 };
 
-export type ServiceRef = { id: number; name: string; slug: string };
-
-export type AdminService = {
-  id: number;
-  name: string;
-  slug: string;
-  summary: string;
-  heroHeading: string;
-  heroSub: string;
-  imageUrl: string | null;
-  iconKey: string | null;
-  content?: unknown;
-  isEnabled: boolean;
-  sortOrder: number;
-  updatedAt: string;
-};
-
 export type AdminBlog = {
-  id: number;
-  serviceId: number;
-  service: ServiceRef;
+  id: string;
+  serviceSlug: string;
   title: string;
   slug: string;
   urlRewrite: string | null;
@@ -48,9 +31,8 @@ export type AdminBlog = {
 };
 
 export type AdminTestimonial = {
-  id: number;
-  serviceId: number;
-  service: ServiceRef;
+  id: string;
+  serviceSlug: string;
   name: string;
   review: string;
   rating: number;
@@ -59,18 +41,16 @@ export type AdminTestimonial = {
 };
 
 export type AdminGalleryImage = {
-  id: number;
-  serviceId: number;
-  service: ServiceRef;
+  id: string;
+  serviceSlug: string;
   imageUrl: string;
   altText: string;
   isEnabled: boolean;
 };
 
 export type AdminPublication = {
-  id: number;
-  serviceId: number;
-  service: ServiceRef;
+  id: string;
+  serviceSlug: string;
   title: string;
   shortDescription: string;
   url: string;
@@ -78,16 +58,14 @@ export type AdminPublication = {
 };
 
 export type AdminVideo = {
-  id: number;
-  serviceId: number;
-  service: ServiceRef;
+  id: string;
+  serviceSlug: string;
   videoUrl: string;
   thumbnailUrl: string | null;
   isEnabled: boolean;
 };
 
 export type DashboardCounts = {
-  services: number;
   blogs: number;
   testimonials: number;
   galleryImages: number;
@@ -106,29 +84,15 @@ export function toQuery(query?: Query) {
   return text ? `?${text}` : "";
 }
 
-async function request<T>(method: string, path: string, body?: unknown): Promise<T> {
-  const isForm = typeof FormData !== "undefined" && body instanceof FormData;
-  const res = await fetch(`/api/admin/${path}`, {
-    method,
-    headers: body !== undefined && !isForm ? { "Content-Type": "application/json" } : undefined,
-    body: body === undefined ? undefined : isForm ? (body as FormData) : JSON.stringify(body),
-  });
-
-  if (res.status === 401) {
-    // Full navigation on purpose: the route handler clears the cookie and redirects.
-    // eslint-disable-next-line @next/next/no-location-assign-relative-destination
-    window.location.assign("/api/admin-logout");
-    throw new ApiError("Your session has expired", 401);
+async function request<T>(method: "GET" | "POST" | "PATCH" | "DELETE", path: string, body?: unknown): Promise<T> {
+  try {
+    return (await handleAdminRequest(method, path, body)) as T;
+  } catch (error) {
+    if (error instanceof StoreError) {
+      throw new ApiError(error.message, error.status);
+    }
+    throw error;
   }
-  if (res.status === 204) return undefined as T;
-
-  const data = await res.json().catch(() => null);
-  if (!res.ok) {
-    const raw = data?.message;
-    const message = Array.isArray(raw) ? raw.join(". ") : raw;
-    throw new ApiError(message ?? "Something went wrong", res.status);
-  }
-  return data as T;
 }
 
 export const api = {

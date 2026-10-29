@@ -1,15 +1,16 @@
 "use client";
 
 import { useRouter } from "next/navigation";
+import { signOut } from "firebase/auth";
+import { firebaseAuth } from "@/lib/firebase";
 import { SignOutIcon as SignOut } from "@phosphor-icons/react/dist/ssr";
 
 export function LogoutButton() {
   const router = useRouter();
 
   async function handleLogout() {
-    await fetch("/api/admin-logout", { method: "POST" });
+    await signOut(firebaseAuth());
     router.push("/admin/login");
-    router.refresh();
   }
 
   return (

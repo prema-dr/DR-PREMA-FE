@@ -3,6 +3,7 @@
 import { useState, type FormEvent } from "react";
 import { ArrowSquareOutIcon as ArrowSquareOut, BooksIcon as Books, PencilSimpleIcon as PencilSimple, PlusIcon as Plus, TrashIcon as Trash } from "@phosphor-icons/react/dist/ssr";
 import { api, type AdminPublication } from "@/lib/admin-api";
+import { serviceName } from "@/lib/services";
 import {
   Button, Card, ConfirmDialog, Drawer, EmptyState, ErrorState, Field, FilterBar, GridSkeleton, PageBody, PageHeader, Pagination,
   ServiceSelect, StatusPill, Tag, Toggle, ToggleRow, inputClass, useDrawerSave, useModule, useNewParam,
@@ -10,7 +11,7 @@ import {
 
 function PublicationForm({ item, onClose, onSaved }: { item: AdminPublication | null; onClose: () => void; onSaved: () => void }) {
   const [title, setTitle] = useState(item?.title ?? "");
-  const [serviceId, setServiceId] = useState(item ? String(item.serviceId) : "");
+  const [serviceId, setServiceId] = useState(item ? item.serviceSlug : "");
   const [shortDescription, setShortDescription] = useState(item?.shortDescription ?? "");
   const [url, setUrl] = useState(item?.url ?? "");
   const [isEnabled, setIsEnabled] = useState(item?.isEnabled ?? true);
@@ -19,7 +20,7 @@ function PublicationForm({ item, onClose, onSaved }: { item: AdminPublication | 
   function submit(e: FormEvent) {
     e.preventDefault();
     if (!serviceId) return;
-    const body = { title, serviceId: Number(serviceId), shortDescription, url, isEnabled };
+    const body = { title, serviceSlug: serviceId, shortDescription, url, isEnabled };
     save(() => (item ? api.patch(`admin/publications/${item.id}`, body) : api.post("admin/publications", body)), item ? "Publication updated" : "Publication added");
   }
 
@@ -88,7 +89,7 @@ export default function AdminPublicationsPage() {
                   </div>
                   <p className="mt-0.5 line-clamp-2 text-sm text-rose-900/60">{p.shortDescription}</p>
                   <div className="mt-2 flex flex-wrap items-center gap-3 text-xs">
-                    <Tag>{p.service.name}</Tag>
+                    <Tag>{serviceName(p.serviceSlug)}</Tag>
                     <a href={p.url} target="_blank" rel="noopener noreferrer" className="inline-flex max-w-[16rem] items-center gap-1 truncate text-rose-600 hover:text-rose-800">
                       <ArrowSquareOut size={13} /> <span className="truncate">{p.url.replace(/^https?:\/\//, "")}</span>
                     </a>

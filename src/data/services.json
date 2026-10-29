@@ -1,0 +1,156 @@
+[
+  {
+    "name": "Normal Delivery",
+    "slug": "normal-delivery",
+    "iconKey": "Baby",
+    "imageUrl": "/images/prenatal-care.jpg",
+    "summary": "Supportive care for a safe vaginal birth.",
+    "heroHeading": "Safe, Supportive Normal Delivery in Coimbatore",
+    "heroSub": "Informed, respectful maternity care that puts your safety and your baby's wellbeing first.",
+    "metaTitle": "Normal Delivery in Coimbatore | Dr Prema",
+    "metaDescription": "Safe, supportive normal (vaginal) delivery care in Coimbatore with Dr Prema. Learn how to prepare, what to expect and when to seek help."
+  },
+  {
+    "name": "Natural Birthing",
+    "slug": "natural-birthing",
+    "iconKey": "Heart",
+    "imageUrl": "/images/hands-reassurance.jpg",
+    "summary": "A physiological approach to labour with medical safety.",
+    "heroHeading": "Natural Birthing with Compassionate Support",
+    "heroSub": "Freedom of movement, emotional support and timely medical care whenever it is needed.",
+    "metaTitle": "Natural Birthing in Coimbatore | Dr Prema",
+    "metaDescription": "Gentle, low-intervention natural birthing care in Coimbatore with Dr Prema, focused on your comfort, choices and your baby's wellbeing."
+  },
+  {
+    "name": "Waterbirthing",
+    "slug": "waterbirthing",
+    "iconKey": "Waves",
+    "imageUrl": "/images/wellness-woman.jpg",
+    "summary": "Carefully selected, closely monitored birth in water.",
+    "heroHeading": "Waterbirthing Guided by Safety and Eligibility",
+    "heroSub": "Understand who is suitable, how safety is maintained and what to expect before labour begins.",
+    "metaTitle": "Water Birthing in Coimbatore | Dr Prema",
+    "metaDescription": "Water birthing in Coimbatore with Dr Prema: a calm, supported way to labour and deliver. Understand the benefits, safety and who it suits."
+  },
+  {
+    "name": "Hydrotherapy During Labour",
+    "slug": "hydrotherapy-during-labour",
+    "iconKey": "Drop",
+    "imageUrl": "/images/wellness-woman.jpg",
+    "summary": "Warm water comfort measures through labour.",
+    "heroHeading": "Hydrotherapy for a More Comfortable Labour",
+    "heroSub": "Warm water to ease tension and support relaxation, alongside safe monitoring.",
+    "metaTitle": "Hydrotherapy During Labour | Dr Prema",
+    "metaDescription": "Ease labour pain naturally with warm-water hydrotherapy in Coimbatore. Learn how it works and how Dr Prema's team supports you."
+  },
+  {
+    "name": "Labour Pain Relief",
+    "slug": "labour-pain-relief",
+    "iconKey": "FirstAidKit",
+    "imageUrl": "/images/medical-equipment.jpg",
+    "summary": "Informed choices from breathing techniques to epidurals.",
+    "heroHeading": "Labour Pain Relief Options, Explained Clearly",
+    "heroSub": "Understand every option, from non-medical methods to epidural analgesia, and choose what suits you.",
+    "metaTitle": "Labour Pain Relief Options | Dr Prema",
+    "metaDescription": "Explore safe labour pain relief options in Coimbatore, from natural methods to epidurals, with guidance from Dr Prema."
+  },
+  {
+    "name": "VBAC",
+    "slug": "vbac",
+    "iconKey": "ArrowsClockwise",
+    "imageUrl": "/images/prenatal-care.jpg",
+    "summary": "Vaginal birth after a previous caesarean, assessed safely.",
+    "heroHeading": "Best VBAC Specialist in Coimbatore",
+    "heroSub": "Safe, evidence-based, personalised care for your next birth after a caesarean.",
+    "metaTitle": "VBAC in Coimbatore | Dr Prema",
+    "metaDescription": "Considering a vaginal birth after caesarean (VBAC)? Dr Prema explains eligibility, safety and support available in Coimbatore."
+  },
+  {
+    "name": "High-Risk Pregnancy Care",
+    "slug": "high-risk-pregnancy-care",
+    "iconKey": "ShieldCheck",
+    "imageUrl": "/images/consultation-room.jpg",
+    "summary": "Close monitoring and planning for higher-risk pregnancies.",
+    "heroHeading": "High-Risk Pregnancy Care You Can Rely On",
+    "heroSub": "Careful risk assessment, regular monitoring and individualised birth planning throughout pregnancy.",
+    "metaTitle": "High-Risk Pregnancy Care in Coimbatore | Dr Prema",
+    "metaDescription": "Expert high-risk pregnancy care in Coimbatore with close monitoring and personalised planning from Dr Prema for you and your baby."
+  },
+  {
+    "name": "Advanced No-Scar Hysterectomy",
+    "slug": "no-scar-hysterectomy",
+    "iconKey": "Scissors",
+    "imageUrl": "/images/medical-equipment.jpg",
+    "summary": "Hysterectomy through the vagina, with no abdominal scar.",
+    "heroHeading": "Advanced No-Scar Hysterectomy",
+    "heroSub": "A minimally invasive option for selected benign gynaecological conditions, with faster recovery.",
+    "metaTitle": "Advanced No-Scar Hysterectomy | Dr Prema",
+    "metaDescription": "Advanced no-scar hysterectomy in Coimbatore with Dr Prema: minimally invasive surgery with faster recovery and no visible scars."
+  },
+  {
+    "name": "PCOS",
+    "slug": "pcos",
+    "iconKey": "Flower",
+    "imageUrl": "/images/nutrition-flatlay.jpg",
+    "summary": "Diagnosis and personalised management of PCOS.",
+    "heroHeading": "PCOS Care That Looks at the Whole Picture",
+    "heroSub": "Practical, individualised treatment for periods, hormones, metabolic health and fertility.",
+    "metaTitle": "PCOS Treatment in Coimbatore | Dr Prema",
+    "metaDescription": "Get a clear diagnosis and personalised PCOS treatment in Coimbatore with Dr Prema, covering irregular periods, weight and fertility."
+  },
+  {
+    "name": "Fertility Treatment",
+    "slug": "fertility-treatment",
+    "iconKey": "MagnifyingGlass",
+    "imageUrl": "/images/consultation-room.jpg",
+    "summary": "Evaluation and treatment when pregnancy is taking time.",
+    "heroHeading": "Fertility Evaluation and Treatment with Clarity",
+    "heroSub": "Early, appropriate assessment to identify treatment options and avoid unnecessary delays.",
+    "metaTitle": "Fertility Treatment in Coimbatore | Dr Prema",
+    "metaDescription": "Compassionate fertility evaluation and treatment in Coimbatore with Dr Prema. Understand your options and take the next step with confidence."
+  },
+  {
+    "name": "Uterine Fibroids",
+    "slug": "uterine-fibroids",
+    "iconKey": "CirclesThree",
+    "imageUrl": "/images/medical-equipment.jpg",
+    "summary": "Assessment and treatment options for fibroids.",
+    "heroHeading": "Uterine Fibroids: Clear Answers, Right Treatment",
+    "heroSub": "From observation to surgery, find the approach that fits your symptoms and plans.",
+    "metaTitle": "Uterine Fibroids Treatment | Dr Prema",
+    "metaDescription": "Uterine fibroids treatment in Coimbatore with Dr Prema: accurate diagnosis and the right option for you, from medication to minimally invasive surgery."
+  },
+  {
+    "name": "Tubal Recanalisation",
+    "slug": "tubal-recanalisation",
+    "iconKey": "LinkSimple",
+    "imageUrl": "/images/consultation-room.jpg",
+    "summary": "Reconnecting the fallopian tubes after sterilisation.",
+    "heroHeading": "Tubal Recanalisation After Sterilisation",
+    "heroSub": "A detailed fertility assessment to decide whether tubal reconstruction or another option is right for you.",
+    "metaTitle": "Tubal Recanalisation in Coimbatore | Dr Prema",
+    "metaDescription": "Tubal recanalisation (tubal reversal) in Coimbatore with Dr Prema. Learn who it suits, how it works and what to expect."
+  },
+  {
+    "name": "Bleeding & Menses Problems",
+    "slug": "bleeding-menses-problems",
+    "iconKey": "CalendarCheck",
+    "imageUrl": "/images/wellness-woman.jpg",
+    "summary": "Irregular, heavy or painful periods, evaluated properly.",
+    "heroHeading": "Care for Bleeding and Menstrual Problems",
+    "heroSub": "Find the cause of abnormal bleeding, relieve symptoms and protect long-term reproductive health.",
+    "metaTitle": "Heavy & Irregular Periods Treatment | Dr Prema",
+    "metaDescription": "Heavy, painful or irregular periods? Dr Prema offers expert evaluation and treatment for menstrual problems in Coimbatore."
+  },
+  {
+    "name": "Postpartum Care & Support",
+    "slug": "postpartum-care",
+    "iconKey": "HandHeart",
+    "imageUrl": "/images/hands-reassurance.jpg",
+    "summary": "Physical and emotional support after childbirth.",
+    "heroHeading": "Compassionate Postpartum Care for Every Mother",
+    "heroSub": "Recovery, breastfeeding, emotional wellbeing and family planning, all in one place.",
+    "metaTitle": "Postpartum Care in Coimbatore | Dr Prema",
+    "metaDescription": "Postpartum care and support in Coimbatore with Dr Prema: recovery, breastfeeding, emotional wellbeing and follow-up for new mothers."
+  }
+]

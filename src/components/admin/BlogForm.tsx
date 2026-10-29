@@ -22,7 +22,7 @@ export function BlogForm({ blog }: { blog?: AdminBlog }) {
   const editing = Boolean(blog);
 
   const [title, setTitle] = useState(blog?.title ?? "");
-  const [serviceId, setServiceId] = useState(blog ? String(blog.serviceId) : "");
+  const [serviceId, setServiceId] = useState(blog ? blog.serviceSlug : "");
   const [content, setContent] = useState(blog?.content ?? "");
   const [excerpt, setExcerpt] = useState(blog?.excerpt ?? "");
   const [slug, setSlug] = useState(blog?.slug ?? "");
@@ -46,7 +46,7 @@ export function BlogForm({ blog }: { blog?: AdminBlog }) {
 
     const form = new FormData();
     form.set("title", title);
-    form.set("serviceId", serviceId);
+    form.set("serviceSlug", serviceId);
     form.set("content", content);
     form.set("publishDate", new Date(publishDate).toISOString());
     form.set("isPublished", String(isPublished));

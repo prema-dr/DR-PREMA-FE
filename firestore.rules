@@ -1,0 +1,22 @@
+rules_version = '2';
+
+// Public site: anyone can read content that is published/enabled. Only the admin accounts below can write.
+// Keep the email list in sync with ADMIN_EMAILS in .env.local.
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function isAdmin() {
+      return request.auth != null
+        && request.auth.token.email in ['drpremagynaecologistcbe@gmail.com'];
+    }
+
+    match /blogs/{id} {
+      allow read: if resource.data.isPublished == true || isAdmin();
+      allow write: if isAdmin();
+    }
+
+    match /{collection}/{id} {
+      allow read: if (collection in ['testimonials', 'gallery', 'publications', 'videos'] && resource.data.isEnabled == true) || isAdmin();
+      allow write: if isAdmin();
+    }
+  }
+}

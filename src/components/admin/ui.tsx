@@ -24,7 +24,8 @@ import {
   WarningCircleIcon as WarningCircle,
   XIcon as X,
 } from "@phosphor-icons/react/dist/ssr";
-import { api, errorMessage, type AdminService } from "@/lib/admin-api";
+import { api, errorMessage } from "@/lib/admin-api";
+import { services } from "@/lib/services";
 
 /* ───────────── Toasts ───────────── */
 
@@ -278,23 +279,6 @@ export function Select({
 }
 
 /* Service/category picker shared by every content module. */
-let servicesCache: AdminService[] | null = null;
-
-export function useServices() {
-  const [services, setServices] = useState<AdminService[]>(servicesCache ?? []);
-  useEffect(() => {
-    let live = true;
-    api.get<AdminService[]>("admin/services").then((list) => {
-      servicesCache = list;
-      if (live) setServices(list);
-    }).catch(() => {});
-    return () => {
-      live = false;
-    };
-  }, []);
-  return services;
-}
-
 export function ServiceSelect({
   value,
   onChange,
@@ -306,14 +290,12 @@ export function ServiceSelect({
   allLabel?: string;
   className?: string;
 }) {
-  const services = useServices();
   return (
     <Select value={value} onChange={onChange} className={className}>
       <option value="">{allLabel ?? "Select a service"}</option>
       {services.map((s) => (
-        <option key={s.id} value={s.id}>
+        <option key={s.slug} value={s.slug}>
           {s.name}
-          {s.isEnabled ? "" : " (disabled)"}
         </option>
       ))}
     </Select>
@@ -630,7 +612,7 @@ export function useNewParam(onNew: () => void) {
 }
 
 /** Shared list state for the drawer-based modules: filters, paging, delete + toggle handlers. */
-export function useModule<T extends { id: number; isEnabled: boolean }>(resource: string, label: string, limit = 12) {
+export function useModule<T extends { id: string; isEnabled: boolean }>(resource: string, label: string, limit = 12) {
   const toast = useToast();
   const [serviceId, setServiceId] = useState("");
   const [search, setSearch] = useState("");
@@ -642,7 +624,7 @@ export function useModule<T extends { id: number; isEnabled: boolean }>(resource
 
   const debounced = useDebounced(search);
   const list = useFetch<{ items: T[]; meta: { page: number; limit: number; total: number; totalPages: number } }>(`admin/${resource}`, {
-    page, limit, search: debounced, serviceId, isEnabled: state,
+    page, limit, search: debounced, serviceSlug: serviceId, isEnabled: state,
   });
 
   const filter = (setter: (v: string) => void) => (v: string) => {

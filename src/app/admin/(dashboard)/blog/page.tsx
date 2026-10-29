@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { NotePencilIcon as NotePencil, PencilSimpleIcon as PencilSimple, PlusIcon as Plus, TrashIcon as Trash } from "@phosphor-icons/react/dist/ssr";
 import { api, errorMessage, formatDate, type AdminBlog, type Paginated } from "@/lib/admin-api";
+import { serviceName } from "@/lib/services";
 import {
   Card, ConfirmDialog, EmptyState, ErrorState, GridSkeleton, PageBody, PageHeader, Pagination, SearchInput, Select, ServiceSelect, StatusPill, Tag,
   Toggle, buttonClass, useDebounced, useFetch, useToast, Button,
@@ -20,7 +21,7 @@ export default function AdminBlogListPage() {
 
   const debounced = useDebounced(search);
   const { data, loading, error, reload } = useFetch<Paginated<AdminBlog>>("admin/blogs", {
-    page, limit: 10, search: debounced, serviceId, status,
+    page, limit: 10, search: debounced, serviceSlug: serviceId, status,
   });
 
   const filter = (setter: (v: string) => void) => (v: string) => {
@@ -105,7 +106,7 @@ export default function AdminBlogListPage() {
                   </Link>
                   <p className="mt-0.5 line-clamp-1 text-sm text-rose-900/55">{blog.excerpt}</p>
                   <div className="mt-2 flex flex-wrap items-center gap-2 text-xs text-rose-900/50">
-                    <Tag>{blog.service.name}</Tag>
+                    <Tag>{serviceName(blog.serviceSlug)}</Tag>
                     <span>{formatDate(blog.publishDate)}</span>
                     <span>· {blog.readTimeMinutes} min read</span>
                   </div>

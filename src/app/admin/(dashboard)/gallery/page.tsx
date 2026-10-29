@@ -3,6 +3,7 @@
 import { useState, type FormEvent } from "react";
 import { ImagesIcon as Images, PencilSimpleIcon as PencilSimple, PlusIcon as Plus, TrashIcon as Trash } from "@phosphor-icons/react/dist/ssr";
 import { api, type AdminGalleryImage } from "@/lib/admin-api";
+import { serviceName } from "@/lib/services";
 import {
   Button, ConfirmDialog, Drawer, EmptyState, ErrorState, Field, FilterBar, GridSkeleton, ImagePicker, PageBody, PageHeader, Pagination,
   ServiceSelect, Tag, Toggle, ToggleRow, inputClass, useDrawerSave, useModule, useNewParam, useToast,
@@ -10,7 +11,7 @@ import {
 
 function GalleryForm({ item, onClose, onSaved }: { item: AdminGalleryImage | null; onClose: () => void; onSaved: () => void }) {
   const toast = useToast();
-  const [serviceId, setServiceId] = useState(item ? String(item.serviceId) : "");
+  const [serviceId, setServiceId] = useState(item ? item.serviceSlug : "");
   const [altText, setAltText] = useState(item?.altText ?? "");
   const [isEnabled, setIsEnabled] = useState(item?.isEnabled ?? true);
   const [image, setImage] = useState<File | null>(null);
@@ -21,7 +22,7 @@ function GalleryForm({ item, onClose, onSaved }: { item: AdminGalleryImage | nul
     if (!item && !image) return toast.error("Choose an image to upload");
     if (!serviceId) return;
     const form = new FormData();
-    form.set("serviceId", serviceId);
+    form.set("serviceSlug", serviceId);
     form.set("altText", altText);
     form.set("isEnabled", String(isEnabled));
     if (image) form.set("image", image);
@@ -93,7 +94,7 @@ export default function AdminGalleryPage() {
                 <figcaption className="flex items-center justify-between gap-3 p-4">
                   <div className="min-w-0">
                     <p className="truncate text-sm font-medium text-rose-950">{img.altText}</p>
-                    <div className="mt-1.5"><Tag>{img.service.name}</Tag></div>
+                    <div className="mt-1.5"><Tag>{serviceName(img.serviceSlug)}</Tag></div>
                   </div>
                   <Toggle checked={img.isEnabled} onChange={(v) => m.toggle(img, v)} label={`Enable ${img.altText}`} />
                 </figcaption>

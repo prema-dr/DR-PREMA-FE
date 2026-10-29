@@ -5,17 +5,16 @@ import {
   ArrowUpRightIcon as ArrowUpRight,
   BooksIcon as Books,
   ChatCircleTextIcon as ChatCircleText,
-  FirstAidKitIcon as FirstAidKit,
   ImagesIcon as Images,
   NotePencilIcon as NotePencil,
   PlayCircleIcon as PlayCircle,
   PlusIcon as Plus,
 } from "@phosphor-icons/react/dist/ssr";
+import { serviceName } from "@/lib/services";
 import { formatDate, type AdminBlog, type DashboardCounts, type Paginated } from "@/lib/admin-api";
 import { ErrorState, PageBody, PageHeader, Skeleton, StatusPill, Card, SectionTitle, buttonClass, useFetch } from "@/components/admin/ui";
 
 const CARDS = [
-  { key: "services", label: "Services", href: "/admin/services", icon: FirstAidKit, tint: "from-rose-500 to-rose-600" },
   { key: "blogs", label: "Blog posts", href: "/admin/blog", icon: NotePencil, tint: "from-fuchsia-500 to-rose-500" },
   { key: "testimonials", label: "Testimonials", href: "/admin/testimonials", icon: ChatCircleText, tint: "from-amber-400 to-rose-400" },
   { key: "galleryImages", label: "Gallery images", href: "/admin/gallery", icon: Images, tint: "from-sky-400 to-blue-500" },
@@ -25,7 +24,6 @@ const CARDS = [
 
 const QUICK = [
   { href: "/admin/blog/new", label: "Write a blog post" },
-  { href: "/admin/services/new", label: "Add a service" },
   { href: "/admin/testimonials?new=1", label: "Add a testimonial" },
   { href: "/admin/gallery?new=1", label: "Upload gallery image" },
 ];
@@ -91,7 +89,7 @@ export default function AdminDashboardPage() {
                       <div className="min-w-0">
                         <p className="truncate text-sm font-medium text-rose-950">{blog.title}</p>
                         <p className="mt-0.5 text-xs text-rose-900/50">
-                          {blog.service.name} · {formatDate(blog.publishDate)}
+                          {serviceName(blog.serviceSlug)} · {formatDate(blog.publishDate)}
                         </p>
                       </div>
                       <StatusPill on={blog.isPublished} onLabel="Published" offLabel="Draft" />

@@ -3,13 +3,14 @@
 import { useState, type FormEvent } from "react";
 import { InstagramLogoIcon as InstagramLogo, PencilSimpleIcon as PencilSimple, PlayIcon as Play, PlayCircleIcon as PlayCircle, PlusIcon as Plus, TrashIcon as Trash } from "@phosphor-icons/react/dist/ssr";
 import { api, type AdminVideo } from "@/lib/admin-api";
+import { serviceName } from "@/lib/services";
 import {
   Button, ConfirmDialog, Drawer, EmptyState, ErrorState, Field, FilterBar, GridSkeleton, ImagePicker, PageBody, PageHeader, Pagination,
   ServiceSelect, Tag, Toggle, ToggleRow, inputClass, useDrawerSave, useModule, useNewParam,
 } from "@/components/admin/ui";
 
 function VideoForm({ item, onClose, onSaved }: { item: AdminVideo | null; onClose: () => void; onSaved: () => void }) {
-  const [serviceId, setServiceId] = useState(item ? String(item.serviceId) : "");
+  const [serviceId, setServiceId] = useState(item ? item.serviceSlug : "");
   const [videoUrl, setVideoUrl] = useState(item?.videoUrl ?? "");
   const [isEnabled, setIsEnabled] = useState(item?.isEnabled ?? true);
   const [thumbnail, setThumbnail] = useState<File | null>(null);
@@ -19,7 +20,7 @@ function VideoForm({ item, onClose, onSaved }: { item: AdminVideo | null; onClos
     e.preventDefault();
     if (!serviceId) return;
     const form = new FormData();
-    form.set("serviceId", serviceId);
+    form.set("serviceSlug", serviceId);
     form.set("videoUrl", videoUrl);
     form.set("isEnabled", String(isEnabled));
     if (thumbnail) form.set("thumbnail", thumbnail);
@@ -97,7 +98,7 @@ export default function AdminVideosPage() {
                   {!v.isEnabled && <span className="absolute left-3 top-3 rounded-full bg-stone-900/70 px-2.5 py-1 text-[11px] font-semibold text-white">Disabled</span>}
                 </a>
                 <div className="flex items-center justify-between gap-2 p-3.5">
-                  <Tag>{v.service.name}</Tag>
+                  <Tag>{serviceName(v.serviceSlug)}</Tag>
                   <div className="flex items-center gap-1.5">
                     <Toggle checked={v.isEnabled} onChange={(on) => m.toggle(v, on)} label="Enable video" />
                     <Button variant="ghost" size="sm" aria-label="Edit" onClick={() => m.setEditing(v)}><PencilSimple size={15} weight="bold" /></Button>

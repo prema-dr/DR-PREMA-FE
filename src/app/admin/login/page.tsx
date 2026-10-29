@@ -15,7 +15,7 @@ export default function AdminLoginPage() {
         <p className="relative font-name text-4xl italic">Dr Prema</p>
         <div className="relative max-w-md">
           <h2 className="font-display text-4xl font-semibold leading-tight tracking-tight">Care for the site that cares for patients.</h2>
-          <p className="mt-4 text-rose-200/80">Manage services, articles, patient stories, galleries, publications and videos, all in one place.</p>
+          <p className="mt-4 text-rose-200/80">Manage articles, patient stories, galleries, publications and videos, all in one place.</p>
         </div>
         <p className="relative text-xs uppercase tracking-[0.2em] text-rose-300/70">Admin Console</p>
       </section>
