@@ -1,4 +1,5 @@
 import { NextResponse, type NextRequest } from "next/server";
+import { firebaseConfig } from "./firebase-config";
 
 const ADMIN_EMAILS = (process.env.ADMIN_EMAILS ?? "").split(",").map((e) => e.trim().toLowerCase()).filter(Boolean);
 
@@ -13,7 +14,7 @@ export async function requireAdmin(request: NextRequest): Promise<NextResponse |
   let email: string | undefined;
   try {
     const res = await fetch(
-      `https://identitytoolkit.googleapis.com/v1/accounts:lookup?key=${process.env.NEXT_PUBLIC_FIREBASE_API_KEY}`,
+      `https://identitytoolkit.googleapis.com/v1/accounts:lookup?key=${firebaseConfig.apiKey}`,
       { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ idToken: token }), cache: "no-store" },
     );
     if (!res.ok) return NextResponse.json({ message: "Invalid session" }, { status: 401 });

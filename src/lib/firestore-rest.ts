@@ -1,7 +1,9 @@
+import { firebaseConfig } from "./firebase-config";
+
 // Server-side reads for the public website, over the Firestore REST API with `fetch`.
 // That keeps Next's fetch cache (60 s + revalidatePath after an admin save) and avoids a
 // long-lived SDK connection during rendering. Rules only allow reading published/enabled docs.
-const PROJECT = process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID;
+const PROJECT = firebaseConfig.projectId;
 const BASE = `https://firestore.googleapis.com/v1/projects/${PROJECT}/databases/(default)/documents`;
 const REVALIDATE_SECONDS = 60;
 
