@@ -4,6 +4,9 @@ import Link from "next/link";
 import {
   ArrowUpRightIcon as ArrowUpRight,
   BooksIcon as Books,
+  EnvelopeSimpleIcon as EnvelopeSimple,
+  ChalkboardTeacherIcon as ChalkboardTeacher,
+  TrophyIcon as Trophy,
   ChatCircleTextIcon as ChatCircleText,
   ImagesIcon as Images,
   NotePencilIcon as NotePencil,
@@ -20,6 +23,9 @@ const CARDS = [
   { key: "galleryImages", label: "Gallery images", href: "/admin/gallery", icon: Images, tint: "from-sky-400 to-blue-500" },
   { key: "publications", label: "Publications", href: "/admin/publications", icon: Books, tint: "from-emerald-400 to-teal-500" },
   { key: "videos", label: "Videos", href: "/admin/videos", icon: PlayCircle, tint: "from-violet-400 to-purple-500" },
+  { key: "guestLectures", label: "Guest lectures", href: "/admin/guest-lectures", icon: ChalkboardTeacher, tint: "from-rose-400 to-orange-400" },
+  { key: "enquiries", label: "Enquiries", href: "/admin/enquiries", icon: EnvelopeSimple, tint: "from-pink-400 to-rose-500" },
+  { key: "awards", label: "Awards", href: "/admin/awards", icon: Trophy, tint: "from-amber-400 to-yellow-500" },
 ] as const;
 
 const QUICK = [

@@ -664,15 +664,15 @@ export function useModule<T extends { id: string; isEnabled: boolean }>(resource
 
 /** The filter row used above every drawer-based list. */
 export function FilterBar({
-  search, onSearch, serviceId, onService, state, onState, placeholder,
+  search, onSearch, serviceId, onService, state, onState, placeholder, hideService,
 }: {
   search: string; onSearch: (v: string) => void; serviceId: string; onService: (v: string) => void;
-  state: string; onState: (v: string) => void; placeholder: string;
+  state: string; onState: (v: string) => void; placeholder: string; hideService?: boolean;
 }) {
   return (
     <div className="mb-6 flex flex-wrap gap-3">
       <SearchInput value={search} onChange={onSearch} placeholder={placeholder} />
-      <ServiceSelect value={serviceId} onChange={onService} allLabel="All services" className="!w-auto min-w-[180px]" />
+      {!hideService && <ServiceSelect value={serviceId} onChange={onService} allLabel="All services" className="!w-auto min-w-[180px]" />}
       <Select value={state} onChange={onState} className="!w-auto min-w-[140px]">
         <option value="">All statuses</option>
         <option value="true">Enabled</option>

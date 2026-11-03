@@ -14,7 +14,40 @@ function toEmbedUrl(url: string): string {
   return `https://www.instagram.com/${kind}/${match[2]}/embed/`;
 }
 
+export function isYouTubeUrl(url: string): boolean {
+  return /(?:youtube\.com|youtu\.be)\//i.test(url);
+}
+
+function parseYouTube(url: string): { id: string; short: boolean } | null {
+  const m = url.match(/youtu\.be\/([\w-]+)/) ?? url.match(/youtube\.com\/(?:shorts|embed|live)\/([\w-]+)/) ?? url.match(/[?&]v=([\w-]+)/);
+  if (!m) return null;
+  return { id: m[1], short: /\/shorts\//.test(url) };
+}
+
+function YouTubeEmbed({ url }: { url: string }) {
+  const yt = parseYouTube(url);
+  if (!yt) return null;
+  return (
+    <div
+      className={`overflow-hidden rounded-3xl bg-black shadow-[0_14px_24px_-14px_rgba(159,18,57,0.4)] ${
+        yt.short ? "w-[336px] max-w-[85vw]" : "w-[560px] max-w-[85vw]"
+      }`}
+      style={{ aspectRatio: yt.short ? "9 / 16" : "16 / 9" }}
+    >
+      <iframe
+        src={`https://www.youtube-nocookie.com/embed/${yt.id}?rel=0`}
+        title="YouTube video"
+        loading="lazy"
+        allow="accelerometer; encrypted-media; picture-in-picture; fullscreen"
+        allowFullScreen
+        className="size-full border-0"
+      />
+    </div>
+  );
+}
+
 export function ReelEmbed({ url }: { url: string }) {
+  if (isYouTubeUrl(url)) return <YouTubeEmbed url={url} />;
   return (
     <div className="w-[336px] overflow-hidden rounded-3xl bg-white shadow-[0_14px_24px_-14px_rgba(159,18,57,0.4)]">
       <div

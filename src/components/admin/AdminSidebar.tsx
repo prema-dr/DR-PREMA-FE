@@ -11,6 +11,9 @@ import {
   PlayCircleIcon as PlayCircle,
   SquaresFourIcon as SquaresFour,
   BooksIcon as Books,
+  EnvelopeSimpleIcon as EnvelopeSimple,
+  ChalkboardTeacherIcon as ChalkboardTeacher,
+  TrophyIcon as Trophy,
   XIcon as X,
 } from "@phosphor-icons/react/dist/ssr";
 import { LogoutButton } from "@/components/admin/LogoutButton";
@@ -22,6 +25,9 @@ const NAV_ITEMS = [
   { href: "/admin/gallery", label: "Gallery", icon: Images },
   { href: "/admin/publications", label: "Publications", icon: Books },
   { href: "/admin/videos", label: "Videos", icon: PlayCircle },
+  { href: "/admin/guest-lectures", label: "Guest lectures", icon: ChalkboardTeacher },
+  { href: "/admin/awards", label: "Awards", icon: Trophy },
+  { href: "/admin/enquiries", label: "Enquiries", icon: EnvelopeSimple },
 ];
 
 export function AdminSidebar({ admin }: { admin: { name: string; email: string } }) {

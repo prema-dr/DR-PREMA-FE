@@ -40,8 +40,8 @@ function VideoForm({ item, onClose, onSaved }: { item: AdminVideo | null; onClos
       }
     >
       <form id="video-form" onSubmit={submit} className="space-y-5">
-        <Field label="Instagram link" required hint="A reel or post link: https://www.instagram.com/reel/…">
-          <input required type="url" maxLength={500} value={videoUrl} onChange={(e) => setVideoUrl(e.target.value)} placeholder="https://www.instagram.com/reel/…" className={inputClass} />
+        <Field label="Video link" required hint="An Instagram reel/post or a YouTube video/short link">
+          <input required type="url" maxLength={500} value={videoUrl} onChange={(e) => setVideoUrl(e.target.value)} placeholder="https://www.instagram.com/reel/… or https://www.youtube.com/watch?v=…" className={inputClass} />
         </Field>
         <Field label="Service" required>
           <ServiceSelect value={serviceId} onChange={setServiceId} />
@@ -65,7 +65,7 @@ export default function AdminVideosPage() {
     <>
       <PageHeader
         title="Videos"
-        subtitle="Instagram reels linked from service pages."
+        subtitle="Instagram reels and YouTube videos shown on the home and service pages."
         actions={<Button onClick={() => m.setEditing("new")}><Plus size={16} weight="bold" /> Add video</Button>}
       />
       <PageBody>
@@ -75,19 +75,19 @@ export default function AdminVideosPage() {
         ) : loading && !data ? (
           <GridSkeleton count={8} className="h-80" />
         ) : !data?.items.length ? (
-          <EmptyState icon={<PlayCircle size={28} weight="duotone" />} title="No videos found" hint="Add an Instagram reel link to show it on the website." action={<Button onClick={() => m.setEditing("new")}>Add video</Button>} />
+          <EmptyState icon={<PlayCircle size={28} weight="duotone" />} title="No videos found" hint="Add an Instagram or YouTube link to show it on the website." action={<Button onClick={() => m.setEditing("new")}>Add video</Button>} />
         ) : (
           <div className={`grid grid-cols-2 gap-5 md:grid-cols-3 xl:grid-cols-4 ${loading ? "opacity-60" : ""}`}>
             {data.items.map((v) => (
               <div key={v.id} className="group overflow-hidden rounded-3xl border border-rose-100/80 bg-white shadow-[0_2px_15px_-3px_rgba(232,64,122,0.08)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_18px_36px_-14px_rgba(232,64,122,0.35)]">
-                <a href={v.videoUrl} target="_blank" rel="noopener noreferrer" aria-label="Open video on Instagram" className="relative block aspect-[9/12] overflow-hidden bg-rose-50">
+                <a href={v.videoUrl} target="_blank" rel="noopener noreferrer" aria-label="Open video" className="relative block aspect-[9/12] overflow-hidden bg-rose-50">
                   {v.thumbnailUrl ? (
                     // eslint-disable-next-line @next/next/no-img-element
                     <img src={v.thumbnailUrl} alt="" className={`size-full object-cover transition-transform duration-500 group-hover:scale-105 ${v.isEnabled ? "" : "grayscale opacity-60"}`} />
                   ) : (
                     <span className={`flex size-full flex-col items-center justify-center gap-2 bg-gradient-to-br from-rose-100 via-pink-50 to-amber-50 text-rose-400 ${v.isEnabled ? "" : "grayscale opacity-60"}`}>
                       <InstagramLogo size={40} weight="duotone" />
-                      <span className="px-4 text-center text-xs text-rose-900/50">{v.videoUrl.replace(/^https?:\/\/(www\.)?instagram\.com\//, "").replace(/\/$/, "")}</span>
+                      <span className="px-4 text-center text-xs text-rose-900/50">{v.videoUrl.replace(/^https?:\/\/(www\.)?(instagram|youtube)\.com\//, "").replace(/\/$/, "")}</span>
                     </span>
                   )}
                   <span className="absolute inset-0 flex items-center justify-center bg-gradient-to-t from-rose-950/40 to-transparent">

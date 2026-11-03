@@ -3,6 +3,7 @@
 import { useState, type FormEvent } from "react";
 import {
   ArrowRightIcon as ArrowRight,
+  CaretDownIcon as CaretDown,
   CheckCircleIcon as CheckCircle,
   EnvelopeSimpleIcon as EnvelopeSimple,
   LockKeyIcon as LockKey,
@@ -10,11 +11,12 @@ import {
   PhoneIcon as Phone,
   UserIcon as User,
 } from "@phosphor-icons/react/dist/ssr";
+import { services } from "@/lib/services";
 
 type Errors = Partial<Record<"name" | "email" | "message", string>>;
 
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-const TOPICS = ["Pregnancy care", "Delivery options", "PCOS & periods", "Fertility", "Surgery", "Something else"];
+const OTHER_TOPIC = "Something else";
 
 const FIELD =
   "w-full rounded-2xl border border-rose-100 bg-rose-50/40 py-3.5 pl-12 pr-4 text-[15px] text-rose-950 outline-none transition-all placeholder:text-rose-950/40 focus:border-rose-400 focus:bg-white focus:shadow-[0_0_0_4px_rgba(244,63,94,0.12)] aria-[invalid=true]:border-rose-500";
@@ -24,13 +26,16 @@ export function ContactForm() {
   const [errors, setErrors] = useState<Errors>({});
   const [topic, setTopic] = useState<string | null>(null);
   const [sentTo, setSentTo] = useState("");
+  const [sendError, setSendError] = useState("");
 
-  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const form = new FormData(event.currentTarget);
     const name = String(form.get("name") ?? "").trim();
     const email = String(form.get("email") ?? "").trim();
     const message = String(form.get("message") ?? "").trim();
+    const phone = String(form.get("phone") ?? "").trim();
+    const website = String(form.get("website") ?? "");
 
     const nextErrors: Errors = {};
     if (!name) nextErrors.name = "Please share your name.";
@@ -43,7 +48,19 @@ export function ContactForm() {
 
     setSentTo(name.split(" ")[0]);
     setStatus("submitting");
-    window.setTimeout(() => setStatus("success"), 900);
+    setSendError("");
+    try {
+      const res = await fetch("/api/enquiries", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, email, phone, message, topic: topic ?? "", website }),
+      });
+      if (!res.ok) throw new Error(((await res.json().catch(() => null)) as { message?: string } | null)?.message);
+      setStatus("success");
+    } catch (error) {
+      setSendError(error instanceof Error && error.message ? error.message : "We couldn't send your message. Please try again or call us.");
+      setStatus("idle");
+    }
   }
 
   if (status === "success") {
@@ -84,29 +101,26 @@ export function ContactForm() {
       </div>
 
       <div className="flex flex-col gap-6 p-7 md:p-10">
-        <fieldset>
-          <legend className="text-sm font-semibold text-rose-950">What is your question about?</legend>
-          <div className="mt-3 flex flex-wrap gap-2">
-            {TOPICS.map((t) => {
-              const on = t === topic;
-              return (
-                <button
-                  key={t}
-                  type="button"
-                  aria-pressed={on}
-                  onClick={() => setTopic(on ? null : t)}
-                  className={`rounded-full border px-4 py-2 text-sm font-medium transition-all active:scale-[0.97] ${
-                    on
-                      ? "border-rose-600 bg-rose-600 text-white shadow-[0_10px_20px_-10px_rgba(225,29,72,0.7)]"
-                      : "border-rose-200 bg-white text-rose-700 hover:border-rose-300 hover:bg-rose-50"
-                  }`}
-                >
-                  {t}
-                </button>
-              );
-            })}
+        {/* Honeypot: hidden from people, tempting for bots. */}
+        <input type="text" name="website" tabIndex={-1} autoComplete="off" aria-hidden className="hidden" />
+        <div>
+          <label htmlFor="topic" className="text-sm font-semibold text-rose-950">What is your question about?</label>
+          <div className="relative mt-2">
+            <select
+              id="topic"
+              value={topic ?? ""}
+              onChange={(e) => setTopic(e.target.value || null)}
+              className={`${FIELD} appearance-none !pl-5 pr-12`}
+            >
+              <option value="">Select a service</option>
+              {services.map((s) => (
+                <option key={s.slug} value={s.name}>{s.name}</option>
+              ))}
+              <option value={OTHER_TOPIC}>{OTHER_TOPIC}</option>
+            </select>
+            <CaretDown size={18} weight="bold" aria-hidden className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-rose-400" />
           </div>
-        </fieldset>
+        </div>
 
         <div className="grid gap-6 sm:grid-cols-2">
           <div>
@@ -150,6 +164,8 @@ export function ContactForm() {
           />
           {errors.message && <p id="message-error" className="mt-1.5 text-xs font-medium text-rose-700">{errors.message}</p>}
         </div>
+
+        {sendError && <p role="alert" className="rounded-xl bg-rose-50 px-4 py-3 text-sm font-medium text-rose-700">{sendError}</p>}
 
         <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
           <button

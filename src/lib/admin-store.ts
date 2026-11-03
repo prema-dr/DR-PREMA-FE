@@ -35,13 +35,15 @@ type Rule = {
 
 const SLUG = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
 const REWRITE = /^[a-z0-9]+(?:[-/][a-z0-9]+)*$/;
-// Instagram reel / post / IGTV links only: videos are linked, not hosted.
+// Instagram reel / post / IGTV and YouTube video / short links only: videos are linked, not hosted.
 const INSTAGRAM_URL = /^https:\/\/(www\.)?instagram\.com\/(reel|reels|p|tv)\/[\w-]+\/?(\?.*)?$/i;
+const YOUTUBE_URL = /^https:\/\/((www|m)\.)?youtube\.com\/(watch\?(\S*&)?v=|shorts\/|embed\/|live\/)[\w-]+(\S*)?$|^https:\/\/youtu\.be\/[\w-]+(\?\S*)?$/i;
+const VIDEO_URL = new RegExp(`(?:${INSTAGRAM_URL.source})|(?:${YOUTUBE_URL.source})`, "i");
 
 const service: Rule = { type: "service", required: true, label: "Service" };
 const enabled: Rule = { type: "bool" };
 
-type ResourceName = "blogs" | "testimonials" | "gallery" | "publications" | "videos";
+type ResourceName = "blogs" | "testimonials" | "gallery" | "publications" | "videos" | "guestLectures" | "awards" | "enquiries";
 
 type Resource = {
   rules: Record<string, Rule>;
@@ -101,11 +103,39 @@ const RESOURCES: Record<ResourceName, Resource> = {
   videos: {
     rules: {
       serviceSlug: service,
-      videoUrl: { type: "string", required: true, max: 500, pattern: INSTAGRAM_URL, patternMessage: "Video link must be an Instagram reel/post link (https://www.instagram.com/reel/...)", label: "Video link" },
+      videoUrl: { type: "string", required: true, max: 500, pattern: VIDEO_URL, patternMessage: "Video link must be an Instagram reel/post or a YouTube video/short link", label: "Video link" },
       isEnabled: enabled,
     },
     image: { field: "thumbnail", url: "thumbnailUrl", path: "thumbnailPath", folder: "videos" },
     searchFields: ["videoUrl"],
+  },
+  guestLectures: {
+    rules: {
+      title: { type: "string", required: true, min: 2, max: 255, label: "Lecture title" },
+      event: { type: "string", required: true, min: 2, max: 255, label: "Event / institution" },
+      location: { type: "string", nullable: true, max: 160, label: "Location" },
+      year: { type: "string", nullable: true, max: 40, label: "Date / year" },
+      description: { type: "string", nullable: true, max: 1000, label: "Description" },
+      isEnabled: enabled,
+    },
+    image: { field: "image", url: "imageUrl", path: "imagePath", folder: "guest-lectures" },
+    searchFields: ["title", "event", "location"],
+  },
+  awards: {
+    rules: {
+      title: { type: "string", required: true, min: 2, max: 255, label: "Award title" },
+      awardedBy: { type: "string", nullable: true, max: 255, label: "Awarded by" },
+      year: { type: "string", nullable: true, max: 40, label: "Year" },
+      description: { type: "string", nullable: true, max: 1000, label: "Description" },
+      isEnabled: enabled,
+    },
+    image: { field: "image", url: "imageUrl", path: "imagePath", folder: "awards" },
+    searchFields: ["title", "awardedBy"],
+  },
+  // Created by visitors through /api/enquiries; the admin only reads, marks as read, and deletes.
+  enquiries: {
+    rules: { isRead: { type: "bool" } },
+    searchFields: ["name", "email", "message", "topic"],
   },
 };
 
@@ -237,6 +267,7 @@ async function list(name: ResourceName, q: Query) {
   const items = (await fetchAll(name))
     .filter((d) => !q.serviceSlug || d.serviceSlug === q.serviceSlug)
     .filter((d) => q.isEnabled === undefined || d.isEnabled === (q.isEnabled === "true"))
+    .filter((d) => q.isRead === undefined || d.isRead === (q.isRead === "true"))
     .filter((d) => !q.status || d.isPublished === (q.status === "published"))
     .filter((d) => !needle || res.searchFields.some((f) => String(d[f] ?? "").toLowerCase().includes(needle)))
     .sort((a, b) => millis(b.createdAt) - millis(a.createdAt));
@@ -346,7 +377,7 @@ async function remove(name: ResourceName, id: string) {
 
 async function dashboard() {
   const names: [string, ResourceName][] = [
-    ["blogs", "blogs"], ["testimonials", "testimonials"], ["galleryImages", "gallery"], ["publications", "publications"], ["videos", "videos"],
+    ["blogs", "blogs"], ["testimonials", "testimonials"], ["galleryImages", "gallery"], ["publications", "publications"], ["videos", "videos"], ["guestLectures", "guestLectures"], ["awards", "awards"], ["enquiries", "enquiries"],
   ];
   const counts = await Promise.all(names.map(([, name]) => getCountFromServer(col(name))));
   return Object.fromEntries(names.map(([key], i) => [key, counts[i].data().count]));

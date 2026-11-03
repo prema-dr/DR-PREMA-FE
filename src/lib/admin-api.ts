@@ -65,12 +65,47 @@ export type AdminVideo = {
   isEnabled: boolean;
 };
 
+export type AdminGuestLecture = {
+  id: string;
+  title: string;
+  event: string;
+  location: string | null;
+  year: string | null;
+  description: string | null;
+  imageUrl: string | null;
+  isEnabled: boolean;
+};
+
+export type AdminAward = {
+  id: string;
+  title: string;
+  awardedBy: string | null;
+  year: string | null;
+  description: string | null;
+  imageUrl: string | null;
+  isEnabled: boolean;
+};
+
+export type AdminEnquiry = {
+  id: string;
+  name: string;
+  email: string;
+  phone: string;
+  topic: string;
+  message: string;
+  isRead: boolean;
+  createdAt: string;
+};
+
 export type DashboardCounts = {
   blogs: number;
   testimonials: number;
   galleryImages: number;
   publications: number;
   videos: number;
+  guestLectures: number;
+  awards: number;
+  enquiries: number;
 };
 
 type Query = Record<string, string | number | boolean | undefined | null>;

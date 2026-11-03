@@ -5,6 +5,7 @@ import { Academics } from "@/components/about/Academics";
 import { Timeline } from "@/components/about/Timeline";
 import { Expertise } from "@/components/about/Expertise";
 import { Recognition } from "@/components/about/Recognition";
+import { LecturesAndAwards } from "@/components/about/LecturesAndAwards";
 import { Approach } from "@/components/about/Approach";
 import { AboutCta } from "@/components/about/AboutCta";
 
@@ -23,6 +24,7 @@ export default function AboutUsPage() {
       <Timeline />
       <Expertise />
       <Recognition />
+      <LecturesAndAwards />
       <Approach />
       <AboutCta />
     </>

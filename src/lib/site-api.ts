@@ -38,6 +38,9 @@ export type Testimonial = {
   category: string;
 };
 
+export type GuestLecture = { id: string; title: string; event: string; location: string | null; year: string | null; description: string | null; imageUrl: string | null };
+export type Award = { id: string; title: string; awardedBy: string | null; year: string | null; description: string | null; imageUrl: string | null };
+
 export type ServicePublication = { id: string; title: string; description: string; url: string };
 export type ServiceGalleryImage = { id: string; src: string; alt: string };
 
@@ -61,6 +64,8 @@ type BlogDoc = {
 type TestimonialDoc = { name: string; review: string; rating: number; imageUrl: string | null; serviceSlug: string; createdAt: string };
 type GalleryDoc = { imageUrl: string; altText: string; sortOrder: number; createdAt: string };
 type PublicationDoc = { title: string; shortDescription: string; url: string; createdAt: string };
+type GuestLectureDoc = Omit<GuestLecture, "id"> & { createdAt: string };
+type AwardDoc = Omit<Award, "id"> & { createdAt: string };
 type VideoDoc = { videoUrl: string; createdAt: string };
 
 const byNewest = <T extends { createdAt: string }>(a: T, b: T) => b.createdAt.localeCompare(a.createdAt);
@@ -147,4 +152,18 @@ export async function getTestimonials(): Promise<Testimonial[]> {
 
 export async function getVideoUrls(): Promise<string[]> {
   return ((await queryDocs<VideoDoc>("videos", { isEnabled: true })) ?? []).sort(byNewest).map((v) => v.videoUrl);
+}
+
+// Newest year first; entries without a year (or with the same year) fall back to newest-added first.
+const byYearThenNewest = <T extends { year: string | null; createdAt: string }>(a: T, b: T) =>
+  (b.year ?? "").localeCompare(a.year ?? "") || byNewest(a, b);
+
+export async function getGuestLectures(): Promise<GuestLecture[]> {
+  return ((await queryDocs<GuestLectureDoc>("guestLectures", { isEnabled: true })) ?? [])
+    .sort(byYearThenNewest);
+}
+
+export async function getAwards(): Promise<Award[]> {
+  return ((await queryDocs<AwardDoc>("awards", { isEnabled: true })) ?? [])
+    .sort(byYearThenNewest);
 }

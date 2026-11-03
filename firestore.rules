@@ -14,8 +14,20 @@ service cloud.firestore {
       allow write: if isAdmin();
     }
 
+    // Contact-page messages: anyone may submit one (well-formed, size-limited); only admins can read or manage them.
+    match /enquiries/{id} {
+      allow create: if request.resource.data.keys().hasOnly(['name', 'email', 'phone', 'topic', 'message', 'isRead', 'createdAt'])
+        && request.resource.data.name is string && request.resource.data.name.size() > 0 && request.resource.data.name.size() <= 160
+        && request.resource.data.email is string && request.resource.data.email.size() > 3 && request.resource.data.email.size() <= 200
+        && request.resource.data.phone is string && request.resource.data.phone.size() <= 40
+        && request.resource.data.topic is string && request.resource.data.topic.size() <= 60
+        && request.resource.data.message is string && request.resource.data.message.size() > 0 && request.resource.data.message.size() <= 3000
+        && request.resource.data.isRead == false;
+      allow read, update, delete: if isAdmin();
+    }
+
     match /{collection}/{id} {
-      allow read: if (collection in ['testimonials', 'gallery', 'publications', 'videos'] && resource.data.isEnabled == true) || isAdmin();
+      allow read: if (collection in ['testimonials', 'gallery', 'publications', 'videos', 'guestLectures', 'awards'] && resource.data.isEnabled == true) || isAdmin();
       allow write: if isAdmin();
     }
   }

@@ -4,12 +4,12 @@ import {
 } from "@phosphor-icons/react/dist/ssr";
 import { Carousel } from "@/components/shared/Carousel";
 import { Reveal } from "@/components/shared/Reveal";
-import { ReelEmbed } from "@/components/shared/ReelEmbed";
+import { ReelEmbed, isYouTubeUrl } from "@/components/shared/ReelEmbed";
 import { INSTAGRAM_URL } from "@/components/layout/nav-links";
 import { getVideoUrls } from "@/lib/site-api";
 
 export async function InstagramReels() {
-  const reels = await getVideoUrls();
+  const reels = (await getVideoUrls()).filter((u) => !isYouTubeUrl(u));
   if (reels.length === 0) return null;
   return (
     <section className="relative overflow-hidden bg-gradient-to-b from-white via-rose-50/70 to-white py-16">

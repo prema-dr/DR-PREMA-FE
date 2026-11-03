@@ -2,7 +2,7 @@ import { NextResponse, type NextRequest } from "next/server";
 import { requireAdmin } from "@/lib/admin-auth.server";
 import { API_KEY, CLOUD_NAME, FOLDER_ROOT, sign } from "@/lib/cloudinary.server";
 
-const FOLDERS = ["blogs", "testimonials", "gallery", "videos"];
+const FOLDERS = ["blogs", "testimonials", "gallery", "videos", "guest-lectures", "awards"];
 
 // Gives the admin's browser a short-lived signed upload, so images go straight to Cloudinary
 // without the API secret ever leaving the server.
