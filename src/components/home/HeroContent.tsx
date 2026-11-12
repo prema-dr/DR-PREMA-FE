@@ -2,7 +2,8 @@
 
 import Link from "next/link";
 import { motion, useReducedMotion, type Variants } from "motion/react";
-import { GraduationCapIcon as GraduationCap, StarIcon as Star } from "@phosphor-icons/react/dist/ssr";
+import { ArrowRightIcon as ArrowRight, CalendarBlankIcon as CalendarBlank, StarIcon as Star } from "@phosphor-icons/react/dist/ssr";
+import { WHATSAPP_URL } from "@/components/layout/nav-links";
 
 const container: Variants = {
   hidden: {},
@@ -15,9 +16,9 @@ const item: Variants = {
 };
 
 const STATS = [
-  { value: "4,000+", label: "Patients cared for", tone: "text-rose-700" },
-  { value: "20+", label: "Years of practice", tone: "text-sky-700" },
-  { value: "3", label: "Hospital affiliations", tone: "text-rose-700" },
+  { value: "4,000+", label: "Patients cared for" },
+  { value: "20+", label: "Years of practice" },
+  { value: "3", label: "Hospital affiliations" },
 ];
 
 export function HeroContent() {
@@ -41,31 +42,32 @@ export function HeroContent() {
 
       <motion.p
         variants={item}
-        className="mt-6 text-xs font-bold uppercase tracking-[0.2em] text-[#A43340]"
+        className="mt-8 font-[family-name:var(--font-display)] text-sm font-bold uppercase tracking-[0.12em] text-rose-900"
       >
         Consultant Obstetrician &amp; Gynaecologist
       </motion.p>
 
       <motion.h1
         variants={item}
-        className="mt-2 font-[family-name:var(--font-name)] text-5xl font-medium leading-[1.08] tracking-tight text-[#1C1B19] sm:text-6xl lg:text-[68px]"
+        className="mt-2 font-[family-name:var(--font-display)] text-5xl font-bold leading-[1.05] tracking-tight text-rose-900 sm:text-6xl lg:text-[68px]"
       >
-        Dr. Prema <span className="font-normal italic text-[#A43340]">N.</span>
+        Dr. Prema N.
       </motion.h1>
 
-      <motion.p variants={item} className="mt-3 text-sm font-semibold tracking-wide text-rose-950/80">
+      <motion.p variants={item} className="mt-3 font-[family-name:var(--font-display)] text-base font-semibold tracking-wide text-rose-600">
         MBBS · MS (OBG) · DGO · DNB (OBG) · FICOG
       </motion.p>
 
       <motion.h2
         variants={item}
-        className="mt-5 max-w-xl text-2xl font-semibold leading-snug text-rose-950 md:text-3xl"
+        className="mt-8 max-w-xl font-[family-name:var(--font-display)] text-2xl font-semibold leading-snug tracking-tight text-rose-900 md:text-[32px]"
       >
-        Trusted <span className="text-rose-600">Gynaecologist</span> &amp; Obstetrician in Coimbatore
+        Trusted <span className="text-rose-600">Gynaecologist</span> &amp;{" "}
+        <span className="text-rose-600">Obstetrician</span> in Coimbatore
       </motion.h2>
 
-      <motion.p variants={item} className="mt-6 max-w-xl text-lg leading-relaxed text-rose-950/70">
-        <span className="font-semibold text-rose-950">Dr. Prema N.</span> has over two decades of experience in
+      <motion.p variants={item} className="mt-6 max-w-xl text-base leading-relaxed text-gray-600 md:text-[17px]">
+        Dr. Prema N. has over two decades of experience in
         women&apos;s healthcare, with specialised expertise in high-risk obstetrics, VBAC, natural and bio-mimic
         birthing, NOVA hysterectomy and advanced laparoscopic procedures.
       </motion.p>
@@ -73,21 +75,27 @@ export function HeroContent() {
       <motion.div variants={item} className="mt-8 flex flex-wrap gap-4">
         <Link
           href="/about-us"
-          className="inline-flex items-center gap-2 rounded-full border-2 border-rose-200 bg-white/70 px-7 py-3.5 text-base font-semibold text-rose-700 transition-all hover:-translate-y-0.5 hover:bg-rose-50 active:scale-[0.98]"
+          className="inline-flex items-center gap-2 rounded-full border border-rose-100 bg-white px-7 py-3.5 text-base font-semibold text-rose-900 shadow-sm transition-all hover:-translate-y-0.5 hover:bg-rose-50 active:scale-[0.98]"
         >
-          <GraduationCap size={18} weight="regular" />
           Meet Dr. Prema
+          <ArrowRight size={16} weight="bold" />
         </Link>
+        <a
+          href={WHATSAPP_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-2 rounded-full bg-rose-600 px-7 py-3.5 text-base font-semibold text-white shadow-[0_14px_30px_-12px_rgba(232,64,122,0.7)] transition-all hover:-translate-y-0.5 hover:bg-rose-700 active:scale-[0.98]"
+        >
+          <CalendarBlank size={18} weight="regular" />
+          Book a Consultation
+        </a>
       </motion.div>
 
-      <motion.dl
-        variants={item}
-        className="mt-10 inline-grid grid-cols-3 divide-x divide-rose-100 rounded-2xl bg-white px-2 py-4 shadow-[0_12px_40px_-20px_rgba(232,64,122,0.35)]"
-      >
+      <motion.dl variants={item} className="mt-10 flex max-w-xl flex-nowrap gap-x-6 border-t border-rose-100 pt-8">
         {STATS.map((s) => (
-          <div key={s.label} className="px-5 text-center sm:px-7">
-            <dt className={`font-display text-2xl font-bold sm:text-3xl ${s.tone}`}>{s.value}</dt>
-            <dd className="mt-1 text-[11px] font-medium uppercase tracking-wider text-rose-950/60">{s.label}</dd>
+          <div key={s.label} className="sm:pr-6">
+            <dt className="font-[family-name:var(--font-display)] text-2xl font-bold text-rose-900 sm:text-4xl">{s.value}</dt>
+            <dd className="mt-1 text-[10px] font-medium uppercase tracking-wider text-gray-600 sm:text-xs">{s.label}</dd>
           </div>
         ))}
       </motion.dl>

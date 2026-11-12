@@ -17,7 +17,7 @@ const TIPS = [
 
 export function VisitSection() {
   return (
-    <section className="relative overflow-hidden bg-gradient-to-b from-white via-sky-50/60 to-rose-50/50 py-20 lg:py-24">
+    <section className="relative overflow-hidden py-20 lg:py-24">
       <div aria-hidden className="pointer-events-none absolute -left-32 top-10 size-[28rem] rounded-full bg-rose-100/50 blur-3xl" />
       <Reveal className="relative mx-auto max-w-[90rem] px-[22px] md:px-8 lg:px-10">
         <div className="mx-auto max-w-2xl text-center">

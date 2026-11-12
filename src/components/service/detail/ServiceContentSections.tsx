@@ -4,7 +4,6 @@ import { Reveal } from "@/components/shared/Reveal";
 import type { ServiceDetail } from "@/lib/site-api";
 import type { ServiceBlock } from "@/lib/service-content";
 
-const BLOB = "rounded-[44%_56%_48%_52%/40%_46%_54%_60%]";
 const EYEBROW = "inline-flex rounded-full bg-rose-100/80 px-4 py-2 text-xs font-bold uppercase tracking-[0.2em] text-rose-700";
 
 function Blocks({ blocks }: { blocks: ServiceBlock[] }) {
@@ -56,8 +55,7 @@ export function ServiceWhatIs({ service }: { service: ServiceDetail }) {
       <div aria-hidden className="pointer-events-none absolute -right-40 top-10 size-[28rem] rounded-full bg-pink-100/50 blur-3xl" />
       <Reveal className="relative mx-auto grid max-w-[90rem] grid-cols-1 items-center gap-14 px-[22px] md:px-8 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20 lg:px-10">
         <div className="relative mx-auto w-full max-w-[30rem] pb-4 lg:mx-0">
-          <div aria-hidden className={`absolute inset-x-0 top-2 bottom-6 rotate-3 scale-[1.04] border-2 border-rose-200/80 bg-gradient-to-br from-rose-100/60 to-transparent ${BLOB}`} />
-          <div className={`relative aspect-[1/1.05] overflow-hidden shadow-[0_40px_70px_-30px_rgba(190,24,93,0.45)] ring-8 ring-white/70 ${BLOB}`}>
+          <div className="relative aspect-[4/4.2] overflow-hidden rounded-[28px] border-4 border-white bg-rose-100 shadow-[0_30px_60px_-25px_rgba(159,18,57,0.45)]">
             <Image src={service.image} alt="" fill sizes="(min-width: 1024px) 480px, 90vw" className="object-cover" />
           </div>
         </div>

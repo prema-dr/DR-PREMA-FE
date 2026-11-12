@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import {
+  CalendarCheckIcon as CalendarCheck,
   ChatCircleTextIcon as ChatCircleText,
   ImagesIcon as Images,
   ListIcon as List,
@@ -11,7 +12,6 @@ import {
   PlayCircleIcon as PlayCircle,
   SquaresFourIcon as SquaresFour,
   BooksIcon as Books,
-  EnvelopeSimpleIcon as EnvelopeSimple,
   ChalkboardTeacherIcon as ChalkboardTeacher,
   TrophyIcon as Trophy,
   XIcon as X,
@@ -27,7 +27,7 @@ const NAV_ITEMS = [
   { href: "/admin/videos", label: "Videos", icon: PlayCircle },
   { href: "/admin/guest-lectures", label: "Guest lectures", icon: ChalkboardTeacher },
   { href: "/admin/awards", label: "Awards", icon: Trophy },
-  { href: "/admin/enquiries", label: "Enquiries", icon: EnvelopeSimple },
+  { href: "/admin/appointments", label: "Appointments", icon: CalendarCheck },
 ];
 
 export function AdminSidebar({ admin }: { admin: { name: string; email: string } }) {

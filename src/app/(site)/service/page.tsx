@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 export default async function ServicePage() {
   const services = await getServices();
   return (
-    <>
+    <div className="bg-gradient-to-b from-[#fdeaf2] via-[#fff5f9] to-[#fde7f0] -mb-24 pb-48">
       <ServiceHeader count={services.length} />
       <ServiceMetrics />
       <ServiceClusters services={services} />
@@ -24,6 +24,6 @@ export default async function ServicePage() {
         serviceName="Women's Health"
         message="Not sure which service you need? Book a consultation and Dr. Prema will help you understand your options, with no pressure to decide anything today."
       />
-    </>
+    </div>
   );
 }

@@ -59,17 +59,18 @@ export function ServicesBento() {
   const reduce = useReducedMotion();
 
   return (
-    <section className="relative overflow-hidden bg-gradient-to-br from-rose-50 via-white to-pink-50/70 pb-6 pt-20">
+    <section className="relative overflow-hidden pb-6 pt-20">
       <div aria-hidden className="pointer-events-none absolute -left-40 top-1/3 size-[32rem] rounded-full bg-rose-100/50 blur-2xl" />
       <div aria-hidden className="pointer-events-none absolute -right-40 -top-24 size-[30rem] rounded-full bg-pink-100/60 blur-2xl" />
 
-      <div className="relative mx-auto grid max-w-[90rem] grid-cols-1 items-center gap-14 px-[22px] md:px-8 lg:grid-cols-[0.8fr_1.2fr] lg:gap-6 lg:px-10">
+      <div className="relative mx-auto grid max-w-[90rem] grid-cols-1 items-center gap-14 px-[22px] md:px-8 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1fr)_minmax(0,1fr)] lg:gap-8 lg:px-10">
         {/* Copy */}
         <motion.div
           initial={reduce ? false : { opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+          className="lg:order-3"
         >
           <span className="inline-flex items-center gap-1.5 rounded-full bg-rose-100/80 px-4 py-1.5 text-xs font-semibold text-rose-700">
             <Sparkle size={14} weight="fill" />
@@ -92,75 +93,39 @@ export function ServicesBento() {
           </Link>
         </motion.div>
 
-        {/* Orbit infographic (desktop) */}
-        <div className="relative mx-auto hidden aspect-square w-full max-w-[660px] lg:-mb-12 lg:block">
-          <svg viewBox="0 0 100 100" className="pointer-events-none absolute inset-0 size-full" aria-hidden>
-            <defs>
-              <radialGradient id="orbit-glow" cx="50%" cy="50%" r="50%">
-                <stop offset="0%" stopColor="#fb7185" stopOpacity="0.22" />
-                <stop offset="100%" stopColor="#fb7185" stopOpacity="0" />
-              </radialGradient>
-            </defs>
-            <circle cx="50" cy="50" r="46" fill="url(#orbit-glow)" />
-            <circle cx="50" cy="50" r="38" fill="none" stroke="#f9a8c4" strokeWidth="0.25" />
-            <circle cx="50" cy="50" r="27" fill="none" stroke="#fbcfe0" strokeWidth="0.25" strokeDasharray="1 1.4" />
-            {NODES.map((n) => (
-              <line key={n.title} x1="50" y1="50" x2={n.x} y2={n.y} stroke="#f472b6" strokeOpacity="0.35" strokeWidth="0.22" strokeDasharray="1 1.2" />
-            ))}
-          </svg>
-
-          {/* slowly rotating dashed ring */}
-          <div
-            aria-hidden
-            className="absolute left-1/2 top-1/2 size-[62%] -translate-x-1/2 -translate-y-1/2 animate-spin rounded-full border border-dashed border-rose-300/60 motion-reduce:animate-none"
-            style={{ animationDuration: "80s" }}
-          />
-
-          {/* Doctor portrait */}
+        {/* Photo + service cards */}
+        <div className="grid items-center gap-6 sm:grid-cols-[0.9fr_1.1fr] lg:contents">
           <motion.div
-            initial={reduce ? false : { opacity: 0, scale: 0.85 }}
-            whileInView={{ opacity: 1, scale: 1 }}
+            initial={reduce ? false : { opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-80px" }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            className="absolute left-1/2 top-1/2 size-[36%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-gradient-to-br from-white to-rose-100 p-[5px] shadow-[0_30px_60px_-20px_rgba(190,24,93,0.45)] ring-8 ring-white/60"
+            className="relative mx-auto aspect-[4/5] w-full lg:aspect-auto lg:self-stretch max-w-md overflow-hidden lg:order-1 rounded-[28px] border-4 border-white bg-gradient-to-b from-rose-50 to-rose-200 shadow-[0_30px_60px_-25px_rgba(159,18,57,0.45)] sm:max-w-none lg:max-w-none"
           >
-            <div className="relative size-full overflow-hidden rounded-full bg-gradient-to-b from-rose-50 to-rose-200">
-              <Image
-                src="/images/home-scnd-section.png"
-                alt="Dr. Prema"
-                fill
-                sizes="240px"
-                className="object-cover object-top"
-              />
+            <Image
+              src="/images/home-scnd-section.png"
+              alt="Dr. Prema"
+              fill
+              sizes="(min-width: 1024px) 380px, (min-width: 640px) 40vw, 90vw"
+              className="object-cover object-top"
+            />
+            <div className="absolute inset-x-3 bottom-3 rounded-2xl bg-white/95 px-4 py-3 backdrop-blur">
+              <p className="font-display text-sm font-bold text-rose-900">Dr. Prema N.</p>
+              <p className="text-xs text-gray-600">Consultant Obstetrician &amp; Gynaecologist</p>
             </div>
           </motion.div>
 
-          {/* Service nodes */}
-          {NODES.map((node, index) => (
-            <motion.div
-              key={node.title}
-              initial={reduce ? false : { opacity: 0, scale: 0.8 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true, margin: "-80px" }}
-              transition={{ duration: 0.6, delay: 0.25 + index * 0.1, ease: [0.16, 1, 0.3, 1] }}
-              className="absolute"
-              style={{ left: `${node.x}%`, top: `${node.y}%`, translate: "-50% -50%" }}
-            >
-              <NodeCard node={node} />
-            </motion.div>
-          ))}
-        </div>
-
-        {/* Stacked fallback (mobile / tablet) */}
-        <div className="lg:hidden">
-          <div className="mx-auto mb-8 size-48 rounded-full bg-gradient-to-br from-white to-rose-100 p-1 shadow-[0_24px_50px_-20px_rgba(190,24,93,0.45)] ring-8 ring-white/60">
-            <div className="relative size-full overflow-hidden rounded-full bg-gradient-to-b from-rose-50 to-rose-200">
-              <Image src="/images/home-scnd-section.png" alt="Dr. Prema" fill sizes="192px" className="object-cover object-top" />
-            </div>
-          </div>
-          <div className="grid gap-3 sm:grid-cols-2">
-            {NODES.map((node) => (
-              <NodeCard key={node.title} node={node} compact />
+          <div className="flex flex-col gap-3 lg:order-2">
+            {NODES.map((node, index) => (
+              <motion.div
+                key={node.title}
+                initial={reduce ? false : { opacity: 0, x: 20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true, margin: "-60px" }}
+                transition={{ duration: 0.5, delay: 0.1 + index * 0.08, ease: [0.16, 1, 0.3, 1] }}
+              >
+                <NodeCard node={node} compact />
+              </motion.div>
             ))}
           </div>
         </div>

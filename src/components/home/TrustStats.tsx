@@ -12,7 +12,7 @@ const STATS = [
 export function TrustStats() {
   return (
     <Reveal className="mx-auto mt-[60px] max-w-[90rem] px-[22px] md:px-8 lg:px-10">
-      <div className="relative isolate overflow-hidden rounded-[1.75rem] border border-rose-100 bg-gradient-to-br from-rose-50 via-white to-sky-50 px-6 py-10 sm:px-10 md:min-h-[27rem] md:py-14 lg:px-14">
+      <div className="relative isolate overflow-hidden rounded-[1.75rem] border border-white bg-white shadow-[0_40px_80px_-30px_rgba(159,18,57,0.45),0_12px_24px_-12px_rgba(232,64,122,0.25)] transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_50px_90px_-30px_rgba(159,18,57,0.55),0_16px_30px_-12px_rgba(232,64,122,0.3)] bg-gradient-to-br from-rose-50 via-white to-sky-50 px-6 py-10 sm:px-10 md:min-h-[27rem] md:py-14 lg:px-14">
         {/* Soft colour glows */}
         <div
           aria-hidden

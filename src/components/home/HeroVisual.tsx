@@ -18,17 +18,24 @@ export function HeroVisual() {
         initial={{ opacity: 0, y: 24 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-        className="relative z-10 aspect-[1082/1454] w-full"
+        className="relative z-10 aspect-[4/5] w-full overflow-hidden rounded-[28px] border-4 border-white bg-rose-100 shadow-[0_30px_60px_-25px_rgba(159,18,57,0.45)]"
       >
         <Image
-          src="/images/hero-img.png"
-          alt="Dr. Prema, fertility specialist and gynaecologist"
+          src="/images/meet-dr-prema.jpeg"
+          alt="Dr. Prema, consultant obstetrician and gynaecologist"
           fill
           loading="eager"
           fetchPriority="high"
           sizes="(min-width: 1024px) 512px, 80vw"
-          className="object-contain object-bottom drop-shadow-[0_30px_40px_rgba(159,18,57,0.18)]"
+          className="origin-[50%_32%] scale-[1.6] object-cover object-[50%_38%]"
         />
+        <div className="absolute inset-x-4 bottom-4 flex items-center justify-between gap-3 rounded-2xl bg-white/95 px-4 py-3 backdrop-blur">
+          <div>
+            <p className="font-[family-name:var(--font-display)] text-sm font-bold text-rose-900">Dr. Prema N.</p>
+            <p className="text-xs text-gray-600">Kovai Medical Center &amp; Hospital</p>
+          </div>
+          <span className="rounded-full bg-rose-100 px-3 py-1 text-xs font-medium text-rose-600">Coimbatore</span>
+        </div>
       </motion.div>
 
       {/* Floating card: Google reviews */}
@@ -39,7 +46,7 @@ export function HeroVisual() {
           opacity: { duration: 0.6, delay: 0.4 },
           y: { duration: 6, repeat: Infinity, ease: "easeInOut", delay: 0.8 },
         }}
-        className="absolute left-0 top-[22%] z-20 rounded-xl border border-rose-100 bg-white px-4 py-3 shadow-[0_16px_40px_-18px_rgba(159,18,57,0.35)] sm:-left-6"
+        className="absolute left-0 top-[4%] z-20 rounded-xl border border-rose-100 bg-white px-4 py-3 shadow-[0_16px_40px_-18px_rgba(159,18,57,0.35)] sm:-left-6"
       >
         <div className="flex items-center gap-1.5">
           <span className="flex text-amber-400">
@@ -60,10 +67,10 @@ export function HeroVisual() {
           opacity: { duration: 0.6, delay: 0.55 },
           y: { duration: 7, repeat: Infinity, ease: "easeInOut", delay: 1 },
         }}
-        className="absolute bottom-[14%] right-0 z-20 rounded-xl border border-rose-100 bg-white px-4 py-3 shadow-[0_16px_40px_-18px_rgba(159,18,57,0.35)] sm:-right-4"
+        className="absolute top-[26%] right-0 z-20 rounded-xl border border-rose-100 bg-white px-4 py-3 shadow-[0_16px_40px_-18px_rgba(159,18,57,0.35)] sm:-right-6"
       >
         <p className="text-sm text-rose-950/80">
-          <span className="font-bold text-sky-700">98%</span>{" "}
+          <span className="font-bold text-emerald-600">98%</span>{" "}
           <span className="text-xs">Recommended</span>
         </p>
         <p className="mt-1 text-[11px] text-rose-950/65">Practo (333 patients)</p>

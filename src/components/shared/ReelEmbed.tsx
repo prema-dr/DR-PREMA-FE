@@ -1,3 +1,6 @@
+import Image from "next/image";
+import { InstagramLogoIcon as InstagramLogo } from "@phosphor-icons/react/dist/ssr";
+
 // Shared by the home page and the service pages so every reel looks the same.
 // Instagram's bare embed is a 336px-wide card: a profile header on top, a 4:5
 // media area (the 9:16 video is pillarboxed with black bars), and an actions
@@ -69,6 +72,19 @@ export function ReelEmbed({ url }: { url: string }) {
             transform: `scale(${SCALE}) translate(${-VIDEO.x}px, ${-VIDEO.y}px)`,
           }}
         />
+        {/* Shorts-style overlay: brand on top, profile at the bottom (clicks pass through to the video) */}
+        <div aria-hidden className="pointer-events-none absolute inset-x-0 top-0 h-20 bg-gradient-to-b from-black/55 to-transparent" />
+        <div aria-hidden className="pointer-events-none absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-black/70 to-transparent" />
+        <div className="pointer-events-none absolute left-4 top-3.5 flex items-center gap-1.5 text-white">
+          <InstagramLogo size={24} weight="fill" />
+          <span className="text-lg font-bold tracking-tight">Reels</span>
+        </div>
+        <div className="pointer-events-none absolute inset-x-4 bottom-4 flex items-center gap-2.5 text-white">
+          <span className="relative size-8 shrink-0 overflow-hidden rounded-full bg-white ring-2 ring-white">
+            <Image src="/images/dr-img.png" alt="" fill sizes="32px" className="object-cover object-top" />
+          </span>
+          <span className="truncate text-sm font-medium">dr_prema_gynaecologist_cbe</span>
+        </div>
       </div>
     </div>
   );

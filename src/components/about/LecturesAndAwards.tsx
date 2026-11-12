@@ -132,7 +132,7 @@ export async function LecturesAndAwards() {
   const both = lectures.length > 0 && awards.length > 0;
 
   return (
-    <section className="relative overflow-hidden bg-gradient-to-b from-white via-rose-50/50 to-white py-20 lg:py-28">
+    <section className="relative overflow-hidden py-20 lg:py-28">
       <div aria-hidden className="pointer-events-none absolute -left-40 top-20 size-[30rem] rounded-full bg-rose-100/60 blur-3xl" />
       <Reveal className="relative mx-auto max-w-[90rem] px-[22px] md:px-8 lg:px-10">
         <div className="mx-auto max-w-3xl text-center">

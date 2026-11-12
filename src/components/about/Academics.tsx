@@ -28,7 +28,7 @@ const DISTINCTIONS = [
 
 export function Academics() {
   return (
-    <section className="bg-gradient-to-b from-white via-rose-50/60 to-white py-20 lg:py-24">
+    <section className="py-20 lg:py-24">
       <Reveal className="mx-auto max-w-[90rem] px-[22px] md:px-8 lg:px-10">
         <div className="grid grid-cols-1 items-end gap-8 lg:grid-cols-[1.1fr_0.9fr]">
           <div>

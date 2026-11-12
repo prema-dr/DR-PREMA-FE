@@ -20,6 +20,7 @@ type Credential = {
   title: string;
   count?: { value: number; suffix: string };
   text: string;
+  detail: string;
   icon: IconType;
   /** Tailwind classes per colour family. */
   accent: {
@@ -51,6 +52,7 @@ const CREDENTIALS: Credential[] = [
     eyebrow: "Fellowship",
     title: "FICOG",
     text: "Fellowship, ICOG India",
+    detail: "Indian College of Obstetricians & Gynaecologists",
     icon: GraduationCap,
     accent: ROSE,
   },
@@ -58,6 +60,7 @@ const CREDENTIALS: Credential[] = [
     eyebrow: "Board certified",
     title: "DNB (OBG)",
     text: "National Board of Exams",
+    detail: "Diplomate of National Board in Obstetrics & Gynaecology",
     icon: Certificate,
     accent: SKY,
   },
@@ -65,6 +68,7 @@ const CREDENTIALS: Credential[] = [
     eyebrow: "Academic",
     title: "Professor",
     text: "KMCH, Coimbatore",
+    detail: "KMCH Institute of Health Sciences & Research",
     icon: ChalkboardTeacher,
     accent: SKY,
   },
@@ -73,6 +77,7 @@ const CREDENTIALS: Credential[] = [
     title: "Years",
     count: { value: 20, suffix: "+" },
     text: "In women's healthcare",
+    detail: "Over two decades of clinical practice & medical education",
     icon: BookOpen,
     accent: ROSE,
   },
@@ -80,14 +85,14 @@ const CREDENTIALS: Credential[] = [
 
 export function CredentialsStrip() {
   return (
-    <section className="bg-gradient-to-b from-sky-100 via-sky-50 to-rose-50 py-10">
+    <section className="py-10">
       <Reveal className="mx-auto w-full max-w-[90rem] px-[22px] md:px-8 lg:px-10">
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
           {CREDENTIALS.map(
-            ({ eyebrow, title, count, text, icon: Icon, accent }) => (
+            ({ eyebrow, title, count, text, detail, icon: Icon, accent }) => (
               <div
                 key={title}
-                className="group relative overflow-hidden rounded-2xl border border-white bg-white/90 p-4 pl-5 shadow-[0_14px_32px_-18px_rgba(15,23,42,0.4)] backdrop-blur-sm transition-all duration-300 hover:-translate-y-1.5 hover:bg-white hover:shadow-[0_24px_40px_-18px_rgba(15,23,42,0.45)]"
+                className="group relative overflow-hidden rounded-2xl border border-white bg-white/90 p-6 pl-7 shadow-[0_14px_32px_-18px_rgba(15,23,42,0.4)] backdrop-blur-sm transition-all duration-300 hover:-translate-y-1.5 hover:bg-white hover:shadow-[0_24px_40px_-18px_rgba(15,23,42,0.45)]"
               >
                 {/* accent bar */}
                 <span
@@ -106,32 +111,35 @@ export function CredentialsStrip() {
                   className="pointer-events-none absolute inset-y-0 -left-1/2 w-1/3 -skew-x-12 bg-gradient-to-r from-transparent via-white/80 to-transparent opacity-0 transition-all duration-700 group-hover:left-[130%] group-hover:opacity-100"
                 />
 
-                <div className="relative flex items-start gap-3.5">
-                  <span
-                    className={`flex size-12 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br text-white ring-4 ring-white ${accent.tile} ${accent.glow}`}
-                  >
-                    <Icon size={24} weight="regular" />
-                  </span>
-                  <span className="min-w-0">
+                <div className="relative">
+                  <div className="flex items-center justify-between gap-3">
                     <span
                       className={`flex items-center gap-1 text-[10.5px] font-bold uppercase tracking-[0.14em] ${accent.eyebrow}`}
                     >
                       <SealCheck size={12} weight="fill" />
                       {eyebrow}
                     </span>
-                    <span className="mt-1 block font-display text-xl font-bold leading-tight text-rose-950">
-                      {count ? (
-                        <>
-                          <CountUp value={count.value} suffix={count.suffix} />{" "}
-                          {title}
-                        </>
-                      ) : (
-                        title
-                      )}
+                    <span
+                      className={`flex size-10 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br text-white ring-4 ring-white ${accent.tile} ${accent.glow}`}
+                    >
+                      <Icon size={20} weight="regular" />
                     </span>
-                    <span className="mt-1 block whitespace-nowrap text-sm leading-snug text-rose-950/60">
-                      {text}
-                    </span>
+                  </div>
+                  <span className="mt-3 block font-display text-2xl font-bold leading-tight text-rose-950">
+                    {count ? (
+                      <>
+                        <CountUp value={count.value} suffix={count.suffix} />{" "}
+                        {title}
+                      </>
+                    ) : (
+                      title
+                    )}
+                  </span>
+                  <span className="mt-1 block text-sm font-semibold leading-snug text-rose-950">
+                    {text}
+                  </span>
+                  <span className="mt-2 block text-[13px] leading-snug text-rose-950/55">
+                    {detail}
                   </span>
                 </div>
               </div>

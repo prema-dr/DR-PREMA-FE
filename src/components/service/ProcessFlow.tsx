@@ -15,9 +15,9 @@ const STEPS = [
 
 export function ProcessFlow() {
   return (
-    <section className="relative overflow-hidden bg-gradient-to-b from-rose-50 via-sky-50/60 to-white py-20 lg:py-24">
+    <section className="relative overflow-hidden py-20 lg:py-24">
       <div aria-hidden className="pointer-events-none absolute -left-32 top-10 size-[28rem] rounded-full bg-rose-100/60 blur-3xl" />
-      <div aria-hidden className="pointer-events-none absolute -right-32 bottom-0 size-[28rem] rounded-full bg-sky-100/70 blur-3xl" />
+      <div aria-hidden className="pointer-events-none absolute -right-32 bottom-0 size-[28rem] rounded-full bg-pink-100/70 blur-3xl" />
       <Reveal className="relative mx-auto max-w-[90rem] px-[22px] md:px-8 lg:px-10">
         <div className="mx-auto max-w-3xl text-center">
           <span className="inline-flex rounded-full bg-white px-4 py-2 text-xs font-bold uppercase tracking-[0.2em] text-rose-700 shadow-sm">

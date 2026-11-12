@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 export default async function PatientStoriesPage() {
   const testimonials = await getTestimonials();
   return (
-    <>
+    <div className="bg-gradient-to-b from-[#fdeaf2] via-[#fff5f9] to-[#fde7f0] -mb-24 pb-48">
       <StoriesHeader testimonials={testimonials} />
       <ServiceMetrics />
       <StoriesWall testimonials={testimonials} />
@@ -24,6 +24,6 @@ export default async function PatientStoriesPage() {
         serviceName="Patient Stories"
         message="Whether you are looking for care or want to share how your visit went, we'd love to hear from you. Stories are included only with your permission."
       />
-    </>
+    </div>
   );
 }

@@ -8,8 +8,6 @@ import {
 } from "@phosphor-icons/react/dist/ssr";
 import { Reveal } from "@/components/shared/Reveal";
 
-const BLOB = "rounded-[44%_56%_48%_52%/40%_46%_54%_60%]";
-
 const PILLARS = [
   { icon: HeartStraight, title: "Patient-centred care", text: "Personalised care for every woman." },
   { icon: ShieldCheck, title: "Clinical precision & safety", text: "Evidence-based practice, guided by experience." },
@@ -21,15 +19,14 @@ export function MeetDoctor() {
   return (
     <section className="relative overflow-hidden py-20 lg:py-28">
       <div aria-hidden className="pointer-events-none absolute -right-40 top-10 size-[28rem] rounded-full bg-pink-100/50 blur-3xl" />
-      <Reveal className="relative mx-auto grid max-w-[90rem] grid-cols-1 items-center gap-14 px-[22px] md:px-8 lg:grid-cols-[0.95fr_1.05fr] lg:gap-20 lg:px-10">
-        <div className="relative mx-auto w-full max-w-[32rem] pb-6 lg:mx-0">
-          <div aria-hidden className={`absolute inset-x-0 top-2 bottom-8 -rotate-3 scale-[1.04] border-2 border-rose-200/80 bg-gradient-to-br from-rose-100/60 to-transparent ${BLOB}`} />
-          <div className={`relative aspect-[1/1.02] overflow-hidden shadow-[0_40px_70px_-30px_rgba(190,24,93,0.45)] ring-8 ring-white/70 ${BLOB}`}>
+      <Reveal className="relative mx-auto grid max-w-[90rem] grid-cols-1 items-center gap-14 px-[22px] md:px-8 lg:grid-cols-[0.95fr_1.05fr] lg:gap-16 lg:px-10">
+        <div className="relative mx-auto hidden w-full max-w-[32rem] pb-6 lg:mx-0 lg:block">
+          <div className="relative aspect-[4/5] overflow-hidden rounded-[28px] border-4 border-white bg-rose-100 shadow-[0_30px_60px_-25px_rgba(159,18,57,0.45)]">
             <Image
               src="/images/meet-dr-prema.jpeg"
               alt="Dr. Prema seated in her consultation room"
               fill
-              sizes="(min-width: 1024px) 512px, 90vw"
+              sizes="512px"
               className="object-cover object-[50%_20%]"
             />
             <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-rose-200/25 via-transparent to-white/10" />
@@ -53,30 +50,18 @@ export function MeetDoctor() {
           <div className="mt-6 max-w-2xl space-y-4 text-[17px] leading-relaxed text-rose-950/65">
             <p>
               Dr. Prema N. is a Consultant Obstetrician and Gynaecologist with
-              over two decades of experience in women&apos;s healthcare. Her
-              professional journey combines clinical practice, medical
-              education, academic leadership and research.
+              over two decades of experience in women&apos;s healthcare,
+              combining clinical practice, medical education and research.
             </p>
             <p>
-              She has developed specialised experience across Obstetrics and
-              Gynaecology, with particular clinical interests in high-risk
-              obstetrics, VBAC, natural and bio-mimic birthing techniques, No
-              Scar Vaginal Hysterectomy (NOVA) and advanced laparoscopic
-              gynaecological procedures.
+              Her special interests include high-risk obstetrics, VBAC, natural
+              and bio-mimic birthing, No Scar Vaginal Hysterectomy (NOVA) and
+              advanced laparoscopic procedures.
             </p>
             <p>
-              Her approach to patient care is centred around clinical
-              precision, safety, clear communication and personalised
-              attention. She believes that every woman&apos;s healthcare
-              journey is unique and should be approached with an understanding
-              of her individual medical needs and concerns.
-            </p>
-            <p>
-              Currently practising as a Consultant in Obstetrics &amp;
-              Gynaecology at Kovai Medical Center &amp; Hospital, Coimbatore,
-              Dr. Prema continues to combine clinical expertise, academic
-              knowledge and compassionate care in supporting women&apos;s
-              health.
+              Practising at Kovai Medical Center &amp; Hospital, Coimbatore, she
+              offers clear communication and personalised, evidence-based care
+              for every woman&apos;s unique needs.
             </p>
           </div>
 

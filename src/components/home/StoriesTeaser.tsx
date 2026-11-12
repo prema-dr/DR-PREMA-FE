@@ -8,7 +8,7 @@ export async function StoriesTeaser() {
   const testimonials = await getTestimonials();
   if (testimonials.length === 0) return null;
   return (
-    <section className="bg-rose-50/60 pb-14 pt-20">
+    <section className="pb-14 pt-20">
       <Reveal className="mx-auto max-w-[90rem] px-[22px] md:px-8 lg:px-10">
         <div className="mx-auto max-w-2xl text-center">
           <p className="inline-flex items-center gap-3 text-xs font-bold uppercase tracking-[0.2em] text-rose-600">

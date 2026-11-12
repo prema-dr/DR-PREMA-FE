@@ -86,17 +86,6 @@ export type AdminAward = {
   isEnabled: boolean;
 };
 
-export type AdminEnquiry = {
-  id: string;
-  name: string;
-  email: string;
-  phone: string;
-  topic: string;
-  message: string;
-  isRead: boolean;
-  createdAt: string;
-};
-
 export type DashboardCounts = {
   blogs: number;
   testimonials: number;
@@ -105,7 +94,6 @@ export type DashboardCounts = {
   videos: number;
   guestLectures: number;
   awards: number;
-  enquiries: number;
 };
 
 type Query = Record<string, string | number | boolean | undefined | null>;

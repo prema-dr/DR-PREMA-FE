@@ -17,7 +17,7 @@ export const metadata: Metadata = {
 
 export default function AboutUsPage() {
   return (
-    <>
+    <div className="bg-gradient-to-b from-[#fdeaf2] via-[#fff5f9] to-[#fde7f0] -mb-24 pb-48">
       <BioHeader />
       <MeetDoctor />
       <Academics />
@@ -27,6 +27,6 @@ export default function AboutUsPage() {
       <LecturesAndAwards />
       <Approach />
       <AboutCta />
-    </>
+    </div>
   );
 }

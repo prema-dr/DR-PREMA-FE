@@ -43,7 +43,7 @@ const VIDEO_URL = new RegExp(`(?:${INSTAGRAM_URL.source})|(?:${YOUTUBE_URL.sourc
 const service: Rule = { type: "service", required: true, label: "Service" };
 const enabled: Rule = { type: "bool" };
 
-type ResourceName = "blogs" | "testimonials" | "gallery" | "publications" | "videos" | "guestLectures" | "awards" | "enquiries";
+type ResourceName = "blogs" | "testimonials" | "gallery" | "publications" | "videos" | "guestLectures" | "awards";
 
 type Resource = {
   rules: Record<string, Rule>;
@@ -131,11 +131,6 @@ const RESOURCES: Record<ResourceName, Resource> = {
     },
     image: { field: "image", url: "imageUrl", path: "imagePath", folder: "awards" },
     searchFields: ["title", "awardedBy"],
-  },
-  // Created by visitors through /api/enquiries; the admin only reads, marks as read, and deletes.
-  enquiries: {
-    rules: { isRead: { type: "bool" } },
-    searchFields: ["name", "email", "message", "topic"],
   },
 };
 
@@ -377,7 +372,7 @@ async function remove(name: ResourceName, id: string) {
 
 async function dashboard() {
   const names: [string, ResourceName][] = [
-    ["blogs", "blogs"], ["testimonials", "testimonials"], ["galleryImages", "gallery"], ["publications", "publications"], ["videos", "videos"], ["guestLectures", "guestLectures"], ["awards", "awards"], ["enquiries", "enquiries"],
+    ["blogs", "blogs"], ["testimonials", "testimonials"], ["galleryImages", "gallery"], ["publications", "publications"], ["videos", "videos"], ["guestLectures", "guestLectures"], ["awards", "awards"],
   ];
   const counts = await Promise.all(names.map(([, name]) => getCountFromServer(col(name))));
   return Object.fromEntries(names.map(([key], i) => [key, counts[i].data().count]));

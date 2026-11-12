@@ -12,7 +12,7 @@ export async function BlogTeaser() {
   if (posts.length === 0) return null;
 
   return (
-    <section className="relative overflow-hidden bg-gradient-to-b from-white via-rose-50/70 to-white py-16">
+    <section className="relative overflow-hidden py-16">
       <div
         aria-hidden
         className="pointer-events-none absolute -left-32 top-8 size-[28rem] rounded-full bg-rose-100/40"

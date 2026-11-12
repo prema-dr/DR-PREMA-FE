@@ -11,13 +11,13 @@ import { Reveal } from "@/components/shared/Reveal";
 
 export function ServiceHeader({ count }: { count: number }) {
   return (
-    <section className="relative -mt-36 overflow-hidden bg-gradient-to-b from-rose-100/70 via-rose-50 to-white pt-[112px] pb-24 sm:pt-[130px] md:-mt-40 lg:pt-[140px] lg:pb-32">
+    <section className="relative -mt-36 overflow-hidden pt-[112px] pb-24 sm:pt-[130px] md:-mt-40 lg:pt-[140px] lg:pb-32">
       <svg aria-hidden viewBox="0 0 800 800" className="pointer-events-none absolute -right-48 top-1/2 hidden size-[52rem] -translate-y-1/2 text-rose-300/40 lg:block">
         {[140, 220, 300, 380].map((r) => (
           <circle key={r} cx="400" cy="400" r={r} fill="none" stroke="currentColor" strokeWidth="1.2" strokeDasharray={r % 220 === 0 ? "2 9" : undefined} />
         ))}
       </svg>
-      <div aria-hidden className="pointer-events-none absolute -left-32 bottom-0 size-[26rem] rounded-full bg-sky-100/70 blur-3xl" />
+      <div aria-hidden className="pointer-events-none absolute -left-32 bottom-0 size-[26rem] rounded-full bg-pink-200/50 blur-3xl" />
 
       <div className="relative mx-auto grid max-w-[90rem] grid-cols-1 items-center gap-14 px-[22px] md:px-8 lg:grid-cols-[1.05fr_0.95fr] lg:px-10">
         <Reveal>
@@ -59,7 +59,7 @@ export function ServiceHeader({ count }: { count: number }) {
 
         {/* Collage */}
         <Reveal delay={0.1} className="relative mx-auto grid w-full max-w-[34rem] grid-cols-[1.1fr_0.9fr] gap-4 lg:max-w-none">
-          <div className="relative aspect-[3/4] overflow-hidden rounded-t-full rounded-b-3xl shadow-[0_40px_70px_-30px_rgba(190,24,93,0.45)] ring-8 ring-white/70">
+          <div className="relative aspect-[3/4] overflow-hidden rounded-[28px] border-4 border-white shadow-[0_30px_60px_-25px_rgba(159,18,57,0.45)]">
             <Image src="/images/services/high-risk-pregnancy-care.png" alt="Prenatal care" fill priority quality={90} sizes="(min-width: 1024px) 560px, 80vw" className="object-cover" />
           </div>
           <div className="flex flex-col gap-4 pt-10">

@@ -8,6 +8,7 @@ import {
   HospitalIcon as Hospital,
   MedalIcon as Medal,
   SealCheckIcon as SealCheck,
+  StarIcon as Star,
   StethoscopeIcon as Stethoscope,
   FlowerLotusIcon as FlowerLotus,
 } from "@phosphor-icons/react/dist/ssr";
@@ -26,13 +27,13 @@ export function BioHeader() {
   const reduce = useReducedMotion();
 
   return (
-    <section className="relative -mt-36 flex overflow-hidden bg-gradient-to-b from-rose-100/70 via-rose-50 to-white pt-[112px] pb-12 sm:pt-[130px] md:-mt-40 lg:min-h-[100svh] lg:items-center lg:pt-[140px] lg:pb-10">
+    <section className="relative -mt-36 flex overflow-hidden pt-[112px] pb-12 sm:pt-[130px] md:-mt-40 lg:items-center lg:pt-[170px] lg:pb-20">
       <svg aria-hidden viewBox="0 0 800 800" className="pointer-events-none absolute -right-40 top-1/2 hidden size-[52rem] -translate-y-1/2 text-rose-300/40 lg:block">
         {[140, 220, 300, 380].map((r) => (
           <circle key={r} cx="400" cy="400" r={r} fill="none" stroke="currentColor" strokeWidth="1.2" strokeDasharray={r % 220 === 0 ? "2 9" : undefined} />
         ))}
       </svg>
-      <div aria-hidden className="pointer-events-none absolute -left-32 bottom-0 size-[26rem] rounded-full bg-sky-100/70 blur-3xl" />
+      <div aria-hidden className="pointer-events-none absolute -left-32 bottom-0 size-[26rem] rounded-full bg-pink-200/50 blur-3xl" />
       <div aria-hidden className="pointer-events-none absolute right-1/3 -top-20 size-[22rem] rounded-full bg-pink-200/50 blur-3xl" />
 
       <div className="relative mx-auto grid w-full max-w-[90rem] grid-cols-1 items-center gap-10 px-[22px] md:px-8 lg:grid-cols-[1.15fr_0.85fr] lg:gap-12 lg:px-10">
@@ -96,30 +97,39 @@ export function BioHeader() {
           </motion.div>
         </div>
 
-        {/* Arch portrait, height-capped so the hero fits one screen */}
+        {/* Framed portrait, height-capped so the hero fits one screen */}
         <motion.div {...fade(0.12, reduce)} className="relative mx-auto w-full max-w-[20rem] lg:mr-0 lg:max-w-none lg:justify-self-center">
-          <div className="relative mx-auto aspect-[4/5] w-full lg:h-[min(60svh,34rem)] lg:w-auto">
-            <div aria-hidden className="absolute inset-0 rounded-t-full bg-gradient-to-b from-rose-300 via-rose-200 to-rose-100 shadow-[0_50px_80px_-40px_rgba(190,24,93,0.55)] ring-8 ring-white/70" />
-            <div aria-hidden className="absolute inset-x-5 top-5 bottom-0 rounded-t-full border border-white/70" />
-            <div className="absolute inset-x-0 bottom-0 h-[110%]">
+          <div className="relative mx-auto aspect-[4/5] w-full lg:h-[min(68svh,38rem)] lg:w-auto">
+            <div className="absolute inset-0 overflow-hidden rounded-[28px] border-4 border-white bg-rose-100 shadow-[0_30px_60px_-25px_rgba(159,18,57,0.45)]">
               <Image
-                src="/images/hero-img.png"
+                src="/images/DSC08886.JPG.jpeg"
                 alt="Dr. Prema N., Consultant Obstetrician and Gynaecologist"
                 fill
                 loading="eager"
                 fetchPriority="high"
                 sizes="(min-width: 1024px) 420px, 80vw"
-                className="object-contain object-bottom drop-shadow-[0_24px_30px_rgba(159,18,57,0.28)]"
+                className="object-cover object-[50%_28%]"
               />
             </div>
-            <div className="absolute -left-4 bottom-8 z-10 flex items-center gap-3 rounded-2xl bg-white px-4 py-3 shadow-[0_24px_44px_-20px_rgba(159,18,57,0.5)] sm:-left-10">
-              <SealCheck size={26} weight="fill" className="shrink-0 text-sky-500" />
-              <span>
-                <span className="block font-display text-base font-bold leading-tight text-rose-950">Dr. Prema N.</span>
-                <span className="block text-[11px] text-rose-950/65">Consultant Obstetrician &amp; Gynaecologist</span>
-              </span>
+            <div className="absolute inset-x-4 bottom-4 z-10 flex items-center justify-between gap-3 rounded-2xl bg-white/95 px-4 py-3 backdrop-blur">
+              <div>
+                <p className="font-display text-sm font-bold text-rose-900">Dr. Prema N.</p>
+                <p className="text-xs text-gray-600">Kovai Medical Center &amp; Hospital</p>
+              </div>
+              <span className="rounded-full bg-rose-100 px-3 py-1 text-xs font-medium text-rose-600">Coimbatore</span>
             </div>
-            <div className="absolute -right-3 top-[30%] z-10 hidden items-center gap-2 rounded-xl bg-white px-3.5 py-2.5 shadow-[0_16px_36px_-18px_rgba(159,18,57,0.4)] sm:flex lg:-right-8">
+            <div className="absolute -left-4 top-6 z-20 rounded-xl border border-rose-100 bg-white px-4 py-3 shadow-[0_16px_40px_-18px_rgba(159,18,57,0.35)] sm:-left-8">
+              <div className="flex items-center gap-1.5">
+                <span className="flex text-amber-400">
+                  {Array.from({ length: 5 }).map((_, i) => (
+                    <Star key={i} size={13} weight="fill" />
+                  ))}
+                </span>
+                <span className="text-sm font-bold text-rose-950">1,353</span>
+              </div>
+              <p className="mt-1 text-[11px] text-rose-950/65">Google Reviews</p>
+            </div>
+            <div className="absolute -right-3 top-[30%] z-10 hidden items-center gap-2 rounded-xl border border-rose-100 bg-white px-3.5 py-2.5 shadow-[0_16px_40px_-18px_rgba(159,18,57,0.35)] sm:flex lg:-right-8">
               <Hospital size={20} weight="light" className="text-rose-500" />
               <span className="text-xs font-semibold leading-tight text-rose-950">
                 Kovai Medical Center

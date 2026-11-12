@@ -29,7 +29,7 @@ const TRAIL = POINTS.reduce((d, p, i) => {
 
 export function Timeline() {
   return (
-    <section id="journey" className="relative scroll-mt-32 overflow-hidden bg-gradient-to-b from-rose-50 via-sky-50/70 to-rose-50/40 pt-20 lg:pt-28 lg:pb-0">
+    <section id="journey" className="relative scroll-mt-32 overflow-hidden pt-20 lg:pt-28 lg:pb-0">
       <Reveal className="relative mx-auto max-w-[90rem] px-[22px] md:px-8 lg:px-10">
         <span className="inline-flex rounded-full bg-white px-4 py-2 text-xs font-bold uppercase tracking-[0.2em] text-rose-700 shadow-sm">
           Professional journey
@@ -86,7 +86,7 @@ export function Timeline() {
               })}
             </div>
           </div>
-          <div aria-hidden className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-b from-transparent to-white" />
+          <div aria-hidden className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-b from-transparent to-[#fff5f9]" />
         </div>
 
         {/* Mobile: trail */}

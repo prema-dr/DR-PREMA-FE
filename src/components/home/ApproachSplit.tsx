@@ -25,9 +25,6 @@ const STEPS: { icon: IconType; title: string; text: string }[] = [
   { icon: UsersThree, title: "Support", text: "We're with you at every step" },
 ];
 
-// Organic photo mask: large soft curves, like a pebble.
-const BLOB = "rounded-[44%_56%_48%_52%/40%_46%_54%_60%]";
-
 function FloatingCard({
   icon: Icon,
   title,
@@ -66,7 +63,7 @@ export function ApproachSplit() {
   const reduce = useReducedMotion();
 
   return (
-    <section className="relative mt-12 overflow-hidden bg-gradient-to-b from-white via-rose-50/50 to-white pb-8 pt-20">
+    <section className="relative mt-12 overflow-hidden pb-8 pt-20">
       <div aria-hidden className="pointer-events-none absolute -left-40 top-10 size-[30rem] rounded-full bg-rose-100/50 blur-3xl" />
       <div aria-hidden className="pointer-events-none absolute -right-40 bottom-0 size-[28rem] rounded-full bg-pink-100/50 blur-3xl" />
 
@@ -79,11 +76,7 @@ export function ApproachSplit() {
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           className="relative mx-auto w-full max-w-[34rem] pb-10 pt-6 lg:mx-0"
         >
-          {/* offset outline blobs */}
-          <div aria-hidden className={`absolute inset-x-0 top-2 bottom-12 -rotate-3 scale-[1.04] border-2 border-rose-200/80 bg-gradient-to-br from-rose-100/60 to-transparent ${BLOB}`} />
-          <div aria-hidden className={`absolute inset-x-0 top-6 bottom-14 rotate-2 scale-[1.02] border border-pink-200/70 ${BLOB}`} />
-
-          <div className={`relative aspect-[1/1.02] overflow-hidden shadow-[0_40px_70px_-30px_rgba(190,24,93,0.45)] ring-8 ring-white/70 ${BLOB}`}>
+          <div className="relative aspect-[4/5] overflow-hidden rounded-[28px] border-4 border-white bg-rose-100 shadow-[0_30px_60px_-25px_rgba(159,18,57,0.45)]">
             <Image
               src="/images/approach.jpeg"
               alt="Dr. Prema listening to a patient in a calm, softly lit consultation room"

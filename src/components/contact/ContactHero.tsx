@@ -9,8 +9,8 @@ import { Reveal } from "@/components/shared/Reveal";
 
 export function ContactHero() {
   return (
-    <section className="relative -mt-36 overflow-hidden bg-gradient-to-b from-rose-100/70 via-rose-50 to-white pt-[112px] pb-36 sm:pt-[130px] md:-mt-40 lg:pt-[140px] lg:pb-44">
-      <div aria-hidden className="pointer-events-none absolute -left-32 bottom-10 size-[26rem] rounded-full bg-sky-100/70 blur-3xl" />
+    <section className="relative -mt-36 overflow-hidden pt-[112px] pb-36 sm:pt-[130px] md:-mt-40 lg:pt-[140px] lg:pb-44">
+      <div aria-hidden className="pointer-events-none absolute -left-32 bottom-10 size-[26rem] rounded-full bg-pink-200/50 blur-3xl" />
       <div aria-hidden className="pointer-events-none absolute right-1/3 -top-24 size-[22rem] rounded-full bg-pink-200/50 blur-3xl" />
 
       <div className="relative mx-auto grid max-w-[90rem] grid-cols-1 items-center gap-14 px-[22px] md:px-8 lg:grid-cols-[1.1fr_0.9fr] lg:px-10">
@@ -30,26 +30,21 @@ export function ContactHero() {
             , whenever you&apos;re ready to talk
           </h1>
           <p className="mt-7 max-w-xl text-[17px] leading-relaxed text-rose-950/65">
-            Have a question before your visit, or about a service you&apos;re
-            considering? Send us a note. For scheduling, please call the
-            clinic directly.
+            Book your consultation online. Pick a day and a free time below
+            and Dr. Prema&apos;s team will confirm your appointment by email.
+            Prefer to talk? Call the clinic directly.
           </p>
         </Reveal>
 
         {/* Visual */}
-        <Reveal delay={0.1} className="relative mx-auto aspect-square w-full max-w-[26rem] lg:max-w-[30rem]">
-          <svg aria-hidden viewBox="0 0 400 400" className="absolute inset-0 h-full w-full scale-[1.18] text-rose-300/60">
-            <circle cx="200" cy="200" r="170" fill="none" stroke="currentColor" strokeWidth="1.2" strokeDasharray="2 9" />
-            <circle cx="200" cy="200" r="195" fill="none" stroke="currentColor" strokeWidth="1" />
-          </svg>
-          <div className="absolute inset-[8%] overflow-hidden rounded-full shadow-[0_50px_80px_-35px_rgba(190,24,93,0.55)] ring-8 ring-white/80">
-            <Image src="/images/consultation-room.jpg" alt="A calm consultation room" fill priority sizes="(min-width: 1024px) 480px, 80vw" className="object-cover" />
-            <div className="absolute inset-0 bg-gradient-to-t from-rose-200/25 via-transparent to-white/10" />
+        <Reveal delay={0.1} className="relative mx-auto aspect-[4/5] w-full max-w-[24rem] lg:max-w-[28rem]">
+          <div className="absolute inset-[4%] overflow-hidden rounded-[28px] border-4 border-white bg-rose-100 shadow-[0_30px_60px_-25px_rgba(159,18,57,0.45)]">
+            <Image src="/images/DSC08908.JPG.jpeg" alt="Dr. Prema N., Consultant Obstetrician and Gynaecologist" fill priority sizes="(min-width: 1024px) 480px, 80vw" className="object-cover object-[50%_22%]" />
           </div>
           {[
             { icon: PhoneCall, label: "Call the clinic", pos: "left-0 top-[14%] sm:-left-6", anim: "6s" },
             { icon: ChatCircleDots, label: "WhatsApp us", pos: "right-0 top-[42%] sm:-right-6", anim: "7s" },
-            { icon: EnvelopeSimple, label: "Send a message", pos: "bottom-[8%] left-[6%]", anim: "8s" },
+            { icon: EnvelopeSimple, label: "Book online", pos: "bottom-[8%] left-[6%]", anim: "8s" },
           ].map(({ icon: Icon, label, pos, anim }) => (
             <div
               key={label}

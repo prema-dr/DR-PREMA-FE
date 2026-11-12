@@ -12,7 +12,7 @@ export async function YouTubeVideos() {
   const videos = (await getVideoUrls()).filter(isYouTubeUrl);
   if (videos.length === 0) return null;
   return (
-    <section className="relative overflow-hidden bg-white py-16">
+    <section className="relative overflow-hidden py-16">
       <Reveal className="relative mx-auto max-w-[90rem] px-[22px] md:px-8 lg:px-10">
         <div className="mx-auto max-w-2xl text-center">
           <p className="inline-flex items-center gap-3 text-xs font-bold uppercase tracking-[0.2em] text-rose-600">

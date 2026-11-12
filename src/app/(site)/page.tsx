@@ -11,7 +11,7 @@ import { HomeFaqs } from "@/components/home/HomeFaqs";
 
 export default function HomePage() {
   return (
-    <>
+    <div className="bg-gradient-to-b from-[#fdeaf2] via-[#fff5f9] to-[#fde7f0]">
       <Hero />
       <CredentialsStrip />
       <ServicesBento />
@@ -22,6 +22,6 @@ export default function HomePage() {
       <YouTubeVideos />
       <BlogTeaser />
       <HomeFaqs />
-    </>
+    </div>
   );
 }

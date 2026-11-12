@@ -12,7 +12,6 @@ import { PHONE_TEL, whatsappLink } from "@/components/layout/nav-links";
 import { ServiceIcon } from "@/lib/service-icons";
 import type { ServiceDetail } from "@/lib/site-api";
 
-const BLOB = "rounded-[44%_56%_48%_52%/40%_46%_54%_60%]";
 
 export function ServiceHero({ service }: { service: ServiceDetail }) {
   return (
@@ -72,8 +71,7 @@ export function ServiceHero({ service }: { service: ServiceDetail }) {
 
         {/* Image */}
         <Reveal delay={0.1} className="relative mx-auto w-full max-w-[34rem] pb-8 pt-4 lg:max-w-none">
-          <div aria-hidden className={`absolute inset-x-2 top-0 bottom-10 -rotate-3 scale-[1.04] border-2 border-rose-200/80 bg-gradient-to-br from-rose-100/60 to-transparent ${BLOB}`} />
-          <div className={`relative aspect-[1/0.92] overflow-hidden shadow-[0_40px_70px_-30px_rgba(190,24,93,0.45)] ring-8 ring-white/70 ${BLOB}`}>
+          <div className="relative aspect-[4/3] overflow-hidden rounded-[28px] border-4 border-white bg-rose-100 shadow-[0_30px_60px_-25px_rgba(159,18,57,0.45)]">
             <Image
               src={service.image}
               alt={service.name}

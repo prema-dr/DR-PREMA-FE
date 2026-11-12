@@ -34,7 +34,7 @@ export function HomeFaqs() {
   // -mb-24 cancels the footer's top margin so the FAQ band meets the footer; pb-44 keeps
   // the content clear of the footer that overlaps it.
   return (
-    <section className="-mb-24 bg-rose-50/60 pb-44 pt-20">
+    <section className="-mb-24 pb-44 pt-20">
       <Reveal className="mx-auto grid max-w-[90rem] grid-cols-1 gap-10 px-[22px] md:px-8 lg:grid-cols-[0.8fr_1.4fr] lg:gap-16 lg:px-10">
         <div>
           <span className="inline-flex rounded-full border border-rose-400 px-3 py-1 text-xs font-semibold text-rose-600">

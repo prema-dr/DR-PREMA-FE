@@ -35,7 +35,7 @@ const GOLD = "bg-gradient-to-br from-amber-500 via-amber-600 to-orange-600 bg-cl
 
 export function Recognition() {
   return (
-    <section className="relative overflow-hidden bg-gradient-to-b from-white via-rose-50/70 to-sky-50/60 py-20 lg:py-28">
+    <section className="relative overflow-hidden py-20 lg:py-28">
       <div aria-hidden className="pointer-events-none absolute -left-40 top-0 size-[34rem] rounded-full bg-rose-200/50 blur-3xl" />
       <div aria-hidden className="pointer-events-none absolute -right-40 bottom-0 size-[34rem] rounded-full bg-sky-200/50 blur-3xl" />
       <div

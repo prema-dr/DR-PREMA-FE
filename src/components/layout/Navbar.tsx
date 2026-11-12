@@ -16,7 +16,6 @@ import {
   WhatsappLogoIcon as WhatsappLogo,
   XIcon as X,
 } from "@phosphor-icons/react/dist/ssr";
-import { ServiceIcon } from "@/lib/service-icons";
 import type { NavService } from "@/lib/site-api";
 import { NAV_LINKS, WHATSAPP_URL } from "./nav-links";
 
@@ -25,6 +24,7 @@ export function Navbar({ services }: { services: NavService[] }) {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [mobileServices, setMobileServices] = useState(false);
+  const [menuHidden, setMenuHidden] = useState(false);
   const reduce = useReducedMotion();
   const { scrollY } = useScroll();
 
@@ -37,7 +37,7 @@ export function Navbar({ services }: { services: NavService[] }) {
       initial={{ y: -96, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-      className="fixed inset-x-4 top-4 z-50 md:inset-x-8 lg:left-1/2 lg:right-auto lg:w-[calc(100%-5rem)] lg:max-w-[85rem] lg:-translate-x-1/2"
+      className={`fixed inset-x-4 z-50 transition-[top] duration-300 ${scrolled ? "top-4" : "top-12"} md:inset-x-8 lg:left-1/2 lg:right-auto lg:w-[calc(100%-5rem)] lg:max-w-[85rem] lg:-translate-x-1/2`}
     >
       <div
         className={`flex h-16 items-center justify-between rounded-full border border-rose-100 bg-white/85 px-5 backdrop-blur-md transition-shadow duration-300 md:px-6 ${
@@ -80,7 +80,7 @@ export function Navbar({ services }: { services: NavService[] }) {
             }
 
             return (
-              <div key={link.href} className="group relative">
+              <div key={link.href} className="group relative" onMouseLeave={() => setMenuHidden(false)}>
                 <Link href={link.href} className={linkClass}>
                   {link.label}
                   <CaretDown
@@ -89,23 +89,48 @@ export function Navbar({ services }: { services: NavService[] }) {
                     className="transition-transform group-hover:rotate-180 group-focus-within:rotate-180"
                   />
                 </Link>
-                <div className="invisible absolute left-1/2 top-full z-50 w-[34rem] -translate-x-1/2 pt-4 opacity-0 transition-all duration-200 group-focus-within:visible group-focus-within:opacity-100 group-hover:visible group-hover:opacity-100">
-                  <div className="grid grid-cols-2 gap-1 rounded-3xl border border-rose-100 bg-white p-3 shadow-[0_20px_50px_-20px_rgba(159,18,57,0.35)]">
-                    {services.map((service) => {
-                      const current = pathname === `/service/${service.slug}`;
-                      return (
-                        <Link
-                          key={service.slug}
-                          href={`/service/${service.slug}`}
-                          className={`flex items-center gap-3 rounded-2xl px-3 py-2.5 text-sm transition-colors hover:bg-rose-50 hover:text-rose-700 ${
-                            current ? "bg-rose-50 text-rose-700" : "text-rose-950/80"
-                          }`}
-                        >
-                          <ServiceIcon iconKey={service.iconKey} size={18} weight="light" className="shrink-0 text-rose-700" />
-                          {service.name}
-                        </Link>
-                      );
-                    })}
+                <div className={`absolute left-1/2 top-full z-50 w-[34rem] -translate-x-1/2 pt-4 transition-all duration-200 group-focus-within:visible group-focus-within:opacity-100 group-hover:visible group-hover:opacity-100 ${
+                  menuHidden ? "pointer-events-none !invisible !opacity-0" : "invisible opacity-0"
+                }`}>
+                  <div className="rounded-3xl border border-rose-100 bg-white px-6 pb-4 pt-5 shadow-[0_20px_50px_-20px_rgba(159,18,57,0.35)]">
+                    <div className="flex items-center justify-between border-b border-rose-100 pb-3">
+                      <span className="text-xs font-bold uppercase tracking-wider text-rose-900">
+                        Clinical care &amp; procedures
+                      </span>
+                      <Link
+                        href="/service"
+                        onClick={(e) => {
+                          e.currentTarget.blur();
+                          setMenuHidden(true);
+                        }}
+                        className="text-xs font-semibold text-rose-600 hover:text-rose-700"
+                      >
+                        View All Services →
+                      </Link>
+                    </div>
+                    <div
+                      className="mt-2 grid grid-flow-col gap-x-6"
+                      style={{ gridTemplateRows: `repeat(${Math.ceil(services.length / 2)}, minmax(0, auto))` }}
+                    >
+                      {services.map((service) => {
+                        const current = pathname === `/service/${service.slug}`;
+                        return (
+                          <Link
+                            key={service.slug}
+                            href={`/service/${service.slug}`}
+                            onClick={(e) => {
+                              e.currentTarget.blur();
+                              setMenuHidden(true);
+                            }}
+                            className={`block truncate rounded-lg px-2 py-2 text-sm transition-colors hover:bg-rose-50 hover:text-rose-700 ${
+                              current ? "font-semibold text-rose-700" : "text-rose-950/80"
+                            }`}
+                          >
+                            {service.name}
+                          </Link>
+                        );
+                      })}
+                    </div>
                   </div>
                 </div>
               </div>

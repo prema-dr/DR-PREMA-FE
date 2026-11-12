@@ -35,7 +35,7 @@ export function StoriesWall({ testimonials }: { testimonials: Testimonial[] }) {
   }
 
   return (
-    <section className="relative overflow-hidden bg-rose-50/60 py-16 lg:py-20">
+    <section className="relative overflow-hidden py-16 lg:py-20">
       <div aria-hidden className="pointer-events-none absolute -right-32 top-0 size-[28rem] rounded-full bg-pink-100/50 blur-3xl" />
       <div ref={topRef} className="relative mx-auto max-w-[90rem] scroll-mt-24 px-[22px] md:px-8 lg:px-10">
         <div className="mx-auto max-w-2xl text-center">
