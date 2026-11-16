@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { YouTubeFacade } from "./YouTubeFacade";
 import { InstagramLogoIcon as InstagramLogo } from "@phosphor-icons/react/dist/ssr";
 
 // Shared by the home page and the service pages so every reel looks the same.
@@ -27,26 +28,20 @@ function parseYouTube(url: string): { id: string; short: boolean } | null {
   return { id: m[1], short: /\/shorts\//.test(url) };
 }
 
-function YouTubeEmbed({ url }: { url: string }) {
+async function getYouTubeTitle(url: string): Promise<string | undefined> {
+  try {
+    const res = await fetch(`https://www.youtube.com/oembed?format=json&url=${encodeURIComponent(url)}`, { next: { revalidate: 86400 } });
+    if (!res.ok) return undefined;
+    return ((await res.json()) as { title?: string }).title;
+  } catch {
+    return undefined;
+  }
+}
+
+async function YouTubeEmbed({ url }: { url: string }) {
   const yt = parseYouTube(url);
   if (!yt) return null;
-  return (
-    <div
-      className={`overflow-hidden rounded-3xl bg-black shadow-[0_14px_24px_-14px_rgba(159,18,57,0.4)] ${
-        yt.short ? "w-[336px] max-w-[85vw]" : "w-[560px] max-w-[85vw]"
-      }`}
-      style={{ aspectRatio: yt.short ? "9 / 16" : "16 / 9" }}
-    >
-      <iframe
-        src={`https://www.youtube-nocookie.com/embed/${yt.id}?rel=0`}
-        title="YouTube video"
-        loading="lazy"
-        allow="accelerometer; encrypted-media; picture-in-picture; fullscreen"
-        allowFullScreen
-        className="size-full border-0"
-      />
-    </div>
-  );
+  return <YouTubeFacade id={yt.id} short={yt.short} title={await getYouTubeTitle(url)} />;
 }
 
 export function ReelEmbed({ url }: { url: string }) {

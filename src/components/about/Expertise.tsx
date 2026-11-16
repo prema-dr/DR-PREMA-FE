@@ -11,12 +11,11 @@ import { Reveal } from "@/components/shared/Reveal";
 
 type IconType = ComponentType<{ size?: number; weight?: "light" | "regular" | "fill"; className?: string }>;
 
-const AREAS: { title: string; text: string; icon: IconType; featured?: boolean }[] = [
+const AREAS: { title: string; text: string; icon: IconType }[] = [
   {
     title: "No Scar Vaginal Hysterectomy — NOVA",
     text: "Specialised experience in vaginal hysterectomy techniques designed to avoid an abdominal surgical scar in appropriately selected cases.",
     icon: Sparkle,
-    featured: true,
   },
   {
     title: "Advanced Laparoscopic Gynaecological Surgery",
@@ -65,36 +64,24 @@ export function Expertise() {
         </div>
 
         <ul className="mt-14 grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
-          {AREAS.map(({ title, text, icon: Icon, featured }) => (
+          {AREAS.map(({ title, text, icon: Icon }) => (
             <li
               key={title}
-              className={`group relative overflow-hidden rounded-3xl p-7 transition-all duration-300 hover:-translate-y-1.5 ${
-                featured
-                  ? "bg-gradient-to-br from-rose-600 to-rose-800 text-white shadow-[0_30px_60px_-28px_rgba(159,18,57,0.65)] lg:row-span-1"
-                  : "border border-rose-100 bg-white shadow-[0_14px_36px_-22px_rgba(159,18,57,0.35)] hover:shadow-[0_26px_44px_-22px_rgba(159,18,57,0.4)]"
-              }`}
+              className="group relative overflow-hidden rounded-3xl border border-rose-100 bg-white p-7 shadow-[0_14px_36px_-22px_rgba(159,18,57,0.35)] transition-all duration-300 hover:-translate-y-1.5 hover:border-transparent hover:bg-gradient-to-br hover:from-rose-600 hover:to-rose-800 hover:shadow-[0_30px_60px_-28px_rgba(159,18,57,0.65)]"
             >
               <Icon
                 size={120}
                 weight="light"
                 aria-hidden
-                className={`pointer-events-none absolute -bottom-8 -right-6 -rotate-12 transition-transform duration-500 group-hover:rotate-0 group-hover:scale-110 ${
-                  featured ? "text-white/10" : "text-rose-50"
-                }`}
+                className="pointer-events-none absolute -bottom-8 -right-6 -rotate-12 text-rose-50 transition-all duration-500 group-hover:rotate-0 group-hover:scale-110 group-hover:text-white/10"
               />
-              <span
-                className={`relative flex size-14 items-center justify-center rounded-2xl ${
-                  featured
-                    ? "bg-white/15 text-white ring-1 ring-white/30"
-                    : "bg-gradient-to-br from-rose-500 to-pink-400 text-white shadow-[0_10px_22px_-8px_rgba(244,63,94,0.7)]"
-                }`}
-              >
+              <span className="relative flex size-14 items-center justify-center rounded-2xl bg-gradient-to-br from-rose-500 to-pink-400 text-white shadow-[0_10px_22px_-8px_rgba(244,63,94,0.7)] transition-all duration-300 group-hover:bg-white/15 group-hover:shadow-none group-hover:ring-1 group-hover:ring-white/30">
                 <Icon size={28} weight="light" />
               </span>
-              <h3 className={`relative mt-5 font-display text-xl font-bold leading-snug ${featured ? "text-white" : "text-rose-950"}`}>
+              <h3 className="relative mt-5 font-display text-xl font-bold leading-snug text-rose-950 transition-colors duration-300 group-hover:text-white">
                 {title}
               </h3>
-              <p className={`relative mt-2.5 text-[15px] leading-relaxed ${featured ? "text-rose-50/85" : "text-rose-950/60"}`}>
+              <p className="relative mt-2.5 text-[15px] leading-relaxed text-rose-950/60 transition-colors duration-300 group-hover:text-rose-50/85">
                 {text}
               </p>
             </li>

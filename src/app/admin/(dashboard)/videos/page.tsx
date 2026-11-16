@@ -1,19 +1,60 @@
 "use client";
 
 import { useState, type FormEvent } from "react";
-import { InstagramLogoIcon as InstagramLogo, PencilSimpleIcon as PencilSimple, PlayIcon as Play, PlayCircleIcon as PlayCircle, PlusIcon as Plus, TrashIcon as Trash } from "@phosphor-icons/react/dist/ssr";
+import { PencilSimpleIcon as PencilSimple, PlayIcon as Play, PlayCircleIcon as PlayCircle, PlusIcon as Plus, TrashIcon as Trash } from "@phosphor-icons/react/dist/ssr";
 import { api, type AdminVideo } from "@/lib/admin-api";
 import { serviceName } from "@/lib/services";
 import {
-  Button, ConfirmDialog, Drawer, EmptyState, ErrorState, Field, FilterBar, GridSkeleton, ImagePicker, PageBody, PageHeader, Pagination,
+  Button, ConfirmDialog, Drawer, EmptyState, ErrorState, Field, FilterBar, GridSkeleton, PageBody, PageHeader, Pagination,
   ServiceSelect, Tag, Toggle, ToggleRow, inputClass, useDrawerSave, useModule, useNewParam,
 } from "@/components/admin/ui";
+
+type Platform = "youtube" | "instagram";
+
+const TABS: { id: Platform; label: string }[] = [
+  { id: "youtube", label: "YouTube Shorts" },
+  { id: "instagram", label: "Instagram Reels" },
+];
+
+const youTubeId = (url: string) =>
+  (url.match(/youtu\.be\/([\w-]+)/) ?? url.match(/youtube\.com\/(?:shorts|embed|live)\/([\w-]+)/) ?? url.match(/[?&]v=([\w-]+)/))?.[1];
+
+function instagramEmbedUrl(url: string) {
+  const m = url.match(/instagram\.com\/(reel|reels|p|tv)\/([a-zA-Z0-9_-]+)/);
+  return m ? `https://www.instagram.com/${m[1] === "reels" ? "reel" : m[1]}/${m[2]}/embed/` : url;
+}
+
+// Same crop as the site's reel card: the Instagram embed is 336px wide with the 240x423 video at (48, 54).
+const IG_BOX = 252;
+const IG_SCALE = IG_BOX / 240;
+
+/** The video's own preview: YouTube's thumbnail, or the Instagram embed cropped to just the video. */
+function VideoPreview({ url, dimmed }: { url: string; dimmed: boolean }) {
+  const yt = youTubeId(url);
+  const fade = dimmed ? "grayscale opacity-60" : "";
+  if (yt) {
+    // eslint-disable-next-line @next/next/no-img-element
+    return <img src={`https://i.ytimg.com/vi/${yt}/hqdefault.jpg`} alt="" loading="lazy" className={`size-full object-cover transition-transform duration-500 group-hover:scale-105 ${fade}`} />;
+  }
+  return (
+    <span className={`block size-full overflow-hidden bg-black ${fade}`}>
+      <iframe
+        src={instagramEmbedUrl(url)}
+        title="Instagram reel preview"
+        loading="lazy"
+        scrolling="no"
+        tabIndex={-1}
+        className="pointer-events-none absolute left-0 top-0 border-0"
+        style={{ width: 336, height: 800, transformOrigin: "0 0", transform: `scale(${IG_SCALE}) translate(-48px, -54px)` }}
+      />
+    </span>
+  );
+}
 
 function VideoForm({ item, onClose, onSaved }: { item: AdminVideo | null; onClose: () => void; onSaved: () => void }) {
   const [serviceId, setServiceId] = useState(item ? item.serviceSlug : "");
   const [videoUrl, setVideoUrl] = useState(item?.videoUrl ?? "");
   const [isEnabled, setIsEnabled] = useState(item?.isEnabled ?? true);
-  const [thumbnail, setThumbnail] = useState<File | null>(null);
   const { saving, save } = useDrawerSave(onSaved);
 
   function submit(e: FormEvent) {
@@ -23,7 +64,6 @@ function VideoForm({ item, onClose, onSaved }: { item: AdminVideo | null; onClos
     form.set("serviceSlug", serviceId);
     form.set("videoUrl", videoUrl);
     form.set("isEnabled", String(isEnabled));
-    if (thumbnail) form.set("thumbnail", thumbnail);
     save(() => (item ? api.patch(`admin/videos/${item.id}`, form) : api.post("admin/videos", form)), item ? "Video updated" : "Video added");
   }
 
@@ -46,10 +86,6 @@ function VideoForm({ item, onClose, onSaved }: { item: AdminVideo | null; onClos
         <Field label="Service" required>
           <ServiceSelect value={serviceId} onChange={setServiceId} />
         </Field>
-        <div>
-          <span className="mb-1.5 block text-[13px] font-medium text-rose-950">Thumbnail <span className="font-normal text-rose-900/45">(optional)</span></span>
-          <ImagePicker url={item?.thumbnailUrl} onFile={setThumbnail} aspect="aspect-[9/12]" />
-        </div>
         <ToggleRow checked={isEnabled} onChange={setIsEnabled} title="Enabled" hint="Disabled videos are hidden from the site." />
       </form>
     </Drawer>
@@ -57,7 +93,8 @@ function VideoForm({ item, onClose, onSaved }: { item: AdminVideo | null; onClos
 }
 
 export default function AdminVideosPage() {
-  const m = useModule<AdminVideo>("videos", "Video", 12);
+  const [platform, setPlatform] = useState<Platform>("youtube");
+  const m = useModule<AdminVideo>("videos", "Video", 12, { platform });
   const { data, loading, error, reload } = m.list;
   useNewParam(() => m.setEditing("new"));
 
@@ -65,31 +102,40 @@ export default function AdminVideosPage() {
     <>
       <PageHeader
         title="Videos"
-        subtitle="Instagram reels and YouTube videos shown on the home and service pages."
+        subtitle="YouTube Shorts and Instagram reels shown on the home and service pages."
         actions={<Button onClick={() => m.setEditing("new")}><Plus size={16} weight="bold" /> Add video</Button>}
       />
       <PageBody>
+        <div role="tablist" aria-label="Video type" className="mb-6 inline-flex gap-1 rounded-full border border-rose-100 bg-white p-1">
+          {TABS.map((t) => (
+            <button
+              key={t.id}
+              type="button"
+              role="tab"
+              aria-selected={platform === t.id}
+              onClick={() => {
+                setPlatform(t.id);
+                m.setPage(1);
+              }}
+              className={`rounded-full px-4 py-1.5 text-sm font-semibold transition-colors ${platform === t.id ? "bg-rose-600 text-white" : "text-rose-900/70 hover:bg-rose-50"}`}
+            >
+              {t.label}
+            </button>
+          ))}
+        </div>
         <FilterBar placeholder="Search…" search={m.search} onSearch={m.setSearch} serviceId={m.serviceId} onService={m.setServiceId} state={m.state} onState={m.setState} />
         {error ? (
           <ErrorState message={error} onRetry={reload} />
         ) : loading && !data ? (
           <GridSkeleton count={8} className="h-80" />
         ) : !data?.items.length ? (
-          <EmptyState icon={<PlayCircle size={28} weight="duotone" />} title="No videos found" hint="Add an Instagram or YouTube link to show it on the website." action={<Button onClick={() => m.setEditing("new")}>Add video</Button>} />
+          <EmptyState icon={<PlayCircle size={28} weight="duotone" />} title={platform === "youtube" ? "No YouTube Shorts found" : "No Instagram reels found"} hint="Add a link to show it on the website." action={<Button onClick={() => m.setEditing("new")}>Add video</Button>} />
         ) : (
-          <div className={`grid grid-cols-2 gap-5 md:grid-cols-3 xl:grid-cols-4 ${loading ? "opacity-60" : ""}`}>
+          <div className={`grid gap-5 [grid-template-columns:repeat(auto-fill,252px)] ${loading ? "opacity-60" : ""}`}>
             {data.items.map((v) => (
               <div key={v.id} className="group overflow-hidden rounded-3xl border border-rose-100/80 bg-white shadow-[0_2px_15px_-3px_rgba(232,64,122,0.08)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_18px_36px_-14px_rgba(232,64,122,0.35)]">
-                <a href={v.videoUrl} target="_blank" rel="noopener noreferrer" aria-label="Open video" className="relative block aspect-[9/12] overflow-hidden bg-rose-50">
-                  {v.thumbnailUrl ? (
-                    // eslint-disable-next-line @next/next/no-img-element
-                    <img src={v.thumbnailUrl} alt="" className={`size-full object-cover transition-transform duration-500 group-hover:scale-105 ${v.isEnabled ? "" : "grayscale opacity-60"}`} />
-                  ) : (
-                    <span className={`flex size-full flex-col items-center justify-center gap-2 bg-gradient-to-br from-rose-100 via-pink-50 to-amber-50 text-rose-400 ${v.isEnabled ? "" : "grayscale opacity-60"}`}>
-                      <InstagramLogo size={40} weight="duotone" />
-                      <span className="px-4 text-center text-xs text-rose-900/50">{v.videoUrl.replace(/^https?:\/\/(www\.)?(instagram|youtube)\.com\//, "").replace(/\/$/, "")}</span>
-                    </span>
-                  )}
+                <a href={v.videoUrl} target="_blank" rel="noopener noreferrer" aria-label="Open video" className="relative block overflow-hidden bg-rose-50" style={{ aspectRatio: "240 / 423" }}>
+                  <VideoPreview url={v.videoUrl} dimmed={!v.isEnabled} />
                   <span className="absolute inset-0 flex items-center justify-center bg-gradient-to-t from-rose-950/40 to-transparent">
                     <span className="flex size-12 items-center justify-center rounded-full bg-white/90 text-rose-600 shadow-lg transition-transform group-hover:scale-110">
                       <Play size={20} weight="fill" />

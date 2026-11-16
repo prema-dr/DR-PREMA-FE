@@ -8,11 +8,11 @@ import {
   PhoneIcon as Phone,
   XIcon as X,
 } from "@phosphor-icons/react/dist/ssr";
-import { collection, deleteDoc, doc, getDocs, limit, orderBy, query, serverTimestamp, updateDoc } from "firebase/firestore";
+import { collection, deleteDoc, doc, getDocs, limit, orderBy, query, serverTimestamp, updateDoc, writeBatch } from "firebase/firestore";
 import { firebaseAuth, firestore } from "@/lib/firebase";
-import { formatSlot, type AppointmentStatus } from "@/lib/appointments";
+import { bookingRange, formatSlot, slotKey, type AppointmentStatus } from "@/lib/appointments";
 import {
-  Button, Card, ConfirmDialog, EmptyState, ErrorState, GridSkeleton, PageBody, PageHeader, Select, Tag, useToast,
+  Button, Card, ConfirmDialog, Drawer, EmptyState, ErrorState, Field, GridSkeleton, PageBody, PageHeader, Select, Tag, inputClass, useToast,
 } from "@/components/admin/ui";
 
 type Appointment = {
@@ -27,12 +27,143 @@ const STATUS_STYLE: Record<AppointmentStatus, string> = {
   cancelled: "bg-gray-200 text-gray-600",
 };
 
+type Slot = { time: string; available: boolean };
+
+const label12 = (time: string) => formatSlot("2000-01-03", time).time;
+
+/** Pick a new date and a free time for an appointment; the patient is emailed once it's saved. */
+function RescheduleDrawer({ item, onClose, onDone }: { item: Appointment; onClose: () => void; onDone: () => void }) {
+  const toast = useToast();
+  const [range] = useState(() => bookingRange());
+  const [date, setDate] = useState("");
+  const [time, setTime] = useState("");
+  const [slots, setSlots] = useState<Slot[] | null>(null);
+  const [state, setState] = useState<"idle" | "loading" | "closed" | "error">("idle");
+  const [saving, setSaving] = useState(false);
+
+  async function pickDate(value: string) {
+    setDate(value);
+    setTime("");
+    setSlots(null);
+    if (!value) return setState("idle");
+    setState("loading");
+    try {
+      const res = await fetch(`/api/appointments/availability?date=${value}`, { cache: "no-store" });
+      const data = (await res.json()) as { closed?: boolean; slots?: Slot[] };
+      if (!res.ok) throw new Error();
+      setState(data.closed ? "closed" : "idle");
+      setSlots(data.slots ?? []);
+    } catch {
+      setState("error");
+    }
+  }
+
+  async function save() {
+    if (!date || !time) return;
+    setSaving(true);
+    try {
+      const newKey = slotKey(date, time);
+      const batch = writeBatch(firestore());
+      // The new slot is created (never overwritten), so a taken time makes the whole change fail.
+      batch.set(doc(firestore(), "bookedSlots", newKey), { date, time, appointmentId: item.id });
+      batch.delete(doc(firestore(), "bookedSlots", item.slotKey));
+      batch.update(doc(firestore(), "appointments", item.id), { date, time, slotKey: newKey, updatedAt: serverTimestamp() });
+      await batch.commit();
+
+      let emailed = false;
+      try {
+        const token = await firebaseAuth().currentUser?.getIdToken();
+        const res = await fetch("/api/appointments/status", {
+          method: "POST",
+          headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
+          body: JSON.stringify({ status: "rescheduled", name: item.name, email: item.email, date, time, oldDate: item.date, oldTime: item.time }),
+        });
+        emailed = res.ok && ((await res.json()) as { emailed?: boolean }).emailed === true;
+      } catch {
+        emailed = false;
+      }
+      toast.success(`Appointment rescheduled${emailed ? ", patient emailed" : ". Email not sent, please contact the patient"}`);
+      onDone();
+    } catch {
+      toast.error("Couldn't reschedule. That time may have just been taken, so please pick another.");
+      if (date) void pickDate(date);
+    }
+    setSaving(false);
+  }
+
+  const now = formatSlot(item.date, item.time);
+  return (
+    <Drawer
+      open
+      onClose={onClose}
+      title="Reschedule appointment"
+      footer={
+        <>
+          <Button variant="secondary" onClick={onClose}>Close</Button>
+          <Button onClick={save} loading={saving} disabled={!date || !time}>Reschedule &amp; email patient</Button>
+        </>
+      }
+    >
+      <div className="space-y-5">
+        <p className="rounded-xl bg-rose-50 px-4 py-3 text-sm text-rose-900">
+          <strong>{item.name}</strong> is currently booked for {now.date} at {now.time}.
+        </p>
+        <Field label="New date" required>
+          <input type="date" min={range.min} max={range.max} value={date} onChange={(e) => void pickDate(e.target.value)} className={inputClass} />
+        </Field>
+        {state === "loading" && <p className="text-sm text-rose-900/60">Checking availability…</p>}
+        {state === "closed" && <p className="rounded-xl bg-rose-50 px-4 py-3 text-sm text-rose-800">The clinic is closed on that day. Please choose another date.</p>}
+        {state === "error" && <p className="rounded-xl bg-rose-50 px-4 py-3 text-sm text-rose-800">Couldn&apos;t load the available times. Try the date again.</p>}
+        {slots && slots.length > 0 && (
+          <div role="radiogroup" aria-label="New time" className="space-y-4">
+            {[
+              { label: "Morning", test: (h: number) => h < 12 },
+              { label: "Afternoon", test: (h: number) => h >= 12 && h < 16 },
+              { label: "Evening", test: (h: number) => h >= 16 },
+            ].map((g) => {
+              const list = slots.filter((x) => g.test(Number(x.time.slice(0, 2))));
+              if (!list.length) return null;
+              return (
+                <div key={g.label}>
+                  <p className="mb-2 text-xs font-bold uppercase tracking-[0.16em] text-rose-600">{g.label}</p>
+                  <div className="grid grid-cols-3 gap-2">
+                    {list.map((x) => (
+                      <button
+                        key={x.time}
+                        type="button"
+                        role="radio"
+                        aria-checked={x.time === time}
+                        disabled={!x.available}
+                        onClick={() => setTime(x.time)}
+                        className={`rounded-xl border px-2 py-2.5 text-sm font-semibold transition-all ${
+                          x.time === time
+                            ? "border-rose-600 bg-rose-600 text-white"
+                            : x.available
+                              ? "border-rose-200 bg-white text-rose-800 hover:border-rose-400 hover:bg-rose-50"
+                              : "cursor-not-allowed border-rose-100 bg-rose-50/60 text-rose-950/30 line-through"
+                        }`}
+                      >
+                        {label12(x.time)}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        )}
+      </div>
+    </Drawer>
+  );
+}
+
 export default function AdminAppointmentsPage() {
   const toast = useToast();
   const [items, setItems] = useState<Appointment[] | null>(null);
   const [error, setError] = useState("");
   const [filter, setFilter] = useState<"" | "active" | AppointmentStatus>("active");
   const [busyId, setBusyId] = useState("");
+  const [rescheduling, setRescheduling] = useState<Appointment | null>(null);
   const [confirm, setConfirm] = useState<{ item: Appointment; status: "declined" | "cancelled" } | null>(null);
 
   const load = useCallback(async () => {
@@ -169,6 +300,11 @@ export default function AdminAppointmentsPage() {
                                   </Button>
                                 </>
                               )}
+                              {(a.status === "pending" || a.status === "accepted") && (
+                                <Button variant="secondary" size="sm" disabled={busyId === a.id} onClick={() => setRescheduling(a)}>
+                                  Reschedule
+                                </Button>
+                              )}
                               {a.status === "accepted" && (
                                 <Button variant="danger" size="sm" disabled={busyId === a.id} onClick={() => setConfirm({ item: a, status: "cancelled" })}>
                                   Cancel appointment
@@ -188,6 +324,17 @@ export default function AdminAppointmentsPage() {
         )}
       </PageBody>
 
+      {rescheduling && (
+        <RescheduleDrawer
+          key={rescheduling.id}
+          item={rescheduling}
+          onClose={() => setRescheduling(null)}
+          onDone={() => {
+            setRescheduling(null);
+            void load();
+          }}
+        />
+      )}
       <ConfirmDialog
         open={Boolean(confirm)}
         title={confirm?.status === "declined" ? "Decline this appointment?" : "Cancel this appointment?"}

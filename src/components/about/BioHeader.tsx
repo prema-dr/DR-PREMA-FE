@@ -50,11 +50,8 @@ export function BioHeader() {
             className="mt-5 font-display text-4xl font-bold leading-[1.06] tracking-tight text-rose-950 md:text-5xl lg:text-[3.5rem] xl:text-6xl"
           >
             A journey dedicated to{" "}
-            <span className="relative inline-block text-rose-600">
+            <span className="text-rose-600">
               women&apos;s health
-              <svg aria-hidden viewBox="0 0 300 12" preserveAspectRatio="none" className="absolute -bottom-2 left-0 h-3 w-full text-rose-300">
-                <path d="M2 8c60-8 140-8 296-2" fill="none" stroke="currentColor" strokeWidth="3.5" strokeLinecap="round" />
-              </svg>
             </span>
           </motion.h1>
           <motion.p {...fade(0.16, reduce)} className="mt-6 max-w-xl text-[17px] leading-relaxed text-rose-950/65">

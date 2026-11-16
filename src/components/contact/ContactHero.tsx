@@ -23,16 +23,13 @@ export function ContactHero() {
             We&apos;re here to{" "}
             <span className="relative inline-block text-rose-600">
               listen
-              <svg aria-hidden viewBox="0 0 300 12" preserveAspectRatio="none" className="absolute -bottom-2 left-0 h-3 w-full text-rose-300">
-                <path d="M2 8c60-8 140-8 296-2" fill="none" stroke="currentColor" strokeWidth="3.5" strokeLinecap="round" />
-              </svg>
             </span>
             , whenever you&apos;re ready to talk
           </h1>
           <p className="mt-7 max-w-xl text-[17px] leading-relaxed text-rose-950/65">
             Book your consultation online. Pick a day and a free time below
             and Dr. Prema&apos;s team will confirm your appointment by email.
-            Prefer to talk? Call the clinic directly.
+            Prefer to talk? Call us directly.
           </p>
         </Reveal>
 
@@ -42,7 +39,7 @@ export function ContactHero() {
             <Image src="/images/DSC08908.JPG.jpeg" alt="Dr. Prema N., Consultant Obstetrician and Gynaecologist" fill priority sizes="(min-width: 1024px) 480px, 80vw" className="object-cover object-[50%_22%]" />
           </div>
           {[
-            { icon: PhoneCall, label: "Call the clinic", pos: "left-0 top-[14%] sm:-left-6", anim: "6s" },
+            { icon: PhoneCall, label: "Call us", pos: "left-0 top-[14%] sm:-left-6", anim: "6s" },
             { icon: ChatCircleDots, label: "WhatsApp us", pos: "right-0 top-[42%] sm:-right-6", anim: "7s" },
             { icon: EnvelopeSimple, label: "Book online", pos: "bottom-[8%] left-[6%]", anim: "8s" },
           ].map(({ icon: Icon, label, pos, anim }) => (

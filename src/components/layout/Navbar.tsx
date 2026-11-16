@@ -37,7 +37,7 @@ export function Navbar({ services }: { services: NavService[] }) {
       initial={{ y: -96, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-      className={`fixed inset-x-4 z-50 transition-[top] duration-300 ${scrolled ? "top-4" : "top-12"} md:inset-x-8 lg:left-1/2 lg:right-auto lg:w-[calc(100%-5rem)] lg:max-w-[85rem] lg:-translate-x-1/2`}
+      className={`fixed inset-x-4 z-50 transition-[top] duration-300 top-4 md:inset-x-8 lg:left-1/2 lg:right-auto lg:w-[calc(100%-5rem)] lg:max-w-[85rem] lg:-translate-x-1/2`}
     >
       <div
         className={`flex h-16 items-center justify-between rounded-full border border-rose-100 bg-white/85 px-5 backdrop-blur-md transition-shadow duration-300 md:px-6 ${
@@ -55,7 +55,7 @@ export function Navbar({ services }: { services: NavService[] }) {
             Dr <span className="text-rose-700">Prema</span>
           </span>
           <span className="mt-1 text-[10.5px] font-medium uppercase tracking-[0.14em] text-rose-950/65">
-            Gynecologist
+            Gynaecologist
           </span>
         </Link>
 

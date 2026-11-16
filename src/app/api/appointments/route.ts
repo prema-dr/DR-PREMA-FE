@@ -3,7 +3,7 @@ import { NextResponse, type NextRequest } from "next/server";
 import { services } from "@/lib/services";
 import { firebaseConfig } from "@/lib/firebase-config";
 import { formatSlot, openSlots, slotKey, DATE_PATTERN, TIME_PATTERN } from "@/lib/appointments";
-import { NOTIFY_EMAIL, escapeHtml, layout, sendMail } from "@/lib/mail.server";
+import { NOTIFY_EMAIL, ctaButton, detailsTable, layout, sendMail } from "@/lib/mail.server";
 
 // Books an appointment. The slot is claimed by creating `bookedSlots/{date_HHMM}` and the private
 // `appointments/{id}` record in ONE atomic Firestore commit. firestore.rules only allows creating a
@@ -82,20 +82,21 @@ export async function POST(request: NextRequest) {
 
   // Tell Dr. Prema (best effort: the booking is already saved and shows in the admin panel).
   const when = formatSlot(date, time);
-  const row = (label: string, value: string) =>
-    `<tr><td style="padding:6px 12px 6px 0;color:#9f1239;vertical-align:top">${label}</td><td style="padding:6px 0;font-weight:600">${escapeHtml(value)}</td></tr>`;
   const origin = request.nextUrl.origin;
-  await sendMail({
+  console.log(`[appointments] booking saved: ${key} (${id}); notifying ${NOTIFY_EMAIL}`);
+  const alerted = await sendMail({
     to: NOTIFY_EMAIL,
     replyTo: email,
     subject: `New appointment request: ${name}, ${when.date} at ${when.time}`,
     html: layout(
       "New appointment request",
-      `<p>A patient has booked a slot and is waiting for your confirmation.</p>
-<table style="border-collapse:collapse;font-size:15px">${row("Date", when.date)}${row("Time", when.time)}${row("Name", name)}${row("Phone", phone)}${row("Email", email)}${topic ? row("Topic", topic) : ""}${message ? row("Notes", message) : ""}</table>
-<p style="margin-top:20px"><a href="${origin}/admin/appointments" style="background:#e11d48;color:#fff;padding:12px 22px;border-radius:999px;text-decoration:none;font-weight:bold">Review and accept</a></p>`,
+      `<p>A patient has booked a slot and is waiting for your confirmation.</p>${detailsTable([
+        ["Date", when.date], ["Time", when.time], ["Name", name], ["Phone", phone], ["Email", email],
+        ...(topic ? [["Topic", topic] as [string, string]] : []), ...(message ? [["Notes", message] as [string, string]] : []),
+      ])}${ctaButton(`${origin}/admin/appointments`, "Review and accept")}`,
     ),
   });
 
+  console.log(`[appointments] doctor alert email ${alerted ? "sent" : "NOT sent (see [mail] lines above)"}`);
   return NextResponse.json({ ok: true });
 }

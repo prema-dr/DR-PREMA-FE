@@ -62,7 +62,7 @@ export function HeroBackdrop() {
       <svg
         viewBox="0 0 1440 160"
         preserveAspectRatio="none"
-        className="absolute inset-x-0 bottom-0 h-28 w-full sm:h-40"
+        className="absolute inset-x-0 -bottom-20 h-28 w-full sm:h-40"
       >
         <path d="M0 90 C240 20 480 150 760 80 C1040 10 1240 120 1440 50 L1440 160 L0 160Z" fill="#f9c6da" opacity="0.55" />
         <path d="M0 120 C300 60 560 160 860 105 C1100 60 1280 140 1440 100 L1440 160 L0 160Z" fill="#fdeaf2" opacity="0.9" />

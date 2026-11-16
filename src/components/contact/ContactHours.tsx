@@ -37,7 +37,7 @@ export function ContactHours() {
       </svg>
       <div className="relative flex items-center justify-between gap-3">
         <p className="flex items-center gap-2 text-xs font-bold uppercase tracking-[0.2em] text-rose-100">
-          <Clock size={16} weight="bold" /> Clinic hours
+          <Clock size={16} weight="bold" /> Opening hours
         </p>
         {now && (
           <span className={`inline-flex items-center gap-2 rounded-full px-3 py-1 text-xs font-bold ${now.open ? "bg-emerald-400/20 text-emerald-100 ring-1 ring-emerald-300/40" : "bg-white/10 text-rose-100 ring-1 ring-white/25"}`}>
@@ -68,7 +68,7 @@ export function ContactHours() {
           Replies within one business day
         </p>
         <p className="mt-2 text-sm leading-relaxed text-rose-50/80">
-          To book or reschedule an appointment, please call the clinic directly.
+          To book or reschedule an appointment, please call us directly.
         </p>
         <a
           href={`tel:${CLINIC_INFO.phone.replace(/\s/g, "")}`}

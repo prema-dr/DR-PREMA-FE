@@ -138,7 +138,7 @@ export async function LecturesAndAwards() {
         <div className="mx-auto max-w-3xl text-center">
           <span className="inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 text-xs font-bold uppercase tracking-[0.2em] text-rose-700 shadow-sm ring-1 ring-rose-100">
             <ChalkboardTeacher size={14} weight="fill" className="text-rose-500" />
-            Beyond the clinic
+            Beyond the practice
           </span>
           <h2 className="mt-5 font-display text-4xl font-bold leading-[1.08] tracking-tight text-rose-950 md:text-5xl lg:text-6xl">
             Teaching, speaking <span className="text-rose-600">&amp; honours</span>

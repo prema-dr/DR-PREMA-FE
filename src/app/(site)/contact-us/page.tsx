@@ -24,7 +24,7 @@ const FAQS = [
   },
   {
     q: "Can I change or cancel my appointment?",
-    a: "Yes. Please call the clinic and the team will move or cancel it for you.",
+    a: "Yes. Please call us and the team will move or cancel it for you.",
   },
 ];
 

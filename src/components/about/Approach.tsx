@@ -17,7 +17,7 @@ export function Approach() {
   return (
     <section className="py-8 lg:py-12">
       <Reveal className="mx-auto max-w-[90rem] px-[22px] md:px-8 lg:px-10">
-        <div className="grid overflow-hidden rounded-[2rem] bg-gradient-to-br from-rose-50 via-pink-50 to-rose-100/70 lg:grid-cols-[0.8fr_1.2fr]">
+        <div className="grid overflow-hidden rounded-[2rem] shadow-[0_30px_60px_-28px_rgba(159,18,57,0.45)] bg-gradient-to-br from-rose-50 via-pink-50 to-rose-100/70 lg:grid-cols-[0.8fr_1.2fr]">
           <div className="relative min-h-[18rem] lg:min-h-[28rem]">
             <Image
               src="/images/approach.jpeg"

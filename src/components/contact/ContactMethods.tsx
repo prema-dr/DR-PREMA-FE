@@ -34,7 +34,7 @@ const METHODS: {
   {
     icon: WhatsappLogo,
     label: "WhatsApp",
-    value: "Chat with the clinic",
+    value: "Chat with us",
     hint: "Quick questions",
     href: WHATSAPP_URL,
     external: true,
@@ -65,7 +65,7 @@ const METHODS: {
 export function ContactMethods() {
   return (
     <Reveal className="relative z-10 mx-auto -mt-24 max-w-[90rem] px-[22px] md:px-8 lg:-mt-28 lg:px-10">
-      <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
+      <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-[1fr_1fr_1.65fr_1fr]">
         {METHODS.map(({ icon: Icon, label, value, hint, href, external, tile, glow }) => (
           <li key={label}>
             <a
@@ -78,7 +78,7 @@ export function ContactMethods() {
                 <Icon size={28} weight="light" />
               </span>
               <p className="relative mt-5 text-xs font-bold uppercase tracking-[0.18em] text-rose-600">{label}</p>
-              <p className="relative mt-1.5 break-words font-display text-lg font-bold leading-snug text-rose-950">{value}</p>
+              <p className={`relative mt-1.5 break-words font-display text-lg font-bold leading-snug text-rose-950 ${label === "Email us" ? "xl:whitespace-nowrap xl:text-[17px]" : ""}`}>{value}</p>
               <p className="relative mt-1 flex-1 text-sm text-rose-950/60">{hint}</p>
               <span className="relative mt-4 inline-flex items-center gap-1 text-sm font-semibold text-rose-600">
                 {label === "Visit us" ? "Get directions" : label === "Call us" ? "Call now" : label === "Email us" ? "Write to us" : "Start chat"}

@@ -22,7 +22,7 @@ export function VisitSection() {
       <Reveal className="relative mx-auto max-w-[90rem] px-[22px] md:px-8 lg:px-10">
         <div className="mx-auto max-w-2xl text-center">
           <span className="inline-flex rounded-full bg-white px-4 py-2 text-xs font-bold uppercase tracking-[0.2em] text-rose-700 shadow-sm">
-            Visit the clinic
+            Visit us
           </span>
           <h2 className="mt-5 font-display text-4xl font-bold leading-[1.1] tracking-tight text-rose-950 md:text-5xl">
             Find us <span className="text-rose-600">near KMCH</span>
@@ -37,7 +37,7 @@ export function VisitSection() {
             rel="noopener noreferrer"
             className="group relative block min-h-[22rem] overflow-hidden rounded-[2rem] border-8 border-white bg-rose-100 shadow-[0_40px_80px_-40px_rgba(159,18,57,0.5)]"
           >
-            <Image src="/images/clinic-map.png" alt={`Map showing the clinic at ${CLINIC_INFO.addressLine1}`} fill sizes="(min-width: 1024px) 760px, 95vw" className="object-cover transition-transform duration-[1200ms] group-hover:scale-105" />
+            <Image src="/images/clinic-map.png" alt={`Map showing our location at ${CLINIC_INFO.addressLine1}`} fill sizes="(min-width: 1024px) 760px, 95vw" className="object-cover transition-transform duration-[1200ms] group-hover:scale-105" />
             <div className="absolute inset-0 bg-gradient-to-t from-rose-950/40 via-transparent to-transparent" />
             <span className="absolute left-1/2 top-[44%] -translate-x-1/2 -translate-y-1/2">
               <span className="absolute inset-0 -m-3 animate-ping rounded-full bg-rose-500/40 motion-reduce:animate-none" />
@@ -47,7 +47,7 @@ export function VisitSection() {
             </span>
             <div className="absolute inset-x-4 bottom-4 flex flex-col gap-3 rounded-2xl bg-white/95 p-5 shadow-xl backdrop-blur-md sm:inset-x-6 sm:bottom-6 sm:flex-row sm:items-center sm:justify-between">
               <span>
-                <span className="block font-display text-lg font-bold text-rose-950">Dr. Prema&apos;s Clinic</span>
+                <span className="block font-display text-lg font-bold text-rose-950">Dr. Prema&apos;s Practice</span>
                 <span className="block text-sm text-rose-950/65">
                   {CLINIC_INFO.addressLine1}, {CLINIC_INFO.addressLine2}
                 </span>

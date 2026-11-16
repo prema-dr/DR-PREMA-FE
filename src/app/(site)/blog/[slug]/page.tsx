@@ -58,7 +58,7 @@ export default async function BlogPostPage({
       <RelatedPosts current={post} all={allPosts} />
       <ServiceFinalCta
         serviceName={post.category}
-        message="Send us a note or call the clinic, and we'll help you think through your next step, with no pressure to decide anything today."
+        message="Send us a note or call us, and we'll help you think through your next step, with no pressure to decide anything today."
       />
     </>
   );

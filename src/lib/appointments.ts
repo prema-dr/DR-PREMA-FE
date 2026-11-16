@@ -1,7 +1,7 @@
 // Shared (browser + server) booking rules: clinic hours, slot grid, and date helpers.
 // Keep the hours in sync with CLINIC_INFO.hours in components/layout/clinic-info.ts.
 
-export const SLOT_MINUTES = 15;
+export const SLOT_MINUTES = 60;
 export const BOOKING_WINDOW_DAYS = 30;
 export const CLINIC_TIME_ZONE = "Asia/Kolkata";
 

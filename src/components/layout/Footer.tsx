@@ -177,7 +177,7 @@ export function Footer({ services }: { services: NavService[] }) {
 
           {/* Visit */}
           <div>
-            <ColumnHeading>Visit the Clinic</ColumnHeading>
+            <ColumnHeading>Visit Us</ColumnHeading>
             <ul className="mt-5 space-y-4 text-sm text-white/70">
               <li className="flex items-start gap-3">
                 <MapPin size={18} weight="regular" className="mt-0.5 shrink-0 text-rose-400" />
@@ -220,7 +220,7 @@ export function Footer({ services }: { services: NavService[] }) {
             >
               <Image
                 src="/images/clinic-map.png"
-                alt="Map showing the clinic's location near KMCH Hospital, Coimbatore"
+                alt="Map showing our location near KMCH Hospital, Coimbatore"
                 fill
                 sizes="240px"
                 className="object-cover transition-transform duration-500 group-hover:scale-105"
@@ -234,8 +234,7 @@ export function Footer({ services }: { services: NavService[] }) {
         </div>
 
         <div className="mt-14 flex flex-col gap-3 border-t border-white/10 pt-6 text-xs text-white/45 md:flex-row md:items-center md:justify-between">
-          <p>© {new Date().getFullYear()} Dr. Prema Clinic. All rights reserved.</p>
-          <p className="md:text-center">This site is informational and does not offer appointment booking.</p>
+          <p>© {new Date().getFullYear()} Dr. Prema. All rights reserved.</p>
           <p>MBBS, MS (OBG), DGO, DNB (OBG), FICOG</p>
         </div>
       </div>

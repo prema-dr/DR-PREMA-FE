@@ -106,7 +106,6 @@ const RESOURCES: Record<ResourceName, Resource> = {
       videoUrl: { type: "string", required: true, max: 500, pattern: VIDEO_URL, patternMessage: "Video link must be an Instagram reel/post or a YouTube video/short link", label: "Video link" },
       isEnabled: enabled,
     },
-    image: { field: "thumbnail", url: "thumbnailUrl", path: "thumbnailPath", folder: "videos" },
     searchFields: ["videoUrl"],
   },
   guestLectures: {
@@ -263,6 +262,7 @@ async function list(name: ResourceName, q: Query) {
     .filter((d) => !q.serviceSlug || d.serviceSlug === q.serviceSlug)
     .filter((d) => q.isEnabled === undefined || d.isEnabled === (q.isEnabled === "true"))
     .filter((d) => q.isRead === undefined || d.isRead === (q.isRead === "true"))
+    .filter((d) => !q.platform || (q.platform === "youtube") === /(?:youtube\.com|youtu\.be)\//i.test(String(d.videoUrl ?? "")))
     .filter((d) => !q.status || d.isPublished === (q.status === "published"))
     .filter((d) => !needle || res.searchFields.some((f) => String(d[f] ?? "").toLowerCase().includes(needle)))
     .sort((a, b) => millis(b.createdAt) - millis(a.createdAt));

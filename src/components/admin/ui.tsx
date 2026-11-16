@@ -612,7 +612,7 @@ export function useNewParam(onNew: () => void) {
 }
 
 /** Shared list state for the drawer-based modules: filters, paging, delete + toggle handlers. */
-export function useModule<T extends { id: string; isEnabled: boolean }>(resource: string, label: string, limit = 12) {
+export function useModule<T extends { id: string; isEnabled: boolean }>(resource: string, label: string, limit = 12, extra: Record<string, string> = {}) {
   const toast = useToast();
   const [serviceId, setServiceId] = useState("");
   const [search, setSearch] = useState("");
@@ -624,7 +624,7 @@ export function useModule<T extends { id: string; isEnabled: boolean }>(resource
 
   const debounced = useDebounced(search);
   const list = useFetch<{ items: T[]; meta: { page: number; limit: number; total: number; totalPages: number } }>(`admin/${resource}`, {
-    page, limit, search: debounced, serviceSlug: serviceId, isEnabled: state,
+    page, limit, search: debounced, serviceSlug: serviceId, isEnabled: state, ...extra,
   });
 
   const filter = (setter: (v: string) => void) => (v: string) => {

@@ -37,9 +37,6 @@ export function StoriesHeader({ testimonials }: { testimonials: Testimonial[] })
             Patient stories,{" "}
             <span className="relative inline-block text-rose-600">
               in their own words
-              <svg aria-hidden viewBox="0 0 300 12" preserveAspectRatio="none" className="absolute -bottom-2 left-0 h-3 w-full text-rose-300">
-                <path d="M2 8c60-8 140-8 296-2" fill="none" stroke="currentColor" strokeWidth="3.5" strokeLinecap="round" />
-              </svg>
             </span>
           </h1>
           <p className="mt-7 max-w-xl text-[17px] leading-relaxed text-rose-950/65">

@@ -4,7 +4,6 @@ import type { ComponentType } from "react";
 import Image from "next/image";
 import { motion, useReducedMotion } from "motion/react";
 import {
-  ArrowRightIcon as ArrowRight,
   CalendarCheckIcon as CalendarCheck,
   ChatsCircleIcon as ChatsCircle,
   FileTextIcon as FileText,
@@ -14,7 +13,6 @@ import {
   LeafIcon as Leaf,
   UsersThreeIcon as UsersThree,
 } from "@phosphor-icons/react/dist/ssr";
-import { PHONE_TEL } from "@/components/layout/nav-links";
 
 type IconType = ComponentType<{ size?: number; weight?: "light" | "regular" | "fill"; className?: string }>;
 
@@ -87,14 +85,6 @@ export function ApproachSplit() {
             <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-rose-200/25 via-transparent to-white/10" />
           </div>
 
-          {/* leaf accent */}
-          <Leaf
-            size={110}
-            weight="light"
-            aria-hidden
-            className="pointer-events-none absolute -right-6 bottom-20 z-10 rotate-[28deg] text-rose-300/70"
-          />
-
           <FloatingCard
             icon={HeartStraight}
             title="Real Conversations"
@@ -109,17 +99,6 @@ export function ApproachSplit() {
             className="-right-2 bottom-2 sm:-right-6"
             delay={0.5}
           />
-
-          {/* handwritten tagline */}
-          <p
-            aria-hidden
-            className="pointer-events-none absolute -bottom-1 left-0 z-10 -rotate-6 font-[family-name:var(--font-script)] text-[1.7rem] font-semibold leading-[1.15] text-rose-500 sm:left-2 sm:text-3xl"
-          >
-            Your health.
-            <br />
-            <span className="ml-5">Our priority.</span>
-            <Heart size={20} weight="regular" className="mt-1 ml-8 text-rose-400" />
-          </p>
         </motion.div>
 
         {/* Copy */}
@@ -169,13 +148,6 @@ export function ApproachSplit() {
                 <span className="block text-rose-600">a long-term partnership for your well-being.</span>
               </p>
             </div>
-            <a
-              href={PHONE_TEL}
-              className="relative inline-flex shrink-0 items-center gap-2 rounded-full bg-rose-600 px-6 py-3 text-sm font-semibold text-white shadow-[0_14px_28px_-12px_rgba(225,29,72,0.7)] transition-all hover:-translate-y-0.5 hover:bg-rose-700 active:scale-[0.98]"
-            >
-              Book a Consultation
-              <ArrowRight size={16} weight="bold" />
-            </a>
           </div>
         </motion.div>
       </div>

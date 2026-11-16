@@ -26,6 +26,12 @@ const FIELD =
 
 const label12 = (time: string) => formatSlot("2000-01-03", time).time;
 
+const TIME_GROUPS: { label: string; test: (hour: number) => boolean }[] = [
+  { label: "Morning", test: (h) => h < 12 },
+  { label: "Afternoon", test: (h) => h >= 12 && h < 16 },
+  { label: "Evening", test: (h) => h >= 16 },
+];
+
 export function BookingForm() {
   const [status, setStatus] = useState<"idle" | "submitting" | "success">("idle");
   const [errors, setErrors] = useState<Errors>({});
@@ -239,7 +245,7 @@ export function BookingForm() {
 
             {slotsState === "loading" && <p className="mt-3 text-sm text-rose-950/55">Checking availability…</p>}
             {slotsState === "closed" && (
-              <p className="mt-3 rounded-xl bg-rose-50 px-4 py-3 text-sm text-rose-800">The clinic is closed on that day. Please choose another date.</p>
+              <p className="mt-3 rounded-xl bg-rose-50 px-4 py-3 text-sm text-rose-800">We are closed on that day. Please choose another date.</p>
             )}
             {slotsState === "error" && (
               <p className="mt-3 rounded-xl bg-rose-50 px-4 py-3 text-sm text-rose-800">
@@ -251,30 +257,41 @@ export function BookingForm() {
               <p className="mt-3 rounded-xl bg-rose-50 px-4 py-3 text-sm text-rose-800">No times are left on that day. Please choose another date.</p>
             )}
             {slots && slots.length > 0 && (
-              <div role="radiogroup" aria-label="Available times" className="mt-3 grid max-h-64 grid-cols-3 gap-2 overflow-y-auto pr-1 sm:grid-cols-4">
-                {slots.map((s) => {
-                  const on = s.time === time;
+              <div role="radiogroup" aria-label="Available times" className="mt-3 space-y-4">
+                {TIME_GROUPS.map((group) => {
+                  const groupSlots = slots.filter((s) => group.test(Number(s.time.slice(0, 2))));
+                  if (groupSlots.length === 0) return null;
                   return (
-                    <button
-                      key={s.time}
-                      type="button"
-                      role="radio"
-                      aria-checked={on}
-                      disabled={!s.available}
-                      onClick={() => {
-                        setTime(s.time);
-                        setErrors((e) => ({ ...e, time: undefined }));
-                      }}
-                      className={`rounded-xl border px-2 py-2.5 text-sm font-semibold transition-all ${
-                        on
-                          ? "border-rose-600 bg-rose-600 text-white shadow-[0_10px_20px_-10px_rgba(225,29,72,0.7)]"
-                          : s.available
-                            ? "border-rose-200 bg-white text-rose-800 hover:border-rose-400 hover:bg-rose-50"
-                            : "cursor-not-allowed border-rose-100 bg-rose-50/60 text-rose-950/30 line-through"
-                      }`}
-                    >
-                      {label12(s.time)}
-                    </button>
+                    <div key={group.label}>
+                      <p className="mb-2 text-xs font-bold uppercase tracking-[0.16em] text-rose-600">{group.label}</p>
+                      <div className="grid grid-cols-3 gap-2 sm:grid-cols-4">
+                        {groupSlots.map((s) => {
+                          const on = s.time === time;
+                          return (
+                            <button
+                              key={s.time}
+                              type="button"
+                              role="radio"
+                              aria-checked={on}
+                              disabled={!s.available}
+                              onClick={() => {
+                                setTime(s.time);
+                                setErrors((e) => ({ ...e, time: undefined }));
+                              }}
+                              className={`rounded-xl border px-2 py-2.5 text-sm font-semibold transition-all ${
+                                on
+                                  ? "border-rose-600 bg-rose-600 text-white shadow-[0_10px_20px_-10px_rgba(225,29,72,0.7)]"
+                                  : s.available
+                                    ? "border-rose-200 bg-white text-rose-800 hover:border-rose-400 hover:bg-rose-50"
+                                    : "cursor-not-allowed border-rose-100 bg-rose-50/60 text-rose-950/30 line-through"
+                              }`}
+                            >
+                              {label12(s.time)}
+                            </button>
+                          );
+                        })}
+                      </div>
+                    </div>
                   );
                 })}
               </div>
