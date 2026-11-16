@@ -1,6 +1,7 @@
 export const CLINIC_INFO = {
-  addressLine1: "Near KMCH Hospital, Indira Nagar",
-  addressLine2: "Civil Aerodrome Post, Coimbatore 641014",
+  addressLine1: "Near KMCH Hospital,",
+  addressLine2: "Indira Nagar",
+  addressLine3: "Civil Aerodrome Post, Coimbatore 641014",
   phone: "+91 73734 47104",
   email: "drpremagynaecologistcbe@gmail.com",
   mapUrl:

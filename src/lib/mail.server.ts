@@ -47,7 +47,7 @@ ${note ? `<div style="font-size:11px;font-weight:700;letter-spacing:1.5px;text-t
 /** Soft card for the clinic address and phone. */
 export function infoCard() {
   return `<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin:18px 0 6px"><tr><td style="background:#ffffff;border:1px solid ${ROSE[100]};border-radius:14px;padding:16px 20px;font-size:14px;line-height:1.6;color:${ROSE[900]}">
-<strong style="color:${ROSE[950]}">Dr. Prema N.</strong><br/>${escapeHtml(CLINIC_INFO.addressLine1)}, ${escapeHtml(CLINIC_INFO.addressLine2)}<br/>Phone: <a href="tel:${escapeHtml(CLINIC_INFO.phone.replace(/\s/g, ""))}" style="color:${ROSE[700]};text-decoration:none;font-weight:600">${escapeHtml(CLINIC_INFO.phone)}</a></td></tr></table>`;
+<strong style="color:${ROSE[950]}">Dr. Prema N.</strong><br/>${escapeHtml(CLINIC_INFO.addressLine1)} ${escapeHtml(CLINIC_INFO.addressLine2)}, ${escapeHtml(CLINIC_INFO.addressLine3)}<br/>Phone: <a href="tel:${escapeHtml(CLINIC_INFO.phone.replace(/\s/g, ""))}" style="color:${ROSE[700]};text-decoration:none;font-weight:600">${escapeHtml(CLINIC_INFO.phone)}</a></td></tr></table>`;
 }
 
 /** Pill button. */
@@ -87,6 +87,6 @@ body{margin:0;padding:0;background:${ROSE[50]}}
 <div style="width:48px;height:4px;border-radius:4px;background:${ROSE[600]};margin:14px 0 0"></div></td></tr>
 <tr><td class="px body" style="padding:22px 36px 34px;font-size:16px;line-height:1.65;color:${ROSE[900]}">${body}</td></tr>
 <tr><td class="px" bgcolor="${ROSE[50]}" style="background:${ROSE[50]};padding:20px 36px;border-top:1px solid ${ROSE[100]};font-size:12px;line-height:1.6;color:${ROSE[700]};text-align:center">
-Dr. Prema N. · ${escapeHtml(CLINIC_INFO.addressLine1)}, ${escapeHtml(CLINIC_INFO.addressLine2)}<br/>${escapeHtml(CLINIC_INFO.phone)}</td></tr>
+Dr. Prema N. · ${escapeHtml(CLINIC_INFO.addressLine1)} ${escapeHtml(CLINIC_INFO.addressLine2)}, ${escapeHtml(CLINIC_INFO.addressLine3)}<br/>${escapeHtml(CLINIC_INFO.phone)}</td></tr>
 </table></td></tr></table></body></html>`;
 }

@@ -49,7 +49,7 @@ export function VisitSection() {
               <span>
                 <span className="block font-display text-lg font-bold text-rose-950">Dr. Prema&apos;s Practice</span>
                 <span className="block text-sm text-rose-950/65">
-                  {CLINIC_INFO.addressLine1}, {CLINIC_INFO.addressLine2}
+                  {CLINIC_INFO.addressLine1} {CLINIC_INFO.addressLine2}, {CLINIC_INFO.addressLine3}
                 </span>
               </span>
               <span className="inline-flex w-fit items-center gap-2 rounded-full bg-rose-600 px-5 py-2.5 text-sm font-bold text-white transition-transform group-hover:-translate-y-0.5">

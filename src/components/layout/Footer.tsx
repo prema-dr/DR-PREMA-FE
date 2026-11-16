@@ -185,6 +185,8 @@ export function Footer({ services }: { services: NavService[] }) {
                   {CLINIC_INFO.addressLine1}
                   <br />
                   {CLINIC_INFO.addressLine2}
+                  <br />
+                  {CLINIC_INFO.addressLine3}
                 </span>
               </li>
               <li className="flex items-start gap-3">
