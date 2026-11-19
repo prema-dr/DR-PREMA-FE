@@ -29,7 +29,7 @@ function Lectures({ items, wide }: { items: Awaited<ReturnType<typeof getGuestLe
       <ol
         className={
           wide
-            ? "mt-10 grid gap-x-12 gap-y-12 md:grid-cols-2 xl:grid-cols-3"
+            ? "mt-10 grid grid-cols-[minmax(0,1fr)] gap-5 sm:grid-cols-2 xl:grid-cols-3"
             : "relative mt-10 ml-3 border-l border-rose-200"
         }
       >
@@ -38,7 +38,7 @@ function Lectures({ items, wide }: { items: Awaited<ReturnType<typeof getGuestLe
             key={l.id}
             className={
               wide
-                ? "group relative border-t-2 border-rose-200 pt-6 transition-colors duration-300 hover:border-rose-500"
+                ? "group relative flex flex-col rounded-3xl border border-rose-100 bg-white p-5 shadow-[0_14px_36px_-22px_rgba(159,18,57,0.35)] transition-all duration-300 hover:-translate-y-1 hover:border-rose-300 sm:p-6"
                 : "group relative pb-10 pl-8 last:pb-0 md:pl-10"
             }
           >
@@ -56,17 +56,17 @@ function Lectures({ items, wide }: { items: Awaited<ReturnType<typeof getGuestLe
                     <span className="text-xs font-bold uppercase tracking-[0.2em] text-rose-600">{l.year}</span>
                   )}
                 </div>
-                <h4 className="mt-1.5 font-display text-2xl font-bold leading-snug text-rose-950 transition-colors duration-300 group-hover:text-rose-600">
+                <h4 className="mt-1.5 line-clamp-2 break-words font-display text-xl sm:text-2xl font-bold leading-snug text-rose-950 transition-colors duration-300 group-hover:text-rose-600">
                   {l.title}
                 </h4>
-                <p className="mt-2 text-[15px] font-medium text-rose-950/75">{l.event}</p>
+                <p className="mt-2 line-clamp-2 break-words text-[15px] font-medium text-rose-950/75">{l.event}</p>
                 {l.location && (
-                  <p className="mt-1 inline-flex items-center gap-1 text-sm text-rose-950/50">
-                    <MapPin size={14} weight="fill" className="text-rose-400" />
-                    {l.location}
+                  <p className="mt-1 flex items-center gap-1 text-sm text-rose-950/50">
+                    <MapPin size={14} weight="fill" className="shrink-0 text-rose-400" />
+                    <span className="truncate">{l.location}</span>
                   </p>
                 )}
-                {l.description && <p className="mt-3 max-w-xl text-sm leading-relaxed text-rose-950/60">{l.description}</p>}
+                {l.description && <p className="mt-3 line-clamp-3 max-w-xl break-words text-sm leading-relaxed text-rose-950/60">{l.description}</p>}
               </div>
               {l.imageUrl && (
                 <div className={`w-full shrink-0 overflow-hidden rounded-2xl shadow-[0_24px_44px_-22px_rgba(159,18,57,0.55)] ring-4 ring-white ${wide ? "" : "sm:max-w-md xl:w-64 xl:max-w-none"}`}>
@@ -87,40 +87,46 @@ function Lectures({ items, wide }: { items: Awaited<ReturnType<typeof getGuestLe
   );
 }
 
-/** Dark, gold-trimmed panel so honours feel distinct from the light lecture agenda. */
-function Awards({ items, wide }: { items: Awaited<ReturnType<typeof getAwards>>; wide: boolean }) {
+/** Heading + one dark, gold-trimmed card per honour (grid, like the testimonial cards). */
+function Awards({ items }: { items: Awaited<ReturnType<typeof getAwards>> }) {
   return (
-    <div className="relative overflow-hidden rounded-[2rem] bg-gradient-to-br from-rose-950 via-[#4a0d20] to-rose-900 p-8 shadow-[0_40px_70px_-35px_rgba(92,15,35,0.8)] md:p-10">
-      <Trophy size={260} weight="thin" aria-hidden className="pointer-events-none absolute -bottom-16 -right-12 rotate-12 text-amber-300/10" />
-      <div aria-hidden className="pointer-events-none absolute -left-24 -top-24 size-72 rounded-full bg-rose-500/20 blur-3xl" />
+    <div>
+      <div className="flex items-center gap-3">
+        <span className="flex size-11 items-center justify-center rounded-full bg-gradient-to-br from-amber-300 to-amber-600 text-rose-950">
+          <Trophy size={20} weight="fill" />
+        </span>
+        <p className="text-xs font-bold uppercase tracking-[0.25em] text-rose-600">Honours</p>
+      </div>
+      <h3 className="mt-4 font-display text-4xl font-bold leading-tight text-rose-950 md:text-5xl">
+        Awards <span className="italic text-rose-600">&amp; Recognition</span>
+      </h3>
 
-      <div className="relative">
-        <p className="text-xs font-bold uppercase tracking-[0.25em] text-amber-300/90">Honours</p>
-        <h3 className="mt-3 font-display text-4xl font-bold leading-tight text-white md:text-5xl">
-          Awards <span className={`italic ${GOLD}`}>&amp; Recognition</span>
-        </h3>
-
-        <ul className={wide ? "mt-8 grid gap-x-12 gap-y-6 md:grid-cols-2 xl:grid-cols-3" : "mt-8 divide-y divide-white/10"}>
-          {items.map((a) => (
-            <li key={a.id} className={`group flex items-start gap-4 ${wide ? "" : "py-5 first:pt-0 last:pb-0"}`}>
+      <ul className="mt-10 grid grid-cols-[minmax(0,1fr)] gap-5 sm:grid-cols-2 xl:grid-cols-3">
+        {items.map((a) => (
+          <li
+            key={a.id}
+            className="group relative flex flex-col overflow-hidden rounded-3xl bg-gradient-to-br from-rose-950 via-[#4a0d20] to-rose-900 p-5 shadow-[0_24px_44px_-26px_rgba(92,15,35,0.8)] transition-transform duration-300 hover:-translate-y-1 sm:p-6"
+          >
+            <Trophy size={150} weight="thin" aria-hidden className="pointer-events-none absolute -bottom-8 -right-6 rotate-12 text-amber-300/10" />
+            <div className="relative flex items-start gap-4">
               {a.imageUrl ? (
                 // eslint-disable-next-line @next/next/no-img-element
-                <img src={a.imageUrl} alt={a.title} loading="lazy" className="size-24 shrink-0 rounded-2xl object-cover ring-2 ring-amber-300/70" />
+                <img src={a.imageUrl} alt={a.title} loading="lazy" className="size-20 shrink-0 rounded-2xl object-cover ring-2 ring-amber-300/70" />
               ) : (
-                <span className="flex size-12 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-amber-300 to-amber-600 text-rose-950 shadow-[0_10px_24px_-8px_rgba(251,191,36,0.6)] transition-transform duration-300 group-hover:scale-110">
+                <span className="flex size-12 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-amber-300 to-amber-600 text-rose-950 shadow-[0_10px_24px_-8px_rgba(251,191,36,0.6)]">
                   <Trophy size={22} weight="fill" />
                 </span>
               )}
               <div className="min-w-0">
                 {a.year && <p className="text-xs font-bold uppercase tracking-[0.2em] text-amber-300">{a.year}</p>}
-                <p className="mt-0.5 font-display text-xl font-bold leading-snug text-white">{a.title}</p>
-                {a.awardedBy && <p className="mt-1 text-sm font-medium text-white/70">{a.awardedBy}</p>}
-                {a.description && <p className="mt-2 text-sm leading-relaxed text-white/55">{a.description}</p>}
+                <p className="mt-0.5 line-clamp-2 break-words font-display text-xl font-bold leading-snug text-white">{a.title}</p>
+                {a.awardedBy && <p className="mt-1 truncate text-sm font-medium text-white/70">{a.awardedBy}</p>}
               </div>
-            </li>
-          ))}
-        </ul>
-      </div>
+            </div>
+            {a.description && <p className="relative mt-4 line-clamp-3 break-words text-sm leading-relaxed text-white/60">{a.description}</p>}
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }
@@ -128,8 +134,6 @@ function Awards({ items, wide }: { items: Awaited<ReturnType<typeof getAwards>>;
 export async function LecturesAndAwards() {
   const [lectures, awards] = await Promise.all([getGuestLectures(), getAwards()]);
   if (lectures.length === 0 && awards.length === 0) return null;
-
-  const both = lectures.length > 0 && awards.length > 0;
 
   return (
     <section className="relative overflow-hidden py-20 lg:py-28">
@@ -145,9 +149,9 @@ export async function LecturesAndAwards() {
           </h2>
         </div>
 
-        <div className={`mt-16 grid items-start gap-14 ${both ? "lg:grid-cols-[1.15fr_1fr] lg:gap-16" : ""}`}>
-          {lectures.length > 0 && <Lectures items={lectures} wide={!both} />}
-          {awards.length > 0 && <Awards items={awards} wide={!both} />}
+        <div className="mt-16 grid items-start gap-14">
+          {lectures.length > 0 && <Lectures items={lectures} wide />}
+          {awards.length > 0 && <Awards items={awards} />}
         </div>
       </Reveal>
     </section>

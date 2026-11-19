@@ -5,14 +5,14 @@ import type { BlogPost } from "@/lib/site-api";
 export function BlogHeader({ posts }: { posts: BlogPost[] }) {
   const topics = new Set(posts.map((p) => p.category)).size;
   return (
-    <section className="relative -mt-36 overflow-hidden pt-[112px] pb-28 sm:pt-[130px] md:-mt-40 lg:pt-[140px] lg:pb-36">
+    <section className="relative -mt-36 overflow-hidden pt-[150px] pb-28 sm:pt-[130px] md:-mt-40 lg:pt-[140px] lg:pb-36">
       <BookOpenText size={380} weight="light" aria-hidden className="pointer-events-none absolute -right-16 -top-8 rotate-12 text-rose-200/40" />
-      <svg aria-hidden viewBox="0 0 800 800" className="pointer-events-none absolute -left-60 top-1/2 hidden size-[48rem] -translate-y-1/2 text-rose-300/40 lg:block">
+      <svg aria-hidden viewBox="0 0 800 800" className="pointer-events-none absolute -left-60 top-1/2 hidden size-[48rem] -translate-y-1/2 text-rose-300/20 lg:block">
         {[140, 220, 300, 380].map((r) => (
           <circle key={r} cx="400" cy="400" r={r} fill="none" stroke="currentColor" strokeWidth="1.2" strokeDasharray={r % 220 === 0 ? "2 9" : undefined} />
         ))}
       </svg>
-      <div aria-hidden className="pointer-events-none absolute -right-32 bottom-0 size-[26rem] rounded-full bg-pink-200/50 blur-3xl" />
+      <div aria-hidden className="pointer-events-none absolute -right-32 bottom-0 size-[26rem] rounded-full bg-pink-200/25 blur-3xl" />
 
       <Reveal className="relative mx-auto max-w-[90rem] px-[22px] text-center md:px-8 lg:px-10">
         <span className="inline-flex items-center gap-2 rounded-full border border-rose-200 bg-white/80 px-4 py-2 text-xs font-bold uppercase tracking-[0.2em] text-rose-700 backdrop-blur-sm">

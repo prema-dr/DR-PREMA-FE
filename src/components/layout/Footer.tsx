@@ -218,13 +218,13 @@ export function Footer({ services }: { services: NavService[] }) {
               href={CLINIC_INFO.mapUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="group relative mt-5 block aspect-[16/9] w-full max-w-[240px] overflow-hidden rounded-2xl border border-white/10"
+              className="group relative mt-5 block aspect-[16/9] w-full max-w-[240px] max-sm:max-w-none overflow-hidden rounded-2xl border border-white/10"
             >
               <Image
                 src="/images/clinic-map.png"
                 alt="Map showing our location near KMCH Hospital, Coimbatore"
                 fill
-                sizes="240px"
+                sizes="(min-width: 640px) 240px, 90vw"
                 className="object-cover transition-transform duration-500 group-hover:scale-105"
               />
               <span className="absolute inset-0 bg-rose-950/10 transition-opacity group-hover:bg-rose-950/0" />

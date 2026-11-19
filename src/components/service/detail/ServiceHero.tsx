@@ -16,12 +16,12 @@ import type { ServiceDetail } from "@/lib/site-api";
 export function ServiceHero({ service }: { service: ServiceDetail }) {
   return (
     <section className="relative -mt-36 overflow-hidden bg-gradient-to-b from-rose-100/70 via-rose-50 to-white pt-[112px] pb-20 sm:pt-[130px] md:-mt-40 lg:pt-[140px] lg:pb-28">
-      <svg aria-hidden viewBox="0 0 800 800" className="pointer-events-none absolute -right-48 top-1/2 hidden size-[52rem] -translate-y-1/2 text-rose-300/40 lg:block">
+      <svg aria-hidden viewBox="0 0 800 800" className="pointer-events-none absolute -right-48 top-1/2 hidden size-[52rem] -translate-y-1/2 text-rose-300/20 lg:block">
         {[140, 220, 300, 380].map((r) => (
           <circle key={r} cx="400" cy="400" r={r} fill="none" stroke="currentColor" strokeWidth="1.2" strokeDasharray={r % 220 === 0 ? "2 9" : undefined} />
         ))}
       </svg>
-      <div aria-hidden className="pointer-events-none absolute -left-32 bottom-0 size-[26rem] rounded-full bg-sky-100/70 blur-3xl" />
+      <div aria-hidden className="pointer-events-none absolute -left-32 bottom-0 size-[26rem] rounded-full bg-sky-100/35 blur-3xl" />
 
       <div className="relative mx-auto grid max-w-[90rem] grid-cols-1 items-center gap-12 px-[22px] md:px-8 lg:grid-cols-[1.05fr_0.95fr] lg:gap-14 lg:px-10">
         <div>

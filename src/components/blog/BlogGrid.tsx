@@ -69,7 +69,29 @@ export function BlogGrid({ posts }: { posts: BlogPost[] }) {
           </label>
         </div>
 
-        <div role="tablist" aria-label="Filter articles by topic" className="mt-8 flex flex-wrap gap-2.5">
+        {/* Mobile: dropdown */}
+        <div className="relative mt-6 md:hidden">
+          <select
+            aria-label="Filter articles by topic"
+            value={active}
+            onChange={(e) => {
+              setActive(e.target.value);
+              setPage(1);
+            }}
+            className="w-full appearance-none rounded-full border border-rose-200 bg-white py-3.5 pl-5 pr-12 text-sm font-semibold text-rose-700 shadow-sm outline-none focus:border-rose-400 focus:ring-4 focus:ring-rose-100"
+          >
+            {categories.map(([name, count]) => (
+              <option key={name} value={name}>
+                {name} ({count})
+              </option>
+            ))}
+          </select>
+          <svg aria-hidden viewBox="0 0 20 20" className="pointer-events-none absolute right-5 top-1/2 size-4 -translate-y-1/2 text-rose-500" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <path d="m5 8 5 5 5-5" />
+          </svg>
+        </div>
+
+        <div role="tablist" aria-label="Filter articles by topic" className="mt-8 hidden flex-wrap gap-2.5 md:flex">
           {categories.map(([name, count]) => {
             const on = name === active;
             return (

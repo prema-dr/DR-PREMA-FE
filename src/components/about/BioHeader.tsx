@@ -27,14 +27,14 @@ export function BioHeader() {
   const reduce = useReducedMotion();
 
   return (
-    <section className="relative -mt-36 flex overflow-hidden pt-[112px] pb-12 sm:pt-[130px] md:-mt-40 lg:items-center lg:pt-[170px] lg:pb-20">
-      <svg aria-hidden viewBox="0 0 800 800" className="pointer-events-none absolute -right-40 top-1/2 hidden size-[52rem] -translate-y-1/2 text-rose-300/40 lg:block">
+    <section className="relative -mt-36 flex overflow-hidden pt-[130px] pb-12 sm:pt-[130px] md:-mt-40 lg:items-center lg:pt-[170px] lg:pb-20">
+      <svg aria-hidden viewBox="0 0 800 800" className="pointer-events-none absolute -right-40 top-1/2 hidden size-[52rem] -translate-y-1/2 text-rose-300/20 lg:block">
         {[140, 220, 300, 380].map((r) => (
           <circle key={r} cx="400" cy="400" r={r} fill="none" stroke="currentColor" strokeWidth="1.2" strokeDasharray={r % 220 === 0 ? "2 9" : undefined} />
         ))}
       </svg>
-      <div aria-hidden className="pointer-events-none absolute -left-32 bottom-0 size-[26rem] rounded-full bg-pink-200/50 blur-3xl" />
-      <div aria-hidden className="pointer-events-none absolute right-1/3 -top-20 size-[22rem] rounded-full bg-pink-200/50 blur-3xl" />
+      <div aria-hidden className="pointer-events-none absolute -left-32 bottom-0 size-[26rem] rounded-full bg-pink-200/25 blur-3xl" />
+      <div aria-hidden className="pointer-events-none absolute right-1/3 -top-20 size-[22rem] rounded-full bg-pink-200/25 blur-3xl" />
 
       <div className="relative mx-auto grid w-full max-w-[90rem] grid-cols-1 items-center gap-10 px-[22px] md:px-8 lg:grid-cols-[1.15fr_0.85fr] lg:gap-12 lg:px-10">
         <div>

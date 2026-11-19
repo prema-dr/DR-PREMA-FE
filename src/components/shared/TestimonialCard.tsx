@@ -1,3 +1,6 @@
+"use client";
+
+import { useState } from "react";
 import Image from "next/image";
 import { QuotesIcon as Quotes } from "@phosphor-icons/react/dist/ssr";
 import { StarRating } from "@/components/shared/StarRating";
@@ -32,13 +35,32 @@ export function TestimonialCard({
   className?: string;
 }) {
   const tone = AVATAR_TONES[index % AVATAR_TONES.length];
+  const [expanded, setExpanded] = useState(false);
   return (
     <figure
-      className={`flex h-full flex-col rounded-2xl bg-white p-6 shadow-[0_8px_30px_-12px_rgba(159,18,57,0.18)] ${className}`}
+      onPointerEnter={(e) => e.pointerType === "mouse" && setExpanded(true)}
+      onPointerLeave={(e) => e.pointerType === "mouse" && setExpanded(false)}
+      onClick={() => setExpanded((v) => !v)}
+      className={`flex h-full cursor-pointer flex-col rounded-2xl bg-white p-6 shadow-[0_8px_30px_-12px_rgba(159,18,57,0.18)] ${className}`}
     >
       <StarRating rating={testimonial.rating} />
       <blockquote className="mt-4 flex-1 text-[15px] leading-relaxed text-rose-950/75">
-        &ldquo;{testimonial.quote}&rdquo;
+        <p
+          className="break-words"
+          style={
+            expanded
+              ? undefined
+              : {
+                  display: "-webkit-box",
+                  WebkitBoxOrient: "vertical",
+                  WebkitLineClamp: 4,
+                  overflow: "hidden",
+                  textOverflow: "ellipsis",
+                }
+          }
+        >
+          &ldquo;{testimonial.quote}&rdquo;
+        </p>
       </blockquote>
       <figcaption className="mt-5 flex items-center gap-3 border-t border-rose-100 pt-4">
         <span

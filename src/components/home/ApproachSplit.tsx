@@ -89,7 +89,7 @@ export function ApproachSplit() {
             icon={HeartStraight}
             title="Real Conversations"
             text="We listen, understand and guide you."
-            className="-left-2 top-14 sm:-left-8"
+            className="-left-2 top-14 max-sm:hidden sm:-left-8"
             delay={0.3}
           />
           <FloatingCard

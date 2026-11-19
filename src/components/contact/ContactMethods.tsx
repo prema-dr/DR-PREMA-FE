@@ -78,7 +78,7 @@ export function ContactMethods() {
                 <Icon size={28} weight="light" />
               </span>
               <p className="relative mt-5 text-xs font-bold uppercase tracking-[0.18em] text-rose-600">{label}</p>
-              <p className={`relative mt-1.5 break-words font-display text-lg font-bold leading-snug whitespace-pre-line text-rose-950 ${label === "Email us" ? "xl:whitespace-nowrap xl:text-[17px]" : ""}`}>{value}</p>
+              <p className={`relative mt-1.5 break-words font-display text-lg font-bold leading-snug whitespace-pre-line text-rose-950 ${label === "Email us" ? "max-sm:text-[15px] xl:whitespace-nowrap xl:text-[17px]" : ""}`}>{value}</p>
               <p className="relative mt-1 flex-1 text-sm text-rose-950/60">{hint}</p>
               <span className="relative mt-4 inline-flex items-center gap-1 text-sm font-semibold text-rose-600">
                 {label === "Visit us" ? "Get directions" : label === "Call us" ? "Call now" : label === "Email us" ? "Write to us" : "Start chat"}

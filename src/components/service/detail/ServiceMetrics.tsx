@@ -21,12 +21,12 @@ export function ServiceMetrics() {
         {METRICS.map(({ icon: Icon, value, suffix, label }, i) => (
           <li
             key={label}
-            className={`flex items-center gap-4 p-6 md:p-7 ${i % 2 === 1 ? "border-l border-rose-100" : ""} ${i > 1 ? "border-t border-rose-100 lg:border-t-0" : ""} ${i > 0 ? "lg:border-l lg:border-rose-100" : ""}`}
+            className={`flex items-center gap-3 p-4 sm:gap-4 sm:p-6 md:p-7 ${i % 2 === 1 ? "border-l border-rose-100" : ""} ${i > 1 ? "border-t border-rose-100 lg:border-t-0" : ""} ${i > 0 ? "lg:border-l lg:border-rose-100" : ""}`}
           >
-            <span className="flex size-12 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-rose-500 to-pink-400 text-white shadow-[0_10px_22px_-8px_rgba(244,63,94,0.7)]">
+            <span className="flex size-10 shrink-0 sm:size-12 items-center justify-center rounded-2xl bg-gradient-to-br from-rose-500 to-pink-400 text-white shadow-[0_10px_22px_-8px_rgba(244,63,94,0.7)]">
               <Icon size={24} weight="light" />
             </span>
-            <span>
+            <span className="min-w-0">
               <span className="block font-display text-3xl font-bold leading-none text-rose-950 md:text-4xl">
                 <CountUp value={value} suffix={suffix} />
               </span>

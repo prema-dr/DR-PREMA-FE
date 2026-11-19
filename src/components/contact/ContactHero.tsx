@@ -9,9 +9,9 @@ import { Reveal } from "@/components/shared/Reveal";
 
 export function ContactHero() {
   return (
-    <section className="relative -mt-36 overflow-hidden pt-[112px] pb-36 sm:pt-[130px] md:-mt-40 lg:pt-[140px] lg:pb-44">
-      <div aria-hidden className="pointer-events-none absolute -left-32 bottom-10 size-[26rem] rounded-full bg-pink-200/50 blur-3xl" />
-      <div aria-hidden className="pointer-events-none absolute right-1/3 -top-24 size-[22rem] rounded-full bg-pink-200/50 blur-3xl" />
+    <section className="relative -mt-36 overflow-hidden pt-[150px] pb-36 sm:pt-[130px] md:-mt-40 lg:pt-[140px] lg:pb-44">
+      <div aria-hidden className="pointer-events-none absolute -left-32 bottom-10 size-[26rem] rounded-full bg-pink-200/25 blur-3xl" />
+      <div aria-hidden className="pointer-events-none absolute right-1/3 -top-24 size-[22rem] rounded-full bg-pink-200/25 blur-3xl" />
 
       <div className="relative mx-auto grid max-w-[90rem] grid-cols-1 items-center gap-14 px-[22px] md:px-8 lg:grid-cols-[1.1fr_0.9fr] lg:px-10">
         <Reveal>
@@ -40,7 +40,7 @@ export function ContactHero() {
           </div>
           {[
             { icon: PhoneCall, label: "Call us", pos: "left-0 top-[14%] sm:-left-6", anim: "6s" },
-            { icon: ChatCircleDots, label: "WhatsApp us", pos: "right-0 top-[42%] sm:-right-6", anim: "7s" },
+            { icon: ChatCircleDots, label: "WhatsApp us", pos: "right-0 top-[42%] max-sm:hidden sm:-right-6", anim: "7s" },
             { icon: EnvelopeSimple, label: "Book online", pos: "bottom-[8%] left-[6%]", anim: "8s" },
           ].map(({ icon: Icon, label, pos, anim }) => (
             <div

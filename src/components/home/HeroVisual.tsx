@@ -10,8 +10,8 @@ export function HeroVisual() {
   return (
     <div className="relative mx-auto w-full max-w-md py-6 lg:max-w-lg">
       {/* Soft backdrop circles */}
-      <div className="pointer-events-none absolute left-1/2 top-1/2 aspect-square w-[115%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-gradient-to-br from-rose-100/70 via-rose-50/60 to-transparent blur-sm" />
-      <div className="pointer-events-none absolute -bottom-6 -right-10 aspect-square w-3/4 rounded-full bg-gradient-to-tl from-sky-100/70 to-transparent" />
+      <div className="pointer-events-none absolute left-1/2 top-1/2 aspect-square w-[115%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-gradient-to-br from-rose-100/35 via-rose-50/30 to-transparent blur-sm" />
+      <div className="pointer-events-none absolute -bottom-6 -right-10 aspect-square w-3/4 rounded-full bg-gradient-to-tl from-sky-100/35 to-transparent" />
 
       {/* Doctor portrait */}
       <motion.div
@@ -67,7 +67,7 @@ export function HeroVisual() {
           opacity: { duration: 0.6, delay: 0.55 },
           y: { duration: 7, repeat: Infinity, ease: "easeInOut", delay: 1 },
         }}
-        className="absolute top-[26%] right-0 z-20 rounded-xl border border-rose-100 bg-white px-4 py-3 shadow-[0_16px_40px_-18px_rgba(159,18,57,0.35)] sm:-right-6"
+        className="absolute top-[26%] right-0 z-20 hidden rounded-xl border border-rose-100 bg-white px-4 py-3 shadow-[0_16px_40px_-18px_rgba(159,18,57,0.35)] sm:-right-6 sm:block"
       >
         <p className="text-sm text-rose-950/80">
           <span className="font-bold text-emerald-600">98%</span>{" "}

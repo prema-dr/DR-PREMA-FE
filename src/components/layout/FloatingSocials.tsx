@@ -12,7 +12,7 @@ export function FloatingSocials() {
   return (
     <nav
       aria-label="Social and contact links"
-      className="fixed right-3 top-1/2 z-40 flex -translate-y-1/2 flex-col gap-2.5 sm:right-5"
+      className="fixed bottom-4 right-4 z-40 flex flex-col gap-2.5 md:bottom-auto md:right-5 md:top-1/2 md:-translate-y-1/2"
     >
       {LINKS.map(({ label, href, icon, size = 26 }) => (
         <a
@@ -22,7 +22,7 @@ export function FloatingSocials() {
           rel="noopener noreferrer"
           aria-label={label}
           title={label}
-          className="flex size-11 items-center justify-center rounded-full bg-white shadow-lg ring-1 ring-black/5 transition-transform hover:scale-110 active:scale-95"
+          className={`${label === "WhatsApp" ? "flex" : "hidden md:flex"} size-12 md:size-11 items-center justify-center rounded-full bg-white shadow-lg ring-1 ring-black/5 transition-transform hover:scale-110 active:scale-95`}
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src={icon} alt="" aria-hidden width={size} height={size} style={{ width: size, height: size }} />

@@ -91,20 +91,21 @@ export function Timeline() {
 
         {/* Mobile: trail */}
       <div className="mx-auto max-w-[90rem] px-[22px] pb-16 md:px-8 lg:hidden">
-        <ol className="relative mt-10 space-y-5 border-l-2 border-dashed border-rose-300 pl-8 lg:hidden">
+        <ol className="relative mt-10 space-y-4 pl-12 lg:hidden">
+          <span aria-hidden className="absolute bottom-4 left-[17px] top-4 border-l-2 border-dashed border-rose-300" />
           {[...ENTRIES].reverse().map((e, r) => {
             const top = r === 0;
             return (
               <li key={e.years + e.place} className="relative">
                 <span
-                  className={`absolute -left-[3.2rem] top-3 flex size-9 items-center justify-center rounded-full text-white ring-4 ring-white ${top ? "bg-rose-700" : "bg-rose-500"}`}
+                  className={`absolute -left-12 top-4 z-10 flex size-9 items-center justify-center rounded-full text-white ring-4 ring-[#fff5f9] ${top ? "bg-rose-700 shadow-[0_0_0_6px_rgba(225,29,72,0.15)]" : "bg-rose-500"}`}
                 >
                   {top ? <Flag size={18} weight="fill" /> : <MapPin size={16} weight="fill" />}
                 </span>
-                <div>
+                <div className={`rounded-2xl border bg-white p-4 shadow-[0_12px_30px_-20px_rgba(159,18,57,0.4)] ${top ? "border-rose-300" : "border-rose-100"}`}>
                   <p className="text-xs font-bold uppercase tracking-wider text-rose-600">{e.years}</p>
-                  <p className="mt-1 font-display text-base font-bold text-rose-950">{e.role}</p>
-                  <p className="mt-1 text-[13px] text-rose-950/65">{e.place}</p>
+                  <p className="mt-1 break-words font-display text-base font-bold leading-snug text-rose-950">{e.role}</p>
+                  <p className="mt-1 break-words text-[13px] leading-snug text-rose-950/65">{e.place}</p>
                 </div>
               </li>
             );
