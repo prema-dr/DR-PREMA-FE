@@ -78,7 +78,7 @@ export function ServiceHero({ service }: { service: ServiceDetail }) {
               fill
               priority
               sizes="(min-width: 1024px) 560px, 90vw"
-              className="object-cover"
+              className="object-cover object-top"
             />
             <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-rose-200/25 via-transparent to-white/10" />
           </div>

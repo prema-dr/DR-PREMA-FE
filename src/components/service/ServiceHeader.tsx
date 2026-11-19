@@ -64,7 +64,7 @@ export function ServiceHeader({ count }: { count: number }) {
               <Image src="/images/services/Postpartum Care and Support.png" alt="Reassuring care" fill sizes="(min-width: 1024px) 240px, 40vw" className="object-cover" />
             </div>
             <div className="relative aspect-[4/3] overflow-hidden rounded-3xl shadow-[0_30px_50px_-28px_rgba(190,24,93,0.45)] ring-4 ring-white/70">
-              <Image src="/images/services/Fertility Treatment.png" alt="Consultation room" fill sizes="(min-width: 1024px) 240px, 40vw" className="object-cover" />
+              <Image src="/images/services/Fertility Treatment.png" alt="Consultation room" fill sizes="(min-width: 1024px) 240px, 40vw" className="object-cover object-top" />
             </div>
           </div>
 

@@ -56,7 +56,7 @@ export function ServiceWhatIs({ service }: { service: ServiceDetail }) {
       <Reveal className="relative mx-auto grid max-w-[90rem] grid-cols-1 items-center gap-14 px-[22px] md:px-8 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20 lg:px-10">
         <div className="relative mx-auto w-full max-w-[30rem] pb-4 lg:mx-0">
           <div className="relative aspect-[4/4.2] overflow-hidden rounded-[28px] border-4 border-white bg-rose-100 shadow-[0_30px_60px_-25px_rgba(159,18,57,0.45)]">
-            <Image src={service.image} alt="" fill sizes="(min-width: 1024px) 480px, 90vw" className="object-cover" />
+            <Image src={service.image} alt="" fill sizes="(min-width: 1024px) 480px, 90vw" className="object-cover object-top" />
           </div>
         </div>
         <div>
