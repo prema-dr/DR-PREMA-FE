@@ -108,7 +108,7 @@ export function ServiceHero({ service }: { service: ServiceDetail }) {
                   <Star key={i} size={11} weight="fill" />
                 ))}
               </span>
-              1,353 Google reviews
+              160+ Google reviews
             </span>
           </div>
 

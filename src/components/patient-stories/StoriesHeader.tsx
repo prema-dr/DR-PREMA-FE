@@ -64,7 +64,7 @@ export function StoriesHeader({ testimonials }: { testimonials: Testimonial[] })
                   <Star key={i} size={18} weight="fill" />
                 ))}
               </span>
-              <p className="mt-0.5 text-sm font-medium text-rose-950/70">1,353 Google reviews · 98% recommended</p>
+              <p className="mt-0.5 text-sm font-medium text-rose-950/70">160+ Google reviews · 98% recommended</p>
             </div>
           </div>
         </Reveal>

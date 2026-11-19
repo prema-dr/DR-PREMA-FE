@@ -72,7 +72,7 @@ export function TrustStats() {
           className="pointer-events-none absolute bottom-0 right-4 -z-10 hidden h-[92%] w-[26rem] md:block lg:right-16"
         >
           <Image
-            src="/images/hero-img.png"
+            src="/images/dr prema bg 3.png"
             alt=""
             fill
             sizes="416px"

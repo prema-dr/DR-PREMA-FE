@@ -40,24 +40,26 @@ export function Navbar({ services }: { services: NavService[] }) {
       className={`fixed inset-x-4 z-50 transition-[top] duration-300 top-4 md:inset-x-8 lg:left-1/2 lg:right-auto lg:w-[calc(100%-5rem)] lg:max-w-[85rem] lg:-translate-x-1/2`}
     >
       <div
-        className={`flex h-16 items-center justify-between rounded-full border border-rose-100 bg-white/85 px-5 backdrop-blur-md transition-shadow duration-300 md:px-6 ${
-          scrolled
-            ? "shadow-[0_14px_40px_-14px_rgba(159,18,57,0.35)]"
-            : "shadow-[0_10px_40px_-16px_rgba(159,18,57,0.2)]"
-        }`}
+        className={`flex h-16 items-center justify-between rounded-full border border-rose-100 bg-white/85 px-5 backdrop-blur-md transition-shadow duration-300 md:px-6 ${scrolled
+          ? "shadow-[0_14px_40px_-14px_rgba(159,18,57,0.35)]"
+          : "shadow-[0_10px_40px_-16px_rgba(159,18,57,0.2)]"
+          }`}
       >
+
         <Link
           href="/"
-          className="flex flex-col leading-none"
+          className="group flex flex-col leading-none"
           onClick={() => setOpen(false)}
         >
-          <span className="font-display text-xl font-semibold tracking-tight text-rose-950">
-            Dr <span className="text-rose-700">Prema</span>
+          <span className="font-display text-2xl font-extrabold tracking-tight text-rose-950">
+            DR. <span className="font-black text-rose-700">PREMA</span>
           </span>
-          <span className="mt-1 text-[10.5px] font-medium uppercase tracking-[0.14em] text-rose-950/65">
+
+          <span className="mt-1.5 text-[10px] font-extrabold uppercase tracking-[0.24em] text-rose-900/75">
             Gynaecologist
           </span>
         </Link>
+
 
         <nav className="hidden items-center gap-1 lg:flex" aria-label="Primary">
           {NAV_LINKS.map((link) => {
@@ -65,11 +67,10 @@ export function Navbar({ services }: { services: NavService[] }) {
             const active = isServices
               ? pathname.startsWith("/service")
               : pathname === link.href;
-            const linkClass = `inline-flex items-center gap-1 rounded-full px-3.5 py-2 text-base font-medium transition-colors ${
-              active
-                ? "bg-rose-50 text-rose-700"
-                : "text-rose-950/70 hover:bg-rose-50/60 hover:text-rose-700"
-            }`;
+            const linkClass = `inline-flex items-center gap-1 rounded-full px-3.5 py-2 text-base font-medium transition-colors ${active
+              ? "bg-rose-50 text-rose-700"
+              : "text-rose-950/70 hover:bg-rose-50/60 hover:text-rose-700"
+              }`;
 
             if (!isServices) {
               return (
@@ -89,9 +90,8 @@ export function Navbar({ services }: { services: NavService[] }) {
                     className="transition-transform group-hover:rotate-180 group-focus-within:rotate-180"
                   />
                 </Link>
-                <div className={`absolute left-1/2 top-full z-50 w-[34rem] -translate-x-1/2 pt-4 transition-all duration-200 group-focus-within:visible group-focus-within:opacity-100 group-hover:visible group-hover:opacity-100 ${
-                  menuHidden ? "pointer-events-none !invisible !opacity-0" : "invisible opacity-0"
-                }`}>
+                <div className={`absolute left-1/2 top-full z-50 w-[34rem] -translate-x-1/2 pt-4 transition-all duration-200 group-focus-within:visible group-focus-within:opacity-100 group-hover:visible group-hover:opacity-100 ${menuHidden ? "pointer-events-none !invisible !opacity-0" : "invisible opacity-0"
+                  }`}>
                   <div className="rounded-3xl border border-rose-100 bg-white px-6 pb-4 pt-5 shadow-[0_20px_50px_-20px_rgba(159,18,57,0.35)]">
                     <div className="flex items-center justify-between border-b border-rose-100 pb-3">
                       <span className="text-xs font-bold uppercase tracking-wider text-rose-900">
@@ -122,9 +122,8 @@ export function Navbar({ services }: { services: NavService[] }) {
                               e.currentTarget.blur();
                               setMenuHidden(true);
                             }}
-                            className={`block truncate rounded-lg px-2 py-2 text-sm transition-colors hover:bg-rose-50 hover:text-rose-700 ${
-                              current ? "font-semibold text-rose-700" : "text-rose-950/80"
-                            }`}
+                            className={`block truncate rounded-lg px-2 py-2 text-sm transition-colors hover:bg-rose-50 hover:text-rose-700 ${current ? "font-semibold text-rose-700" : "text-rose-950/80"
+                              }`}
                           >
                             {service.name}
                           </Link>
@@ -174,11 +173,10 @@ export function Navbar({ services }: { services: NavService[] }) {
               const active = isServices
                 ? pathname.startsWith("/service")
                 : pathname === link.href;
-              const mobileClass = `rounded-2xl px-4 py-3 text-sm font-medium transition-colors ${
-                active
-                  ? "bg-rose-50 text-rose-700"
-                  : "text-rose-950/70 hover:bg-rose-50/60 hover:text-rose-700"
-              }`;
+              const mobileClass = `rounded-2xl px-4 py-3 text-sm font-medium transition-colors ${active
+                ? "bg-rose-50 text-rose-700"
+                : "text-rose-950/70 hover:bg-rose-50/60 hover:text-rose-700"
+                }`;
 
               if (!isServices) {
                 return (

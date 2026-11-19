@@ -40,9 +40,8 @@ function NodeCard({ node, compact = false }: { node: ServiceNode; compact?: bool
   return (
     <Link
       href={node.href}
-      className={`group flex items-center gap-3 rounded-2xl border border-white bg-white/85 p-3 shadow-[0_14px_34px_-16px_rgba(190,24,93,0.35)] backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:border-rose-200 hover:shadow-[0_20px_40px_-16px_rgba(190,24,93,0.45)] ${
-        compact ? "w-full" : "w-[190px] xl:w-[210px]"
-      }`}
+      className={`group flex items-center gap-3 rounded-2xl border border-white bg-white/85 p-3 shadow-[0_14px_34px_-16px_rgba(190,24,93,0.35)] backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:border-rose-200 hover:shadow-[0_20px_40px_-16px_rgba(190,24,93,0.45)] ${compact ? "w-full" : "w-[190px] xl:w-[210px]"
+        }`}
     >
       <span className="flex size-11 shrink-0 items-center justify-center rounded-full bg-rose-50 text-rose-600 ring-1 ring-rose-100 transition-colors duration-300 group-hover:bg-rose-600 group-hover:text-white">
         <Icon size={22} weight="regular" />
@@ -103,7 +102,7 @@ export function ServicesBento() {
             className="relative mx-auto aspect-[4/5] w-full lg:aspect-auto lg:self-stretch max-w-md overflow-hidden lg:order-1 rounded-[28px] border-4 border-white bg-gradient-to-b from-rose-50 to-rose-200 shadow-[0_30px_60px_-25px_rgba(159,18,57,0.45)] sm:max-w-none lg:max-w-none"
           >
             <Image
-              src="/images/home-scnd-section.png"
+              src="/images/home-scnd-section1.png"
               alt="Dr. Prema"
               fill
               sizes="(min-width: 1024px) 380px, (min-width: 640px) 40vw, 90vw"

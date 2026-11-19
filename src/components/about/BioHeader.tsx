@@ -122,7 +122,7 @@ export function BioHeader() {
                     <Star key={i} size={13} weight="fill" />
                   ))}
                 </span>
-                <span className="text-sm font-bold text-rose-950">1,353</span>
+                <span className="text-sm font-bold text-rose-950">160+</span>
               </div>
               <p className="mt-1 text-[11px] text-rose-950/65">Google Reviews</p>
             </div>
