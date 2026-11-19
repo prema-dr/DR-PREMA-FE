@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 export default async function PatientStoriesPage() {
   const testimonials = await getTestimonials();
   return (
-    <div className="bg-gradient-to-b from-[#fdeaf2] via-[#fff5f9] to-[#fde7f0] -mb-24 pb-48">
+    <div className="min-h-screen bg-gradient-to-b from-[#fdeaf2] via-[#fff5f9] to-[#fde7f0] -mb-24 pb-48">
       <StoriesHeader testimonials={testimonials} />
       <ServiceMetrics />
       <StoriesWall testimonials={testimonials} />

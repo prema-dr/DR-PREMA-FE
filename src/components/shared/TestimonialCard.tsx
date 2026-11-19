@@ -41,7 +41,7 @@ export function TestimonialCard({
       onPointerEnter={(e) => e.pointerType === "mouse" && setExpanded(true)}
       onPointerLeave={(e) => e.pointerType === "mouse" && setExpanded(false)}
       onClick={() => setExpanded((v) => !v)}
-      className={`flex h-full cursor-pointer flex-col rounded-2xl bg-white p-6 shadow-[0_8px_30px_-12px_rgba(159,18,57,0.18)] ${className}`}
+      className={`flex h-full cursor-pointer select-none touch-manipulation transform-gpu flex-col rounded-2xl bg-white p-6 shadow-[0_8px_30px_-12px_rgba(159,18,57,0.18)] ${className}`}
     >
       <StarRating rating={testimonial.rating} />
       <blockquote className="mt-4 flex-1 text-[15px] leading-relaxed text-rose-950/75">

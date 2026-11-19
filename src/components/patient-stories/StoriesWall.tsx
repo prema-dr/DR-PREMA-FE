@@ -78,7 +78,8 @@ export function StoriesWall({ testimonials }: { testimonials: Testimonial[] }) {
         <div key={`${active}-${current}`} className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
           {visible.map(({ t, index }, i) => (
             <motion.div
-              key={t.id}
+              key={t.id || `testimonial-${index}-${i}`}
+              className="transform-gpu"
               initial={reduce ? false : { opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: i * 0.05, ease: [0.16, 1, 0.3, 1] }}

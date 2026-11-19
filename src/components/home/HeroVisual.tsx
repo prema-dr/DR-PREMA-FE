@@ -24,7 +24,7 @@ export function HeroVisual() {
       >
         <div className="relative aspect-[4/5] w-full">
           <Image
-            src="/images/dr prema bg.png"
+            src="/images/2.png"
             alt="Dr. Prema, consultant obstetrician and gynaecologist"
             fill
             priority

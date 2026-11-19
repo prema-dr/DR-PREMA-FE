@@ -18,8 +18,8 @@ export function StoriesHeader({ testimonials }: { testimonials: Testimonial[] })
   const stack = testimonials.slice(0, 5);
 
   return (
-    <section className="relative -mt-36 overflow-hidden pt-[150px] pb-24 sm:pt-[130px] md:-mt-40 lg:pt-[140px] lg:pb-32">
-      <Quotes size={420} weight="fill" aria-hidden className="pointer-events-none absolute -left-24 -top-10 text-rose-200/30" />
+    <section className="relative -mt-36 overflow-hidden pt-[150px] pb-24 sm:pt-[130px] md:-mt-40 lg:pt-[140px] lg:pb-32 transform-gpu">
+      <Quotes size={420} weight="fill" aria-hidden className="pointer-events-none absolute -left-24 -top-10 text-rose-200/30 max-sm:size-72 max-sm:-left-12 max-sm:-top-6" />
       <svg aria-hidden viewBox="0 0 800 800" className="pointer-events-none absolute -right-48 top-1/2 hidden size-[52rem] -translate-y-1/2 text-rose-300/20 lg:block">
         {[140, 220, 300, 380].map((r) => (
           <circle key={r} cx="400" cy="400" r={r} fill="none" stroke="currentColor" strokeWidth="1.2" strokeDasharray={r % 220 === 0 ? "2 9" : undefined} />
@@ -48,7 +48,7 @@ export function StoriesHeader({ testimonials }: { testimonials: Testimonial[] })
             <div className="flex items-center">
               {stack.map((t, i) => (
                 <span
-                  key={t.name}
+                  key={t.id || `${t.name}-${i}`}
                   className={`-ml-3 flex size-11 items-center justify-center rounded-full text-sm font-bold text-white ring-4 ring-rose-50 first:ml-0 ${TONES[i % TONES.length]}`}
                 >
                   {initial(t.name)}

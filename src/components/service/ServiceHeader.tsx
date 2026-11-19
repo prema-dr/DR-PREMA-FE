@@ -57,14 +57,14 @@ export function ServiceHeader({ count }: { count: number }) {
         {/* Collage */}
         <Reveal delay={0.1} className="relative mx-auto grid w-full max-w-[34rem] grid-cols-[1.1fr_0.9fr] gap-4 lg:max-w-none">
           <div className="relative aspect-[3/4] overflow-hidden rounded-[28px] border-4 border-white shadow-[0_30px_60px_-25px_rgba(159,18,57,0.45)]">
-            <Image src="/images/services/high-risk-pregnancy-care.png" alt="Prenatal care" fill priority quality={90} sizes="(min-width: 1024px) 560px, 80vw" className="object-cover" />
+            <Image src="/images/services/High-Risk Pregnancy Care.png" alt="Prenatal care" fill priority quality={90} sizes="(min-width: 1024px) 560px, 80vw" className="object-cover" />
           </div>
           <div className="flex flex-col gap-4 pt-10">
             <div className="relative aspect-square overflow-hidden rounded-3xl shadow-[0_30px_50px_-28px_rgba(190,24,93,0.45)] ring-4 ring-white/70">
-              <Image src="/images/services/postpartum-care.png" alt="Reassuring care" fill sizes="(min-width: 1024px) 240px, 40vw" className="object-cover" />
+              <Image src="/images/services/Postpartum Care & Support.png" alt="Reassuring care" fill sizes="(min-width: 1024px) 240px, 40vw" className="object-cover" />
             </div>
             <div className="relative aspect-[4/3] overflow-hidden rounded-3xl shadow-[0_30px_50px_-28px_rgba(190,24,93,0.45)] ring-4 ring-white/70">
-              <Image src="/images/services/fertility-treatment.png" alt="Consultation room" fill sizes="(min-width: 1024px) 240px, 40vw" className="object-cover" />
+              <Image src="/images/services/Fertility Treatment.png" alt="Consultation room" fill sizes="(min-width: 1024px) 240px, 40vw" className="object-cover" />
             </div>
           </div>
 

@@ -13,7 +13,8 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     <html
       lang="en"
       data-scroll-behavior="smooth"
-      className={`${displayFont.variable} ${bodyFont.variable} ${nameFont.variable} ${scriptFont.variable} h-full antialiased`}
+      style={{ colorScheme: "light" }}
+      className={`${displayFont.variable} ${bodyFont.variable} ${nameFont.variable} ${scriptFont.variable} h-full bg-white antialiased`}
     >
       <body className="flex min-h-full flex-col bg-white">{children}</body>
     </html>

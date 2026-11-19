@@ -15,7 +15,7 @@ import type { ServiceDetail } from "@/lib/site-api";
 
 export function ServiceHero({ service }: { service: ServiceDetail }) {
   return (
-    <section className="relative -mt-36 overflow-hidden bg-gradient-to-b from-rose-100/70 via-rose-50 to-white pt-[112px] pb-20 sm:pt-[130px] md:-mt-40 lg:pt-[140px] lg:pb-28">
+    <section className="relative -mt-36 overflow-hidden bg-gradient-to-b from-rose-100/70 via-rose-50 to-white pt-[160px] pb-20 sm:pt-[150px] md:-mt-40 lg:pt-[140px] lg:pb-28">
       <svg aria-hidden viewBox="0 0 800 800" className="pointer-events-none absolute -right-48 top-1/2 hidden size-[52rem] -translate-y-1/2 text-rose-300/20 lg:block">
         {[140, 220, 300, 380].map((r) => (
           <circle key={r} cx="400" cy="400" r={r} fill="none" stroke="currentColor" strokeWidth="1.2" strokeDasharray={r % 220 === 0 ? "2 9" : undefined} />
@@ -25,11 +25,11 @@ export function ServiceHero({ service }: { service: ServiceDetail }) {
 
       <div className="relative mx-auto grid max-w-[90rem] grid-cols-1 items-center gap-12 px-[22px] md:px-8 lg:grid-cols-[1.05fr_0.95fr] lg:gap-14 lg:px-10">
         <div>
-          <nav aria-label="Breadcrumb" className="text-xs text-rose-950/60">
+          <nav aria-label="Breadcrumb" className="flex flex-wrap items-center gap-1.5 text-xs text-rose-950/60">
             <Link href="/" className="hover:text-rose-700">Home</Link>
-            {" / "}
+            <span className="text-rose-950/40">/</span>
             <Link href="/service" className="hover:text-rose-700">Services</Link>
-            {" / "}
+            <span className="text-rose-950/40">/</span>
             <span className="font-medium text-rose-950">{service.name}</span>
           </nav>
 

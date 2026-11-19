@@ -166,7 +166,7 @@ export function Navbar({ services }: { services: NavService[] }) {
             animate={{ opacity: 1, y: 0 }}
             exit={reduce ? { opacity: 0 } : { opacity: 0, y: -8 }}
             transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
-            className="mt-3 flex flex-col gap-1 rounded-3xl border border-rose-100 bg-white/95 p-3 shadow-[0_10px_40px_-16px_rgba(159,18,57,0.25)] backdrop-blur-md lg:hidden"
+            className="mt-3 flex flex-col gap-1 rounded-3xl border border-rose-100 bg-white p-3 shadow-[0_10px_40px_-16px_rgba(159,18,57,0.25)] transform-gpu lg:hidden"
           >
             {NAV_LINKS.map((link) => {
               const isServices = link.href === "/service";
