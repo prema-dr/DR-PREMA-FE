@@ -21,15 +21,14 @@ export function MeetDoctor() {
       <div aria-hidden className="pointer-events-none absolute -right-40 top-10 size-[28rem] rounded-full bg-pink-100/50 blur-3xl" />
       <Reveal className="relative mx-auto grid max-w-[90rem] grid-cols-1 items-center gap-14 px-[22px] md:px-8 lg:grid-cols-[0.95fr_1.05fr] lg:gap-16 lg:px-10">
         <div className="relative mx-auto hidden w-full max-w-[32rem] pb-6 lg:mx-0 lg:block">
-          <div className="relative aspect-[4/5] overflow-hidden rounded-[28px] border-4 border-white bg-rose-100 shadow-[0_30px_60px_-25px_rgba(159,18,57,0.45)]">
+          <div className="relative aspect-[4/5]">
             <Image
-              src="/images/meet-dr-prema.jpeg"
-              alt="Dr. Prema seated in her consultation room"
+              src="/images/2.png"
+              alt="Dr. Prema N., Consultant Obstetrician and Gynaecologist"
               fill
               sizes="512px"
-              className="object-cover object-[50%_20%]"
+              className="object-contain object-bottom"
             />
-            <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-rose-200/25 via-transparent to-white/10" />
           </div>
           <div className="absolute -bottom-2 right-0 flex max-w-[15rem] items-center gap-3 rounded-2xl border border-white bg-white/90 p-4 shadow-[0_18px_40px_-18px_rgba(190,24,93,0.4)] backdrop-blur-md sm:-right-4">
             <Certificate size={30} weight="light" className="shrink-0 text-rose-500" />

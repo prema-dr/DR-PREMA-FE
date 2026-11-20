@@ -74,22 +74,21 @@ export function ApproachSplit() {
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           className="relative mx-auto w-full max-w-[34rem] pb-10 pt-6 lg:mx-0"
         >
-          <div className="relative aspect-[4/5] overflow-hidden rounded-[28px] border-4 border-white bg-rose-100 shadow-[0_30px_60px_-25px_rgba(159,18,57,0.45)]">
+          <div className="relative aspect-[4/5]">
             <Image
-              src="/images/approach.jpeg"
-              alt="Dr. Prema listening to a patient in a calm, softly lit consultation room"
+              src="/images/hero-img.png"
+              alt="Dr. Prema N., Consultant Obstetrician and Gynaecologist"
               fill
               sizes="(min-width: 1024px) 520px, 90vw"
-              className="object-cover object-[50%_20%]"
+              className="object-contain object-bottom"
             />
-            <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-rose-200/25 via-transparent to-white/10" />
           </div>
 
           <FloatingCard
             icon={HeartStraight}
             title="Real Conversations"
             text="We listen, understand and guide you."
-            className="-left-2 top-14 max-sm:hidden sm:-left-8"
+            className="-left-2 top-[48%] max-sm:hidden sm:-left-10"
             delay={0.3}
           />
           <FloatingCard
