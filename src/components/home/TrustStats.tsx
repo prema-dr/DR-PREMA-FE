@@ -4,7 +4,7 @@ import { CountUp } from "@/components/shared/CountUp";
 
 const STATS = [
   { value: 20, suffix: "+", label: "Years of experience" },
-  { value: 4000, suffix: "+", label: "Patients cared for" },
+  { value: 25000, suffix: "+", label: "Lives reached, cared for & healed" },
   { value: 3, suffix: "", label: "Hospital affiliations" },
   { value: 5, suffix: "", label: "Professional qualifications" },
 ];

@@ -22,7 +22,7 @@ export function FloatingSocials() {
           rel="noopener noreferrer"
           aria-label={label}
           title={label}
-          className={`${label === "WhatsApp" ? "flex" : "hidden md:flex"} size-12 md:size-11 items-center justify-center rounded-full bg-white shadow-lg ring-1 ring-black/5 transition-transform hover:scale-110 active:scale-95`}
+          className="flex size-11 items-center justify-center rounded-full bg-white shadow-lg ring-1 ring-black/5 transition-transform hover:scale-110 active:scale-95"
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src={icon} alt="" aria-hidden width={size} height={size} style={{ width: size, height: size }} />

@@ -9,8 +9,8 @@ import { CountUp } from "@/components/shared/CountUp";
 
 const METRICS = [
   { icon: Stethoscope, value: 20, suffix: "+", label: "Years of experience" },
-  { icon: Smiley, value: 4000, suffix: "+", label: "Patients cared for" },
-  { icon: Star, value: 1353, suffix: "", label: "Google reviews" },
+  { icon: Smiley, value: 25000, suffix: "+", label: "Lives reached, cared for & healed" },
+  { icon: Star, value: 160, suffix: "+", label: "Google reviews" },
   { icon: ThumbsUp, value: 98, suffix: "%", label: "Recommended on Practo" },
 ];
 

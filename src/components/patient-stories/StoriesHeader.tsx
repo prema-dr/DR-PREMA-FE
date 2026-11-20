@@ -55,7 +55,7 @@ export function StoriesHeader({ testimonials }: { testimonials: Testimonial[] })
                 </span>
               ))}
               <span className="-ml-3 flex size-11 items-center justify-center rounded-full bg-white text-xs font-bold text-rose-600 ring-4 ring-rose-50">
-                4k+
+                25k+
               </span>
             </div>
             <div>

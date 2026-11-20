@@ -25,7 +25,7 @@ type IconType = ComponentType<{ size?: number; weight?: "light" | "regular" | "f
 const TRUST: { icon: IconType; strong: string; text: string }[] = [
   { icon: GraduationCap, strong: "FICOG", text: "India" },
   { icon: Certificate, strong: "DNB (OBG)", text: "National Board" },
-  { icon: Users, strong: "4,000+", text: "Patients cared for" },
+  { icon: Users, strong: "25,000+", text: "Lives reached, cared for & healed" },
   { icon: Heart, strong: "20+", text: "Years of experience" },
   { icon: Buildings, strong: "3", text: "Hospital affiliations" },
 ];

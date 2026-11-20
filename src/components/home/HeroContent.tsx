@@ -16,7 +16,7 @@ const item: Variants = {
 };
 
 const STATS = [
-  { value: "4,000+", label: "Patients cared for" },
+  { value: "25,000+", label: "Lives reached, cared for & healed" },
   { value: "20+", label: "Years of practice" },
   { value: "3", label: "Hospital affiliations" },
 ];
