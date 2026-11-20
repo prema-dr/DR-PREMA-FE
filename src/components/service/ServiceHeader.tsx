@@ -39,14 +39,14 @@ export function ServiceHeader({ count }: { count: number }) {
           <div className="mt-8 flex flex-wrap gap-3">
             <a
               href={PHONE_TEL}
-              className="inline-flex items-center gap-2 rounded-full bg-rose-600 px-7 py-3.5 text-sm font-semibold text-white shadow-[0_14px_28px_-12px_rgba(225,29,72,0.7)] transition-all hover:-translate-y-0.5 hover:bg-rose-700 active:scale-[0.98]"
+              className="inline-flex items-center gap-2 rounded-full border border-rose-200 bg-white px-7 py-3.5 text-sm font-semibold text-rose-700 transition-all hover:-translate-y-0.5 hover:border-rose-300 active:scale-[0.98]"
             >
               <CalendarCheck size={18} />
               Book Consultation
             </a>
             <a
               href="#all-services"
-              className="inline-flex items-center gap-2 rounded-full border border-rose-200 bg-white px-7 py-3.5 text-sm font-semibold text-rose-700 transition-all hover:-translate-y-0.5 hover:border-rose-300 active:scale-[0.98]"
+              className="inline-flex items-center gap-2 rounded-full bg-rose-600 px-7 py-3.5 text-sm font-semibold text-white shadow-[0_14px_28px_-12px_rgba(225,29,72,0.7)] transition-all hover:-translate-y-0.5 hover:bg-rose-700 active:scale-[0.98]"
             >
               Browse {count} services
               <ArrowDown size={16} weight="bold" />

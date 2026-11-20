@@ -86,7 +86,7 @@ export function BioHeader() {
           <motion.div {...fade(0.34, reduce)} className="mt-7 flex flex-wrap gap-3">
             <a
               href={PHONE_TEL}
-              className="inline-flex items-center gap-2 rounded-full bg-rose-600 px-7 py-3.5 text-sm font-semibold text-white shadow-[0_14px_28px_-12px_rgba(225,29,72,0.7)] transition-all hover:-translate-y-0.5 hover:bg-rose-700 active:scale-[0.98]"
+              className="inline-flex items-center gap-2 rounded-full border border-rose-100 bg-white px-7 py-3.5 text-sm font-semibold text-rose-900 shadow-sm transition-all hover:-translate-y-0.5 hover:bg-rose-50 active:scale-[0.98]"
             >
               <CalendarCheck size={18} />
               Book an Appointment
@@ -95,27 +95,27 @@ export function BioHeader() {
         </div>
 
         {/* Framed portrait, height-capped so the hero fits one screen */}
-        <motion.div {...fade(0.12, reduce)} className="relative mx-auto w-full max-w-[20rem] lg:mr-0 lg:max-w-none lg:justify-self-center">
-          <div className="relative mx-auto aspect-[4/5] w-full lg:h-[min(68svh,38rem)] lg:w-auto">
-            <div className="absolute inset-0 overflow-hidden rounded-[28px] border-4 border-white bg-rose-100 shadow-[0_30px_60px_-25px_rgba(159,18,57,0.45)]">
+        <motion.div {...fade(0.12, reduce)} className="relative mx-auto w-full max-w-[24rem] lg:mr-0 lg:max-w-none lg:justify-self-center">
+          <div className="relative mx-auto aspect-[4/5] w-full lg:h-[min(74svh,42rem)] lg:w-auto">
+            <div className="absolute inset-0">
               <Image
-                src="/images/DSC08886.JPG.jpeg"
+                src="/images/hero-img.png"
                 alt="Dr. Prema N., Consultant Obstetrician and Gynaecologist"
                 fill
                 loading="eager"
                 fetchPriority="high"
                 sizes="(min-width: 1024px) 420px, 80vw"
-                className="object-cover object-[50%_28%]"
+                className="object-contain object-bottom"
               />
             </div>
-            <div className="absolute inset-x-4 bottom-4 z-10 flex items-center justify-between gap-3 rounded-2xl bg-white/95 px-4 py-3 backdrop-blur">
+            <div className="absolute inset-x-4 -bottom-5 z-10 flex items-center justify-between gap-3 rounded-2xl bg-white/95 px-4 py-3 backdrop-blur">
               <div>
                 <p className="font-display text-sm font-bold text-rose-900">Dr. Prema N.</p>
                 <p className="text-xs text-gray-600">Kovai Medical Center &amp; Hospital</p>
               </div>
               <span className="rounded-full bg-rose-100 px-3 py-1 text-xs font-medium text-rose-600">Coimbatore</span>
             </div>
-            <div className="absolute -left-4 top-6 z-20 rounded-xl border border-rose-100 bg-white px-4 py-3 shadow-[0_16px_40px_-18px_rgba(159,18,57,0.35)] sm:-left-8">
+            <div className="absolute left-0 top-[58%] z-20 rounded-xl border border-rose-100 bg-white px-4 py-3 shadow-[0_16px_40px_-18px_rgba(159,18,57,0.35)] sm:-left-8 sm:top-6">
               <div className="flex items-center gap-1.5">
                 <span className="flex text-amber-400">
                   {Array.from({ length: 5 }).map((_, i) => (

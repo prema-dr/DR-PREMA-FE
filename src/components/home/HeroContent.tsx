@@ -75,7 +75,7 @@ export function HeroContent() {
       <motion.div variants={item} className="mt-8 flex flex-wrap gap-4">
         <Link
           href="/about-us"
-          className="inline-flex items-center gap-2 rounded-full border border-rose-100 bg-white px-7 py-3.5 text-base font-semibold text-rose-900 shadow-sm transition-all hover:-translate-y-0.5 hover:bg-rose-50 active:scale-[0.98]"
+          className="inline-flex items-center gap-2 rounded-full bg-rose-600 px-7 py-3.5 text-base font-semibold text-white shadow-[0_14px_30px_-12px_rgba(232,64,122,0.7)] transition-all hover:-translate-y-0.5 hover:bg-rose-700 active:scale-[0.98]"
         >
           Meet Dr. Prema
           <ArrowRight size={16} weight="bold" />
@@ -84,7 +84,7 @@ export function HeroContent() {
           href={WHATSAPP_URL}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 rounded-full bg-rose-600 px-7 py-3.5 text-base font-semibold text-white shadow-[0_14px_30px_-12px_rgba(232,64,122,0.7)] transition-all hover:-translate-y-0.5 hover:bg-rose-700 active:scale-[0.98]"
+          className="inline-flex items-center gap-2 rounded-full border border-rose-100 bg-white px-7 py-3.5 text-base font-semibold text-rose-900 shadow-sm transition-all hover:-translate-y-0.5 hover:bg-rose-50 active:scale-[0.98]"
         >
           <CalendarBlank size={18} weight="regular" />
           Book a Consultation
