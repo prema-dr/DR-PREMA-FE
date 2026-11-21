@@ -102,11 +102,11 @@ export function ServicesBento() {
             className="relative mx-auto aspect-[4/5] w-full lg:aspect-auto lg:self-stretch max-w-md overflow-hidden lg:order-1 rounded-[28px] border-4 border-white bg-gradient-to-b from-rose-50 to-rose-200 shadow-[0_30px_60px_-25px_rgba(159,18,57,0.45)] sm:max-w-none lg:max-w-none"
           >
             <Image
-              src="/images/home-scnd-section1.png"
-              alt="Dr. Prema"
+              src="/images/DSC08908.JPG.jpeg"
+              alt="Dr. Prema N."
               fill
               sizes="(min-width: 1024px) 380px, (min-width: 640px) 40vw, 90vw"
-              className="object-cover object-top"
+              className="object-cover object-[50%_26%]"
             />
             <div className="absolute inset-x-3 bottom-3 rounded-2xl bg-white/95 px-4 py-3 backdrop-blur">
               <p className="font-display text-sm font-bold text-rose-900">Dr. Prema N.</p>

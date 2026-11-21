@@ -20,8 +20,8 @@ export function Approach() {
         <div className="grid overflow-hidden rounded-[2rem] shadow-[0_30px_60px_-28px_rgba(159,18,57,0.45)] bg-gradient-to-br from-rose-50 via-pink-50 to-rose-100/70 lg:grid-cols-[0.8fr_1.2fr]">
           <div className="relative min-h-[18rem] lg:min-h-[28rem]">
             <Image
-              src="/images/approach.jpeg"
-              alt="Dr. Prema listening to a patient in a calm, softly lit consultation room"
+              src="/images/DSC08908.JPG.jpeg"
+              alt="Dr. Prema N., Consultant Obstetrician and Gynaecologist"
               fill
               sizes="(min-width: 1024px) 480px, 100vw"
               className="object-cover object-[50%_20%]"

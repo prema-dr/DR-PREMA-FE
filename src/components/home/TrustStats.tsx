@@ -93,8 +93,8 @@ export function TrustStats() {
 
           <dl className="grid grid-cols-2 gap-y-8 md:max-w-[46rem] md:grid-cols-4">
             {STATS.map((stat) => (
-              <div key={stat.label} className="border-l border-rose-200 pl-5 pr-4">
-                <dt className="font-display text-4xl font-bold text-rose-700 md:text-[2.6rem]">
+              <div key={stat.label} className="border-l border-rose-200 pl-4 pr-2 md:pl-5 md:pr-4">
+                <dt className="font-display text-[1.75rem] font-bold text-rose-700 min-[400px]:text-3xl md:text-[2.6rem]">
                   <CountUp value={stat.value} suffix={stat.suffix} />
                 </dt>
                 <dd className="mt-2 max-w-[10rem] text-sm leading-snug text-rose-950/65">
