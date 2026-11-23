@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getServicePage } from "@/lib/site-api";
 import { getService, services } from "@/lib/services";
+import { pageMetadata } from "@/lib/seo";
+import { serviceDetailSchema } from "@/lib/service-detail-schema";
 import { ServiceHero } from "@/components/service/detail/ServiceHero";
 import { ServiceMetrics } from "@/components/service/detail/ServiceMetrics";
 import { ServiceTestimonials } from "@/components/service/detail/ServiceTestimonials";
@@ -29,6 +31,7 @@ export async function generateMetadata({
   return {
     title: service.metaTitle,
     description: service.metaDescription,
+    ...pageMetadata(`/service/${slug}`),
   };
 }
 
@@ -46,6 +49,10 @@ export default async function ServiceDetailPage({
 
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceDetailSchema(service)).replace(/</g, "\\u003c") }}
+      />
       <ServiceHero service={service} />
       <ServiceMetrics />
       <ServiceTestimonials serviceName={service.name} items={testimonials} />

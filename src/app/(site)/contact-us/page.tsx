@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import { ContactHero } from "@/components/contact/ContactHero";
 import { ContactMethods } from "@/components/contact/ContactMethods";
 import { BookingForm } from "@/components/contact/BookingForm";
@@ -6,12 +7,9 @@ import { ContactHours } from "@/components/contact/ContactHours";
 import { VisitSection } from "@/components/contact/VisitSection";
 import { ServiceFaq } from "@/components/service/detail/ServiceFaq";
 import { Reveal } from "@/components/shared/Reveal";
+import { contactSchema } from "@/lib/contact-schema";
 
-export const metadata: Metadata = {
-  title: "Contact Us | Dr Prema",
-  description:
-    "Book an appointment with Dr Prema online: pick a free date and time, and get an email confirmation once the doctor accepts.",
-};
+export const metadata: Metadata = pageMetadata("/contact-us");
 
 const FAQS = [
   {
@@ -31,6 +29,10 @@ const FAQS = [
 export default function ContactUsPage() {
   return (
     <div className="bg-gradient-to-b from-[#fdeaf2] via-[#fff5f9] to-[#fde7f0] -mb-24 pb-48">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(contactSchema).replace(/</g, "\\u003c") }}
+      />
       <ContactHero />
       <ContactMethods />
 

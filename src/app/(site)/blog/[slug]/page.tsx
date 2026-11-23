@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { SITE_URL } from "@/lib/site-url";
 import { notFound } from "next/navigation";
 import { ArticleProgress } from "@/components/blog/ArticleProgress";
 import { ArticleHeader } from "@/components/blog/ArticleHeader";
@@ -26,6 +27,7 @@ export async function generateMetadata({
   return {
     title: `${post.metaTitle || post.title} | Dr Prema`,
     description: post.metaDescription || post.excerpt,
+    alternates: { canonical: `${SITE_URL}/blog/${slug}` },
   };
 }
 

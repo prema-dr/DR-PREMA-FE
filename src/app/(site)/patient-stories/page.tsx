@@ -1,21 +1,23 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import { StoriesHeader } from "@/components/patient-stories/StoriesHeader";
 import { StoriesWall } from "@/components/patient-stories/StoriesWall";
 import { PrivacyNote } from "@/components/patient-stories/PrivacyNote";
 import { ServiceMetrics } from "@/components/service/detail/ServiceMetrics";
 import { ServiceFinalCta } from "@/components/service/detail/ServiceCta";
 import { getTestimonials } from "@/lib/site-api";
+import { patientStoriesSchema } from "@/lib/patient-stories-schema";
 
-export const metadata: Metadata = {
-  title: "Patient Stories | Dr Prema",
-  description:
-    "Real patient experiences, shared with permission, from Dr Prema's gynecology and women's health practice.",
-};
+export const metadata: Metadata = pageMetadata("/patient-stories");
 
 export default async function PatientStoriesPage() {
   const testimonials = await getTestimonials();
   return (
     <div className="min-h-screen bg-gradient-to-b from-[#fdeaf2] via-[#fff5f9] to-[#fde7f0] -mb-24 pb-48">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(patientStoriesSchema).replace(/</g, "\\u003c") }}
+      />
       <StoriesHeader testimonials={testimonials} />
       <ServiceMetrics />
       <StoriesWall testimonials={testimonials} />

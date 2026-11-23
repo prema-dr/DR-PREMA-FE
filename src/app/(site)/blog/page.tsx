@@ -1,21 +1,23 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import { BlogHeader } from "@/components/blog/BlogHeader";
 import { FeaturedPost } from "@/components/blog/FeaturedPost";
 import { BlogGrid } from "@/components/blog/BlogGrid";
 import { ServiceFinalCta } from "@/components/service/detail/ServiceCta";
 import { getBlogPosts } from "@/lib/site-api";
+import { blogSchema } from "@/lib/blog-schema";
 
-export const metadata: Metadata = {
-  title: "Blog | Dr Prema",
-  description:
-    "Plain-language reading on gynecology, pregnancy, and women's health from Dr Prema's practice.",
-};
+export const metadata: Metadata = pageMetadata("/blog");
 
 export default async function BlogPage() {
   const [featured, ...rest] = await getBlogPosts();
 
   return (
     <div className="bg-gradient-to-b from-[#fdeaf2] via-[#fff5f9] to-[#fde7f0] -mb-24 pb-48">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(blogSchema).replace(/</g, "\\u003c") }}
+      />
       <BlogHeader posts={featured ? [featured, ...rest] : []} />
       {featured && <FeaturedPost post={featured} />}
       <BlogGrid posts={rest} />
