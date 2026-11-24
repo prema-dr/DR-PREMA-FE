@@ -238,6 +238,17 @@ export function Footer({ services }: { services: NavService[] }) {
         <div className="mt-14 flex flex-col gap-3 border-t border-white/10 pt-6 text-xs text-white/45 md:flex-row md:items-center md:justify-between">
           <p>© {new Date().getFullYear()} Dr. Prema. All rights reserved.</p>
           <p>MBBS, MS (OBG), DGO, DNB (OBG), FICOG</p>
+          <p>
+            Designed &amp; Developed By{" "}
+            <a
+              href="https://d2ndigitalmarketing.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-medium text-white/70 transition-colors hover:text-rose-400"
+            >
+              D2N Digital Marketing
+            </a>
+          </p>
         </div>
       </div>
     </footer>
