@@ -36,7 +36,7 @@ export default function ContactUsPage() {
       <ContactHero />
       <ContactMethods />
 
-      <section className="relative py-20 lg:py-24">
+      <section id="book-appointment" className="relative scroll-mt-24 py-20 lg:py-24">
         <Reveal className="mx-auto grid max-w-[90rem] grid-cols-1 items-start gap-10 px-[22px] md:px-8 lg:grid-cols-[1.25fr_0.75fr] lg:gap-12 lg:px-10">
           <BookingForm />
           <div className="lg:sticky lg:top-32">

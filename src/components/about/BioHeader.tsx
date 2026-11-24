@@ -1,4 +1,5 @@
 "use client";
+import Link from "next/link";
 
 import Image from "next/image";
 import { motion, useReducedMotion } from "motion/react";
@@ -12,7 +13,7 @@ import {
   StethoscopeIcon as Stethoscope,
   FlowerLotusIcon as FlowerLotus,
 } from "@phosphor-icons/react/dist/ssr";
-import { PHONE_TEL } from "@/components/layout/nav-links";
+import { BOOKING_HREF } from "@/components/layout/nav-links";
 import { CountUp } from "@/components/shared/CountUp";
 
 const QUALIFICATIONS = ["MBBS", "MS (OBG)", "DGO", "DNB (OBG)", "FICOG"];
@@ -84,13 +85,13 @@ export function BioHeader() {
           </motion.ul>
 
           <motion.div {...fade(0.34, reduce)} className="mt-7 flex flex-wrap gap-3">
-            <a
-              href={PHONE_TEL}
+            <Link
+              href={BOOKING_HREF}
               className="inline-flex items-center gap-2 rounded-full border border-rose-100 bg-white px-7 py-3.5 text-sm font-semibold text-rose-900 shadow-sm transition-all hover:-translate-y-0.5 hover:bg-rose-50 active:scale-[0.98]"
             >
               <CalendarCheck size={18} />
               Book an Appointment
-            </a>
+            </Link>
           </motion.div>
         </div>
 

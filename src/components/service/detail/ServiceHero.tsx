@@ -1,14 +1,8 @@
 import Link from "next/link";
 import Image from "next/image";
 import { Reveal } from "@/components/shared/Reveal";
-import {
-  CalendarCheckIcon as CalendarCheck,
-  HeartStraightIcon as HeartStraight,
-  SealCheckIcon as SealCheck,
-  StarIcon as Star,
-  WhatsappLogoIcon as WhatsappLogo,
-} from "@phosphor-icons/react/dist/ssr";
-import { PHONE_TEL, whatsappLink } from "@/components/layout/nav-links";
+import { CalendarCheckIcon as CalendarCheck, HeartStraightIcon as HeartStraight, SealCheckIcon as SealCheck, StarIcon as Star } from "@phosphor-icons/react/dist/ssr";
+import { BOOKING_HREF } from "@/components/layout/nav-links";
 import { ServiceIcon } from "@/lib/service-icons";
 import type { ServiceDetail } from "@/lib/site-api";
 
@@ -50,22 +44,13 @@ export function ServiceHero({ service }: { service: ServiceDetail }) {
           </p>
 
           <div className="mt-8 flex flex-wrap gap-3">
-            <a
-              href={PHONE_TEL}
+            <Link
+              href={BOOKING_HREF}
               className="inline-flex items-center gap-2 rounded-full bg-rose-600 px-7 py-3.5 text-sm font-semibold text-white shadow-[0_14px_28px_-12px_rgba(225,29,72,0.7)] transition-all hover:-translate-y-0.5 hover:bg-rose-700 active:scale-[0.98]"
             >
               <CalendarCheck size={18} />
               Book Consultation
-            </a>
-            <a
-              href={whatsappLink(`Hello Dr. Prema, I would like to know more about ${service.name}.`)}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-full border border-rose-200 bg-white px-7 py-3.5 text-sm font-semibold text-rose-700 transition-all hover:-translate-y-0.5 hover:border-rose-300 active:scale-[0.98]"
-            >
-              <WhatsappLogo size={18} weight="fill" className="text-emerald-500" />
-              WhatsApp Us
-            </a>
+            </Link>
           </div>
         </div>
 

@@ -1,14 +1,7 @@
+import Link from "next/link";
 import Image from "next/image";
-import {
-  ArrowRightIcon as ArrowRight,
-  CalendarCheckIcon as CalendarCheck,
-  CheckCircleIcon as CheckCircle,
-  HeartStraightIcon as HeartStraight,
-  PhoneIcon as Phone,
-  SealCheckIcon as SealCheck,
-  WhatsappLogoIcon as WhatsappLogo,
-} from "@phosphor-icons/react/dist/ssr";
-import { PHONE_TEL, whatsappLink } from "@/components/layout/nav-links";
+import { ArrowRightIcon as ArrowRight, CalendarCheckIcon as CalendarCheck, CheckCircleIcon as CheckCircle, HeartStraightIcon as HeartStraight, PhoneIcon as Phone, SealCheckIcon as SealCheck } from "@phosphor-icons/react/dist/ssr";
+import { PHONE_TEL, BOOKING_HREF } from "@/components/layout/nav-links";
 import { Reveal } from "@/components/shared/Reveal";
 
 /** Compact mid-page banner. */
@@ -31,13 +24,13 @@ export function ServiceCta({ serviceName }: { serviceName: string }) {
             </p>
           </div>
           <div className="flex flex-wrap justify-center gap-3">
-            <a
-              href={PHONE_TEL}
+            <Link
+              href={BOOKING_HREF}
               className="inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-bold text-rose-700 transition-all hover:-translate-y-0.5 hover:shadow-lg active:scale-[0.98]"
             >
               <CalendarCheck size={18} />
               Book Appointment
-            </a>
+            </Link>
             <a
               href={PHONE_TEL}
               className="inline-flex items-center gap-2 rounded-full border border-white/40 px-6 py-3 text-sm font-semibold text-white transition-all hover:-translate-y-0.5 hover:bg-white/10 active:scale-[0.98]"
@@ -91,23 +84,14 @@ export function ServiceFinalCta({ serviceName, message }: { serviceName: string;
               ))}
             </ul>
             <div className="mt-9 flex flex-wrap items-center gap-3">
-              <a
-                href={PHONE_TEL}
+              <Link
+                href={BOOKING_HREF}
                 className="group inline-flex items-center gap-2 rounded-full bg-white px-7 py-3.5 text-sm font-bold text-rose-700 shadow-[0_18px_34px_-14px_rgba(0,0,0,0.5)] transition-all hover:-translate-y-0.5 active:scale-[0.98]"
               >
                 <CalendarCheck size={18} />
                 Book Consultation
                 <ArrowRight size={16} weight="bold" className="transition-transform group-hover:translate-x-1" />
-              </a>
-              <a
-                href={whatsappLink(`Hello Dr. Prema, I would like to book a consultation for ${serviceName}.`)}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-full border border-white/40 px-7 py-3.5 text-sm font-semibold text-white transition-all hover:-translate-y-0.5 hover:bg-white/10 active:scale-[0.98]"
-              >
-                <WhatsappLogo size={20} weight="fill" />
-                WhatsApp Us
-              </a>
+              </Link>
             </div>
           </div>
 

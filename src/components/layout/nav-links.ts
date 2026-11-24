@@ -11,6 +11,8 @@ export const WHATSAPP_URL =
   "https://wa.me/917373447104?text=" +
   encodeURIComponent("Hello Dr. Prema, I would like to book a consultation.");
 
+export const BOOKING_HREF = "/contact-us#book-appointment";
+
 export const PHONE_TEL = "tel:+917373447104";
 
 export function whatsappLink(message: string) {

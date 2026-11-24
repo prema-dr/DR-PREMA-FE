@@ -17,7 +17,7 @@ import {
   YoutubeLogoIcon as YoutubeLogo,
 } from "@phosphor-icons/react/dist/ssr";
 import type { NavService } from "@/lib/site-api";
-import { NAV_LINKS, INSTAGRAM_URL, PHONE_TEL, WHATSAPP_URL, YOUTUBE_URL } from "./nav-links";
+import { NAV_LINKS, INSTAGRAM_URL, WHATSAPP_URL, YOUTUBE_URL, BOOKING_HREF } from "./nav-links";
 import { CLINIC_INFO } from "./clinic-info";
 
 type IconType = ComponentType<{ size?: number; weight?: "light" | "regular" | "fill"; className?: string }>;
@@ -139,13 +139,13 @@ export function Footer({ services }: { services: NavService[] }) {
                 </a>
               ))}
             </div>
-            <a
-              href={PHONE_TEL}
+            <Link
+              href={BOOKING_HREF}
               className="mt-7 inline-flex items-center gap-2 rounded-full bg-rose-500 px-6 py-3 text-sm font-semibold text-white shadow-[0_14px_30px_-12px_rgba(244,63,94,0.8)] transition-all hover:-translate-y-0.5 hover:bg-rose-400 active:scale-[0.98]"
             >
               <PhoneCall size={18} weight="regular" />
               Book Consultation
-            </a>
+            </Link>
           </div>
 
           {/* Quick links */}

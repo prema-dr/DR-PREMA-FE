@@ -1,3 +1,4 @@
+import Link from "next/link";
 import Image from "next/image";
 import {
   ArrowDownIcon as ArrowDown,
@@ -6,7 +7,7 @@ import {
   SealCheckIcon as SealCheck,
   StethoscopeIcon as Stethoscope,
 } from "@phosphor-icons/react/dist/ssr";
-import { PHONE_TEL } from "@/components/layout/nav-links";
+import { BOOKING_HREF } from "@/components/layout/nav-links";
 import { Reveal } from "@/components/shared/Reveal";
 
 export function ServiceHeader({ count }: { count: number }) {
@@ -37,13 +38,13 @@ export function ServiceHeader({ count }: { count: number }) {
             and compassion.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
-            <a
-              href={PHONE_TEL}
+            <Link
+              href={BOOKING_HREF}
               className="inline-flex items-center gap-2 rounded-full border border-rose-200 bg-white px-7 py-3.5 text-sm font-semibold text-rose-700 transition-all hover:-translate-y-0.5 hover:border-rose-300 active:scale-[0.98]"
             >
               <CalendarCheck size={18} />
               Book Consultation
-            </a>
+            </Link>
             <a
               href="#all-services"
               className="inline-flex items-center gap-2 rounded-full bg-rose-600 px-7 py-3.5 text-sm font-semibold text-white shadow-[0_14px_28px_-12px_rgba(225,29,72,0.7)] transition-all hover:-translate-y-0.5 hover:bg-rose-700 active:scale-[0.98]"

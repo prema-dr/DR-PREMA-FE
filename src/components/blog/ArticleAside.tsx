@@ -1,4 +1,5 @@
 "use client";
+import Link from "next/link";
 
 import { useState } from "react";
 import {
@@ -7,7 +8,7 @@ import {
   PhoneCallIcon as PhoneCall,
   WhatsappLogoIcon as WhatsappLogo,
 } from "@phosphor-icons/react/dist/ssr";
-import { PHONE_TEL, whatsappLink } from "@/components/layout/nav-links";
+import { BOOKING_HREF } from "@/components/layout/nav-links";
 
 export function ArticleAside({ title, headings }: { title: string; headings: { id: string; text: string }[] }) {
   const [copied, setCopied] = useState(false);
@@ -70,17 +71,9 @@ export function ArticleAside({ title, headings }: { title: string; headings: { i
         <p className="relative font-display text-xl font-bold leading-snug">Have a question about this?</p>
         <p className="relative mt-2 text-sm leading-relaxed text-rose-50/80">Talk it through with Dr. Prema, with no pressure to decide anything.</p>
         <div className="relative mt-5 flex flex-col gap-2.5">
-          <a href={PHONE_TEL} className="inline-flex items-center justify-center gap-2 rounded-full bg-white px-5 py-3 text-sm font-bold text-rose-700 transition-all hover:-translate-y-0.5 active:scale-[0.98]">
+          <Link href={BOOKING_HREF} className="inline-flex items-center justify-center gap-2 rounded-full bg-white px-5 py-3 text-sm font-bold text-rose-700 transition-all hover:-translate-y-0.5 active:scale-[0.98]">
             <PhoneCall size={17} weight="fill" /> Book Consultation
-          </a>
-          <a
-            href={whatsappLink(`Hello Dr. Prema, I read "${title}" and have a question.`)}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center justify-center gap-2 rounded-full border border-white/40 px-5 py-3 text-sm font-semibold text-white transition-all hover:-translate-y-0.5 hover:bg-white/10 active:scale-[0.98]"
-          >
-            <WhatsappLogo size={18} weight="fill" /> WhatsApp Us
-          </a>
+          </Link>
         </div>
       </div>
     </aside>

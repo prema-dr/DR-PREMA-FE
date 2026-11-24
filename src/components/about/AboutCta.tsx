@@ -1,3 +1,4 @@
+import Link from "next/link";
 import Image from "next/image";
 import {
   ArrowRightIcon as ArrowRight,
@@ -7,7 +8,7 @@ import {
   PhoneIcon as Phone,
   SealCheckIcon as SealCheck,
 } from "@phosphor-icons/react/dist/ssr";
-import { PHONE_TEL } from "@/components/layout/nav-links";
+import { PHONE_TEL, BOOKING_HREF } from "@/components/layout/nav-links";
 import { CLINIC_INFO } from "@/components/layout/clinic-info";
 import { Reveal } from "@/components/shared/Reveal";
 
@@ -61,14 +62,14 @@ export function AboutCta() {
             </ul>
 
             <div className="mt-9 flex flex-wrap items-center gap-3">
-              <a
-                href={PHONE_TEL}
+              <Link
+                href={BOOKING_HREF}
                 className="group inline-flex items-center gap-2 rounded-full bg-white px-7 py-3.5 text-sm font-bold text-rose-700 shadow-[0_18px_34px_-14px_rgba(0,0,0,0.5)] transition-all hover:-translate-y-0.5 active:scale-[0.98]"
               >
                 <CalendarCheck size={18} />
                 Book an Appointment
                 <ArrowRight size={16} weight="bold" className="transition-transform group-hover:translate-x-1" />
-              </a>
+              </Link>
               <a
                 href={PHONE_TEL}
                 className="inline-flex items-center gap-3 rounded-full border border-white/40 py-2 pl-2 pr-6 text-sm font-semibold text-white transition-all hover:-translate-y-0.5 hover:bg-white/10 active:scale-[0.98]"

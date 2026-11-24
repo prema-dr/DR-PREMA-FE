@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { motion, useReducedMotion, type Variants } from "motion/react";
 import { ArrowRightIcon as ArrowRight, CalendarBlankIcon as CalendarBlank, StarIcon as Star } from "@phosphor-icons/react/dist/ssr";
-import { WHATSAPP_URL } from "@/components/layout/nav-links";
+import { BOOKING_HREF } from "@/components/layout/nav-links";
 
 const container: Variants = {
   hidden: {},
@@ -80,15 +80,13 @@ export function HeroContent() {
           Meet Dr. Prema
           <ArrowRight size={16} weight="bold" />
         </Link>
-        <a
-          href={WHATSAPP_URL}
-          target="_blank"
-          rel="noopener noreferrer"
+        <Link
+          href={BOOKING_HREF}
           className="inline-flex items-center gap-2 rounded-full border border-rose-100 bg-white px-7 py-3.5 text-base font-semibold text-rose-900 shadow-sm transition-all hover:-translate-y-0.5 hover:bg-rose-50 active:scale-[0.98]"
         >
           <CalendarBlank size={18} weight="regular" />
           Book a Consultation
-        </a>
+        </Link>
       </motion.div>
 
       <motion.dl variants={item} className="mt-10 flex max-w-xl flex-nowrap gap-x-6 border-t border-rose-100 pt-8">
